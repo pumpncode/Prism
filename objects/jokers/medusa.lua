@@ -15,17 +15,26 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.cardarea == G.jokers and context.before then
 			local faces = {}
+			local has_face = false
             for k, v in ipairs(context.scoring_hand) do
 				if v:is_face() then 
 					faces[#faces+1] = v
-					v:set_ability(G.P_CENTERS.m_stone, nil, true)
+					has_face = true
+					v:set_ability(G.P_CENTERS.m_stone,nil,true)
 					G.E_MANAGER:add_event(Event({
 						func = function()
 							v:juice_up()
 							return true
 						end
-					})) 
+					}))
 				end
+			end
+			if has_face then
+				return {
+					message = localize('k_stone'),
+					colour = HEX("D0D2D6"),
+					card = card
+				}
 			end
 		end
     end

@@ -23,10 +23,10 @@ SMODS.Joker({
 			local temp_ID = 0
 			local raised_card = nil
 			for i=1, #G.hand.cards do
-				if temp_ID <= G.hand.cards[i].base.id and G.hand.cards[i].ability.effect ~= 'Stone Card' then 
+				if temp_ID <= G.hand.cards[i]:get_id() and not SMODS.has_no_rank(G.hand.cards[i]) then 
 					card.ability.extra = G.hand.cards[i].base.nominal; 
-					temp_ID = G.hand.cards[i].base.id; 
-					raised_card = G.hand.cards[i] 
+					temp_ID = G.hand.cards[i]:get_id();
+					raised_card = G.hand.cards[i]
 				end
 			end
 			if context.individual and raised_card == context.other_card and not context.end_of_round then 

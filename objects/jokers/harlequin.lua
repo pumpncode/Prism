@@ -50,8 +50,9 @@ SMODS.Joker({
 			end
 			if upgrade == true then
 				return {
+					focus = card,
 					colour = G.C.RED,
-					extra = { focus = card, message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } })},
+					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
 					card = card,
 				}
 			end

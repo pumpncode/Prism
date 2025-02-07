@@ -11,7 +11,7 @@ SMODS.Joker({
 	perishable_compat = false,
 	config = {extra = {mult = 5}},
 	loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.etra.mult, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral * center.ability.extra.mult or 0} }
+		return { vars = { center.ability.extra.mult, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral * center.ability.extra.mult or 0} }
 	end,
 	calculate = function(self, card, context)
 		if context.joker_main and G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral > 0 then

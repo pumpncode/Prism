@@ -31,3 +31,34 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = 0},
 })
+
+SMODS.Consumable({
+    key = 'myth_dwarf',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=1, y=0},
+    discovered = false,
+    config = {mod_conv = "m_prism_crystal", max_highlighted = 2},
+    effect = 'Enhance',
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
+
+		return { vars = { self.config.max_highlighted } }
+	end,
+
+})
+SMODS.Consumable({
+    key = 'myth_dragon',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=2, y=0},
+    discovered = false,
+    config = {mod_conv = "m_prism_burnt", max_highlighted = 2},
+    effect = 'Enhance',
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
+
+		return { vars = { self.config.max_highlighted } }
+	end,
+
+})

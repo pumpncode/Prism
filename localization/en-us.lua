@@ -22,7 +22,7 @@ return {
                 },
             },
             j_prism_medusa = {
-                name = "Medusa",
+                name = "Gorgon",
                 text = {"All played {C:attention}face{} cards",
                     "become {C:attention}Stone{} cards",
                     "when scored",
@@ -48,15 +48,32 @@ return {
                     "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
                 },
             },
+            j_prism_prism = {
+                name = "Prism",
+                text = {"{C:attention}Numbered{} cards",
+                    "count as every suit"
+                },
+            },
         },
         Enhanced = {
             m_prism_crystal = {
                 name = "Crystal Card",
-                text = {"{X:mult,C:white} X#1# {} Mult",
+                text = {"{X:mult,C:white} X#1#{} Mult",
+                    "Gains {X:mult,C:white} X#2#{} Mult if held in",
+                    "hand at end of round"
+                }
+
+            },
+            m_prism_burnt = {
+                name = "Burnt Card",
+                text = {"{X:mult,C:white} X#1#{} Mult",
+                    "Gains {X:mult,C:white} X#2#{} Mult if held in",
+                    "hand at end of round"
                 }
 
             },
         },
+        
         Myth = {
             c_prism_myth_druid = {
                 name = "Druid",
@@ -64,16 +81,26 @@ return {
                 }
 
             },
+            c_prism_myth_dwarf = {
+                name = "Dwarf",
+                text = {"Enhances {C:attention}#1#{}",
+                    " selected cards to",
+                    "{C:attention}Crytsal Cards"
+                }
+            },
+            c_prism_myth_dragon = {
+                name = "Dragon",
+                text = {"Enhances {C:attention}#1#{}",
+                    " selected cards to",
+                    "{C:attention}Burnt Cards"
+                }
+            },
         }
+    },
+    misc = {
+        dictionary = {
+            k_stone = "Stone"
+        },
     }
-    --misc = {
-        --dictionary = {
-            --kcv_active = "Active",
-            --kcv_inactive = "Inactive"
-        --},
-        --v_dictionary = {
-            --kcv_active_for_X_more_hands = "Active for #1# more hand(s)"
-        --}
-    --}
 }
 
