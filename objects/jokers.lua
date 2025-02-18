@@ -1,3 +1,9 @@
+SMODS.Atlas {
+    key = 'prismjokers',
+    path = "jokers.png",
+    px = 71,
+    py = 95
+}
 SMODS.Joker({
 	key = "air_balloon",
 	atlas = "prismjokers",
@@ -199,7 +205,7 @@ SMODS.Joker({
 				return {
 					message = localize('k_stone'),
 					colour = HEX("D0D2D6"),
-					card = card
+					card = card,
 				}
 			end
 		end
@@ -269,4 +275,135 @@ SMODS.Joker({
 			return nil,true
 		end
 	end,
+})
+SMODS.Joker({
+	key = "minstrel",
+	atlas = "prismjokers",
+	pos = {x=1,y=0},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+		if context.setting_blind and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+			G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+			play_sound("timpani")
+			local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'minst')
+			myth:add_to_deck()
+			G.consumeables:emplace(myth)
+			G.GAME.consumeable_buffer = 0
+			myth:juice_up(0.3, 0.5)
+			return nil,true
+		end
+	end
+})
+SMODS.Joker({
+	key = "promotion",
+	atlas = "prismjokers",
+	pos = {x=0,y=9},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+		if context.first_hand_drawn then
+			local eval = function() return G.GAME.current_round.hands_played == 0 end
+			juice_card_until(card, eval, true)
+		end
+		if context.cardarea == G.jokers and context.before then
+			if #context.full_hand == 1 then
+				local _card = context.full_hand[1]
+				local suit = string.sub(_card.base.suit, 1, 1)..'_'
+                _card:set_base(G.P_CARDS[suit..'Q'])
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						_card:juice_up(0.3, 0.5)
+						return true
+					end
+				}))
+				return {
+					message = localize('k_promoted'),
+					focus = _card,
+					card = card,
+				}
+			end
+		end
+	end
+})
+SMODS.Joker({
+	key = "geo_hammer",
+	atlas = "prismjokers",
+	pos = {x=0,y=3},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {"m_stone","m_prism_crystal"}},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_prism_crystal
+	end,
+	calculate = function(self, card, context)
+		if context.first_hand_drawn then
+			G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+				local eligible_cards = {}
+				for k, v in ipairs(G.hand.cards) do
+					if not v.ability.set == 'Enhanced' then
+						eligible_cards[#eligible_cards + 1] = v
+					end
+				end
+				local random_card = pseudorandom_element(eligible_cards, pseudoseed('geo'))
+				local enhancement = pseudorandom_element(card.ability.extra, pseudoseed('geo'))
+				if random_card then
+					random_card:set_ability(G.P_CENTERS[enhancement]) 
+					random_card:juice_up(0.3, 0.5)
+					card:juice_up(0.3, 0.5)
+				end
+			return true end }))
+		end
+	end
+})
+SMODS.Joker({
+	key = "vaquero",
+	atlas = "prismjokers",
+	pos = {x=1,y=2},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {x_mult = 1.5}},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_wild
+		return {
+		vars = {center.ability.extra.x_mult}
+		}
+	end,
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_wild') then return true end
+		end
+		return false
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if SMODS.has_enhancement(context.other_card,'m_wild') then
+                return {
+                    xmult = 1.5,
+                    card = card
+                }
+            end
+        end
+    end
 })

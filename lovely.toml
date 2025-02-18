@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 5
+
+# Burnt card extra card draw
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "for i=1, hand_space do*"
+position = "before"
+payload = """
+hand_space = hand_space + G.PRISM.extra_draw
+G.PRISM.extra_draw = 0
+"""
+match_indent = true

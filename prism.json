@@ -2,7 +2,7 @@
 	"id": "Prism",
 	"name": "Prism",
 	"display_name": "Prism",
-	"author": ["blazingulag"],
+	"author": ["Blazingulag"],
 	"description": "...",
 	"prefix": "prism",
 	"main_file": "main.lua",
