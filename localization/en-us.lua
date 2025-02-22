@@ -9,8 +9,10 @@ return {
             },
             j_prism_razor_blade = {
                 name = "Razor Blade",
-                text = {"Destroy {C:attention}lowest{} played card and adds", 
-                    "{C:attention}double{} its rank to mult",
+                text = {"{X:mult,C:white} X#1#{} Mult for each",
+                    "{C:attention}rank{} no longer present",
+                    "in your full deck",
+                    "{C:inactive}(Currently {X:mult,C:white}X#2# {C:inactive} Mult)"
                 },
             },
             j_prism_harlequin = {
@@ -20,6 +22,9 @@ return {
                     "of each {C:attention}Suit{} is scored",
                     "{C:inactive}(Currently {X:mult,C:white}X#2# {C:inactive} Mult)",
                 },
+                unlock= {
+                "{E:1,s:1.3}?????",
+                }
             },
             j_prism_medusa = {
                 name = "Gorgon",
@@ -36,9 +41,10 @@ return {
             },
             j_prism_air_balloon = {
                 name = "Hot Air Balloon",
-                text = {"This joker gains Chips equal",
-                    "to {C:attention}highest{} rank held in hand",
-                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+                text = {"This Joker gains {C:red}+#2#{}",
+                    "Mult per {C:attention}consecutive",
+                    "{C:attention}High Card{} played",
+                    "{C:inactive}(Currently {C:red}+#1#{C:inactive} Mult)"
                 },
             },
             j_prism_ghost = {
@@ -81,6 +87,38 @@ return {
                 text = {"If {C:attention}first hand{} of round",
                     "has only {C:attention}1{} card,",
                     "turn it into a {C:attention}Queen"
+                },
+            },
+            j_prism_sculptor  = {
+                name = "Sculptor",
+                text = {"Every played {C:attention}Stone Card",
+                    "permanently gains",
+                    "{C:mult}+#1#{} Mult when scored"
+                },
+            },
+            j_prism_motherboard = {
+                name = "Motherboard",
+                text = {""
+                },
+            },
+            j_prism_reverse_card = {
+                name = "Reverse Card",
+                text = {"Swap current",
+                    "{C:chips}Chips{} and {C:mult}Mult"
+                },
+            },
+            j_prism_vip_pass = {
+                name = "Vip Pass",
+                text = {"{C:chips}Common {C:attention}Jokers{} can't appear",
+                },
+            },
+        },
+        Back = {
+            b_prism_ancient = {
+                name = "Ancient Deck",
+                text = {"Start run with",
+                    "{C:myth,T:v_prism_myth_merchant}Myth Merchant{} and",
+                    "{C:attention,T:v_prism_booster_box}Booster Box{}"
                 },
             },
         },
@@ -195,12 +233,31 @@ return {
             },
             c_prism_myth_roc = {
                 name = "Roc",
-                text = {"Create a random {C:attention}Tag"
+                text = {"Create a {C:attention}Double Tag"
                 }
             },
             c_prism_myth_kraken = {
                 name = "Kraken",
-                text = {"Create a random {C:attention}Tag"
+                text = {"Converts up to {C:attention}#1#{}",
+                    "selected cards to",
+                    "the {C:attention}right{} card's {C:attention}Suit{}"
+                }
+            },
+            c_prism_myth_treant = {
+                name = "Treant",
+                text = {"Converts up to {C:attention}#1#{}",
+                    "selected cards to",
+                    "the {C:attention}right{} card's {C:attention}Suit{}"
+                }
+            },
+        },
+        Spectral = {
+            c_prism_spectral_djinn = {
+                name = "Djinn",
+                text = {"Wish for {C:dark_edition}any",
+                    "Joker to create",
+                    "{C:inactive}(Legendary Jokers",
+                    "{C:inactive}excluded)"
                 }
             },
         },
@@ -219,6 +276,21 @@ return {
                     "{C:myth} Myth{} cards appear",
                     "{C:attention}4X{} more frequently",
                     "in the shop",
+                },
+            },
+            v_prism_booster_box = {
+                name = "Booster Box",
+                text = {
+                    "{C:attention}+1{} booster slot",
+                    "available in the shop",
+                },
+            },
+            v_prism_bonus_packs = {
+                name = "Bonus Packs",
+                text = {
+                    "You can choose",
+                    "{C:attention}1{} extra card from",
+                    "{C:attention}Booster Packs",
                 },
             },
 
@@ -265,6 +337,9 @@ return {
                     "played and scoring"
                 },
             },
+            card_extra_mult = {
+                text={"{C:mult}+#1#{} extra mult"}
+            },
         },
     },
     misc = {
@@ -272,10 +347,15 @@ return {
             k_stone = "Stone",
             k_promoted = "Promoted!",
             k_prism_myth_pack = "Legend Pack",
+            k_uno_reverse = "Reversed",
+            prism_create = "Make Wish",
+            prism_cancel = "Cancel",
+            prism_enter_card = "Enter Card",
+            prism_switch = "Switch"
         },
         labels = {
             prism_green_seal = "Green Seal",
-            prism_moon_seal = "Moon Seal"
+            prism_moon_seal = "Moon Seal",
         }
     }
 }

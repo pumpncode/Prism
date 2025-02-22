@@ -25,9 +25,9 @@ SMODS.ConsumableType({
             }
         }
     },
-    collection_rows = {6, 5},
-    shop_rate = 0.6,
-    default = 'c_prism_myth_druid'
+    collection_rows = {4, 3},
+    shop_rate = 0.85,
+    default = 'c_prism_myth_gnome'
 })
 SMODS.UndiscoveredSprite({
     key = "Myth",
@@ -35,50 +35,6 @@ SMODS.UndiscoveredSprite({
     pos = { x = 0, y = 0 },
     no_overlay = true
 })
-SMODS.Consumable({
-    key = 'myth_druid',
-    set = 'Myth',
-    atlas = 'prismmyth',
-    pos = {x=0, y=1},
-    discovered = false,
-    config = {max_highlighted = 2},
-    loc_vars = function(self, info_queue)
-		return { vars = { self.config.max_highlighted } }
-	end,
-    can_use = function(self, card)
-		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 2
-	end,
-    use = function(self, card, area, copier)
-        local rightmost = G.hand.highlighted[1]
-        for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
-        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-            play_sound('tarot1')
-            card:juice_up(0.3, 0.5)
-            return true end }))
-        for i=1, #G.hand.highlighted do
-            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
-            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
-        end
-        for i=1, #G.hand.highlighted do
-            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-                local edition = rightmost.edition
-                local enhancement = rightmost.config.center.key
-                local seal = rightmost.seal
-                if G.hand.highlighted[i] ~= rightmost then
-                    local leftmost = G.hand.highlighted[i]
-                    if not leftmost.edition then leftmost:set_edition(edition) end
-                    if leftmost.config.center.key == "c_base" then leftmost:set_ability(G.P_CENTERS[enhancement]) end
-                    if not leftmost.seal then leftmost:set_seal(seal) end
-                end
-            return true end }))
-        end
-        for i=1, #G.hand.highlighted do
-            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
-            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
-        end
-        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end}))
-    end
-}) 
 
 SMODS.Consumable({
     key = 'myth_dwarf',
@@ -87,6 +43,36 @@ SMODS.Consumable({
     pos = {x=1, y=0},
     discovered = false,
     config = {mod_conv = "m_prism_crystal", max_highlighted = 2},
+    effect = 'Enhance',
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
+
+		return { vars = { self.config.max_highlighted } }
+	end,
+
+})
+SMODS.Consumable({
+    key = 'myth_dragon',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=2, y=0},
+    discovered = false,
+    config = {mod_conv = "m_prism_burnt", max_highlighted = 2},
+    effect = 'Enhance',
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
+
+		return { vars = { self.config.max_highlighted } }
+	end,
+
+})
+SMODS.Consumable({
+    key = 'myth_siren',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=6, y=1},
+    discovered = false,
+    config = {mod_conv = "m_prism_echo", max_highlighted = 2},
     effect = 'Enhance',
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
@@ -137,36 +123,6 @@ SMODS.Consumable({
 
 })
 SMODS.Consumable({
-    key = 'myth_dragon',
-    set = 'Myth',
-    atlas = 'prismmyth',
-    pos = {x=2, y=0},
-    discovered = false,
-    config = {mod_conv = "m_prism_burnt", max_highlighted = 2},
-    effect = 'Enhance',
-    loc_vars = function(self, info_queue)
-		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
-
-		return { vars = { self.config.max_highlighted } }
-	end,
-
-})
-SMODS.Consumable({
-    key = 'myth_siren',
-    set = 'Myth',
-    atlas = 'prismmyth',
-    pos = {x=6, y=1},
-    discovered = false,
-    config = {mod_conv = "m_prism_echo", max_highlighted = 2},
-    effect = 'Enhance',
-    loc_vars = function(self, info_queue)
-		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
-
-		return { vars = { self.config.max_highlighted } }
-	end,
-
-})
-SMODS.Consumable({
     key = 'myth_gnome',
     set = 'Myth',
     atlas = 'prismmyth',
@@ -186,6 +142,42 @@ SMODS.Consumable({
 		ease_dollars(option)
 	end
 
+})
+SMODS.Consumable({
+    key = 'myth_beast',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=3, y=1},
+    discovered = false,
+    can_use = function(self,card)
+        return G.consumeables.config.card_limit > #G.consumeables.cards
+    end,
+    use = function(self, card, area, copier)
+        if G.consumeables.config.card_limit > #G.consumeables.cards then
+            play_sound('timpani')
+            local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'beast')
+            _card:add_to_deck()
+            G.consumeables:emplace(_card)
+            card:juice_up(0.3, 0.5)
+        end
+    end
+})
+SMODS.Consumable({
+    key = 'myth_roc',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=6, y=0},
+    discovered = false,
+    can_use = function(self, card)
+		return true
+	end,
+    use = function(self, card, area, copier)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            add_tag(Tag('tag_double'))
+        return true end }))
+    end
 })
 SMODS.Consumable({
     key = 'myth_wizard',
@@ -233,27 +225,75 @@ SMODS.Consumable({
     end
 }) 
 SMODS.Consumable({
-    key = 'myth_mirror',
+    key = 'myth_kraken',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=4, y=0},
+    pos = {x=5, y=1},
     discovered = false,
+    config = {max_highlighted = 3},
     loc_vars = function(self, info_queue)
-		info_queue[#info_queue + 1] = {key = 'e_negative_playing_card', set = 'Edition', config = {extra = 1}}
+		return { vars = { self.config.max_highlighted } }
 	end,
-    can_use = function(self,card)
-        return G.STATE == G.STATES.SELECTING_HAND or G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK or G.STATE == G.STATES.SMODS_BOOSTER_OPENED 
-    end,
+    can_use = function(self, card)
+		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 2
+	end,
     use = function(self, card, area, copier)
+        local rightmost = G.hand.highlighted[1]
+        for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
+        local suit = string.sub(rightmost.base.suit, 1, 1)..'_'
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
-            local random_card = pseudorandom_element(G.hand.cards, pseudoseed('mirror'))
-            if random_card then random_card:set_edition({negative = true}, true) end
+            return true end }))
+        for i=1, #G.hand.highlighted do
+            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        for i=1, #G.hand.highlighted do
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+                local rank = G.hand.highlighted[i].base.id == 14 and 2 or math.min(G.hand.highlighted[i].base.id, 14)
+                if rank < 10 then rank = tostring(rank)
+                elseif rank == 10 then rank = 'T'
+                elseif rank == 11 then rank = 'J'
+                elseif rank == 12 then rank = 'Q'
+                elseif rank == 13 then rank = 'K'
+                elseif rank == 14 then rank = 'A'
+                end
+                G.hand.highlighted[i]:set_base(G.P_CARDS[suit..rank])
+            return true end }))
+        end
+        for i=1, #G.hand.highlighted do
+            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end}))
+    end
+})
+SMODS.Consumable({
+    key = 'myth_ooze',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=5, y=0},
+    discovered = false,
+    config = {seal_conv = "prism_green", max_highlighted = 3},
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = G.P_SEALS[self.config.seal_conv]
+
+		return { vars = {self.config.max_highlighted} }
+	end,
+    can_use = function(self, card)
+		return #G.hand.highlighted <= self.config.max_highlighted and #G.hand.highlighted >= 1
+	end,
+    use = function(self, card, area, copier)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            for i=1, #G.hand.highlighted do
+                G.hand.highlighted[i]:set_seal(self.config.seal_conv)
+            end
         return true end }))
     end
-
-})  
+})
 SMODS.Consumable({
     key = 'myth_colossus',
     set = 'Myth',
@@ -281,82 +321,114 @@ SMODS.Consumable({
 
 }) 
 SMODS.Consumable({
-    key = 'myth_beast',
+    key = 'myth_mirror',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=3, y=1},
+    pos = {x=4, y=0},
     discovered = false,
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = {key = 'e_negative_playing_card', set = 'Edition', config = {extra = 1}}
+	end,
     can_use = function(self,card)
-        return true 
+        return G.STATE == G.STATES.SELECTING_HAND or G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK or G.STATE == G.STATES.SMODS_BOOSTER_OPENED 
     end,
     use = function(self, card, area, copier)
-        if G.consumeables.config.card_limit > #G.consumeables.cards then
-            play_sound('timpani')
-            local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'beast')
-            _card:add_to_deck()
-            G.consumeables:emplace(_card)
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('tarot1')
             card:juice_up(0.3, 0.5)
-        end
+            local random_card = pseudorandom_element(G.hand.cards, pseudoseed('mirror'))
+            if random_card then random_card:set_edition({negative = true}, true) end
+        return true end }))
     end
-})
-SMODS.Consumable({
-    key = 'myth_ooze',
-    set = 'Myth',
-    atlas = 'prismmyth',
-    pos = {x=5, y=0},
-    discovered = false,
-    config = {seal_conv = "prism_green", max_highlighted = 2},
-    loc_vars = function(self, info_queue)
-		info_queue[#info_queue + 1] = G.P_SEALS[self.config.seal_conv]
 
-		return { vars = {self.config.max_highlighted} }
+}) 
+SMODS.Consumable({
+    key = 'myth_druid',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=0, y=1},
+    discovered = false,
+    config = {max_highlighted = 2},
+    loc_vars = function(self, info_queue)
+		return { vars = { self.config.max_highlighted } }
 	end,
     can_use = function(self, card)
-		return #G.hand.highlighted <= self.config.max_highlighted and #G.hand.highlighted >= 1
+		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 2
 	end,
     use = function(self, card, area, copier)
-        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+        local rightmost = G.hand.highlighted[1]
+        for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
-            for i=1, #G.hand.highlighted do
-                G.hand.highlighted[i]:set_seal(self.config.seal_conv)
-            end
         return true end }))
+        for i=1, #G.hand.highlighted do
+            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        for i=1, #G.hand.highlighted do
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+                local edition = rightmost.edition
+                local enhancement = rightmost.config.center.key
+                local seal = rightmost.seal
+                if G.hand.highlighted[i] ~= rightmost then
+                    local leftmost = G.hand.highlighted[i]
+                    if not leftmost.edition then leftmost:set_edition(edition) end
+                    if leftmost.config.center.key == "c_base" then leftmost:set_ability(G.P_CENTERS[enhancement]) end
+                    if not leftmost.seal then leftmost:set_seal(seal) end
+                end
+            return true end }))
+        end
+        for i=1, #G.hand.highlighted do
+            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end}))
     end
 })
 SMODS.Consumable({
-    key = 'myth_roc',
+    key = 'myth_treant',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=6, y=0},
+    pos = {x=7, y=0},
     discovered = false,
+    config = {max_highlighted = 2},
+    loc_vars = function(self, info_queue)
+		return { vars = { self.config.max_highlighted } }
+	end,
     can_use = function(self, card)
-		return true
+		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 2
 	end,
     use = function(self, card, area, copier)
-        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-            play_sound('tarot1')
-            card:juice_up(0.3, 0.5)
-            local tag = pseudorandom_element(G.P_TAGS, pseudoseed('roc')).key
-            add_tag(Tag(tag))
-        return true end }))
     end
 })
 SMODS.Consumable({
-    key = 'myth_kraken',
-    set = 'Myth',
+    key = 'spectral_djinn',
+    set = 'Spectral',
     atlas = 'prismmyth',
-    pos = {x=5, y=1},
+    pos = {x=7, y=1},
     discovered = false,
+    cost = 4,
+    soul_set = "Myth",
     can_use = function(self, card)
-		return true
+		return G.jokers.config.card_limit > #G.jokers.cards
 	end,
     use = function(self, card, area, copier)
-        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-            play_sound('tarot1')
+        G.ENTERED_TEXT = ""
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('tarot2')
             card:juice_up(0.3, 0.5)
-            local tag = pseudorandom_element(G.P_TAGS, pseudoseed('roc')).key
-            add_tag(Tag(tag))
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.5, func = function()
+                G.CHOOSE_CARD = UIBox({
+                    definition = djinn_UIBox(card),
+                    config = {
+                        align = "cm",
+                        major = G.ROOM_ATTACH,
+                        bond = "Weak",
+                        instance_type = "POPUP",
+                    },
+                })
+            return true end }))
         return true end }))
     end
 })
@@ -490,4 +562,97 @@ for i, key in ipairs(large_boosters.keys) do
     booster_args.pos = { x = i + 2, y = 0 }
     booster_args.ortalab_type = 'Myth'
     SMODS.Booster(booster_args)
+end
+
+--Djinn
+G.PRISM.FUNCS.find_card = function(entered_text)
+    --local card
+	local function clean_string(str)
+		str = str:gsub("%b{}", ""):gsub("%s+", "")
+		if string.len(str) == 1 then
+			return str
+		end
+		return string.lower(str)
+	end
+	for i, v in pairs(G.P_CENTERS) do
+		if v.set == "Joker" and v.rarity < 4 and clean_string(entered_text) == clean_string(localize({ type = "name_text", set = "Joker", key = i })) then
+			return i
+		end
+	end
+    return nil
+end
+function djinn_UIBox(card)
+	G.E_MANAGER:add_event(Event({
+		blockable = false,
+		func = function()
+			G.REFRESH_ALERTS = true
+			return true
+		end,
+	}))
+	local t = create_UIBox_generic_options({
+		no_back = true,
+		colour = G.C.SPECTRAL,
+		outline_colour = G.C.SECONDARY_SET.Code,
+		contents = {
+			{
+				n = G.UIT.R,
+				nodes = {
+					create_text_input({
+						colour = G.C.DARK_EDITION,
+						--hooked_colour = darken(copy_table(G.C.EDITION), 0.3),
+						w = 4,
+						h = 1,
+						max_length = 100,
+						extended_corpus = true,
+						prompt_text = localize("prism_enter_card"),
+						ref_table = G,
+						ref_value = "ENTERED_TEXT",
+						keyboard_offset = 1,
+					}),
+				},
+			},
+			{
+				n = G.UIT.R,
+				config = { align = "cm" },
+				nodes = {
+					UIBox_button({
+						colour = G.C.DARK_EDITION,
+						button = "djinn_create",
+						label = { localize("prism_create")},
+						minw = 4,
+						focus_args = { snap_to = true },
+					}),
+				},
+			},
+			{
+				n = G.UIT.R,
+				config = { align = "cm" },
+				nodes = {
+					UIBox_button({
+						colour = G.C.RED,
+						button = "djinn_cancel",
+						label = { localize("prism_cancel")},
+						minw = 4,
+						focus_args = { snap_to = true },
+					}),
+				},
+			},
+		},
+	})
+	return t
+end
+
+G.FUNCS.djinn_create = function()
+    G.CHOOSE_CARD:remove()
+    local chosen_card = G.PRISM.FUNCS.find_card(G.ENTERED_TEXT)
+    if chosen_card then
+        local card = create_card("Joker", G.jokers, nil, nil, nil, nil, chosen_card)
+		card:add_to_deck()
+		G.jokers:emplace(card)
+        play_sound('timpani')
+    end
+end
+
+G.FUNCS.djinn_cancel = function()
+	G.CHOOSE_CARD:remove()
 end

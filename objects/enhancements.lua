@@ -46,7 +46,7 @@ SMODS.Enhancement({
     end,
     calculate = function(self, card, context)
         if context.discard and context.other_card == card then
-            G.PRISM.extra_draw = G.PRISM.extra_draw + card.ability.extra
+            G.GAME.prism_extra_draw = G.GAME.prism_extra_draw + card.ability.extra
         end
     end
 })
@@ -100,9 +100,9 @@ SMODS.Enhancement({
     end,
 })
 
-local card_highlight = Card.highlight
+local override_highlight = Card.highlight
 function Card:highlight(highlighted)
-    card_highlight(self, highlighted)
+    override_highlight(self, highlighted)
     if highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand and #G.hand.highlighted == 1 then
         self.children.use_button = UIBox{
             definition = G.UIDEF.use_switch_button(self), 
@@ -118,13 +118,13 @@ function Card:highlight(highlighted)
             end
         end
     end
-end 
+end
 
 function G.UIDEF.use_switch_button(card)
     local button = nil
     button = {n=G.UIT.C, config={align = "tm"}, nodes={
             {n=G.UIT.C, config={ref_table = card, align = "tm",maxw = 2, padding = 0.1, r=1, minw = 1.4, minh = 0.8, hover = true, colour = G.C.RED, button = 'switch_button'}, nodes={
-                {n=G.UIT.T, config={text = 'Switch', colour = G.C.UI.TEXT_LIGHT, scale = 0.35, shadow = true}}
+                {n=G.UIT.T, config={text = localize("prism_switch"), colour = G.C.UI.TEXT_LIGHT, scale = 0.35, shadow = true}}
             }}
         }}
     return button
@@ -132,7 +132,7 @@ end
 
 G.FUNCS.switch_button = function(e, mute, nosave)
     local card = e.config.ref_table
-
+    print(card.config.center)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function()
         local _card = card.config.card
         card:set_base(card.ability.extra.card)
@@ -146,14 +146,9 @@ SMODS.Seal({
     atlas = "prismenhanced",
     pos = {x = 1, y = 0},
     discovered = false,
-    badge_colour = HEX('65AE5E')
+    badge_colour = HEX('65AE5E'),
+    always_scores = true
 })
-
-local card_always_scores = SMODS.always_scores
-function SMODS.always_scores(card)
-    if card.seal == "prism_green" then return true end
-    return card_always_scores(card)
-end
 
 SMODS.Seal({
     key = "moon",

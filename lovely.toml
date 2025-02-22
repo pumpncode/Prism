@@ -6,11 +6,92 @@ priority = 5
 # Burnt card extra card draw
 [[patches]]
 [patches.pattern]
-target = "functions/state_events.lua"
+target = '''functions/state_events.lua'''
 pattern = "for i=1, hand_space do*"
 position = "before"
-payload = """
-hand_space = hand_space + G.PRISM.extra_draw
-G.PRISM.extra_draw = 0
-"""
+payload = '''
+hand_space = hand_space + G.GAME.prism_extra_draw
+G.GAME.prism_extra_draw = 0
+'''
+match_indent = true
+
+# booster box
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''for i = 1, 2 do'''
+position = 'before'
+payload = '''
+for i = 1, G.GAME.prism_extra_boosters do
+    G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
+    if not G.GAME.current_round.used_packs[i] then
+        G.GAME.current_round.used_packs[i] = get_pack('shop_pack').key
+    end
+
+    if G.GAME.current_round.used_packs[i] ~= 'USED' then 
+        local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
+        G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.used_packs[i]], {bypass_discovery_center = true, bypass_discovery_ui = true})
+        create_shop_card_ui(card, 'Booster', G.shop_booster)
+        card.ability.booster_pos = i
+        card:start_materialize()
+        G.shop_booster:emplace(card)
+    end
+end
+'''
+match_indent = true
+
+#bonus packs
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''G.GAME.pack_choices = self.config.center.config.choose or 1'''
+position = 'after'
+payload = '''
+if G.GAME.used_vouchers.v_prism_bonus_packs then G.GAME.pack_choices = G.GAME.pack_choices + 1 end
+'''
+match_indent = true
+
+#perma mult
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "elseif _c.set == 'Enhanced' then"
+position = "before"
+payload = '''
+    if specific_vars.bonus_mult then
+	    localize{type = 'other', key = 'card_extra_mult', nodes = desc_nodes, vars = {specific_vars.bonus_mult}}
+    end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "elseif _c.set == 'Booster' then"
+position = "before"
+payload = '''
+    if specific_vars and specific_vars.bonus_mult then
+	    localize{type = 'other', key = 'card_extra_mult', nodes = desc_nodes, vars = {specific_vars.bonus_mult}}
+    end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "nominal_chips = self.base.nominal > 0 and self.base.nominal or nil,"
+position = "after"
+payload = '''
+bonus_mult = (self.ability.perma_mult or 0) > 0 and (self.ability.perma_mult or 0) or nil,
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "perma_bonus = self.ability and self.ability.perma_bonus or 0,"
+position = "after"
+payload = '''
+perma_mult = self.ability and self.ability.perma_mult or 0,
+'''
 match_indent = true

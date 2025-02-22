@@ -12,7 +12,7 @@ SMODS.Voucher({
     redeem = function(self)
 		G.E_MANAGER:add_event(Event({
 			func = function()
-				G.GAME.myth_rate = (G.GAME.myth_rate or 0.6) * 2
+				G.GAME.myth_rate = (G.GAME.myth_rate or 0.85) * 2
 				return true
 			end,
 		}))
@@ -20,7 +20,7 @@ SMODS.Voucher({
 	unredeem = function(self)
         G.E_MANAGER:add_event(Event({
             func = function()
-                G.GAME.myth_rate = (G.GAME.myth_rate or 1.2) * 0.5
+                G.GAME.myth_rate = (G.GAME.myth_rate or 1.7) * 0.5
                 return true
             end,
 	    }))
@@ -35,7 +35,7 @@ SMODS.Voucher({
     redeem = function(self)
 		G.E_MANAGER:add_event(Event({
 			func = function()
-				G.GAME.myth_rate = (G.GAME.myth_rate or 1.2) * 2
+				G.GAME.myth_rate = (G.GAME.myth_rate or 1.7) * 2
 				return true
 			end,
 		}))
@@ -43,9 +43,29 @@ SMODS.Voucher({
 	unredeem = function(self)
         G.E_MANAGER:add_event(Event({
             func = function()
-                G.GAME.myth_rate = (G.GAME.myth_rate or 2.4) * 0.5
+                G.GAME.myth_rate = (G.GAME.myth_rate or 3.4) * 0.5
                 return true
             end,
 	    }))
 	end
+})
+SMODS.Voucher({
+    key = "booster_box",
+	atlas = "prismvouchers",
+	pos = { x = 1, y = 0},
+    unloked = true,
+    redeem = function(self)
+		G.GAME.prism_extra_boosters = G.GAME.prism_extra_boosters + 1
+		if G.shop then G.PRISM.create_booster() end
+	end,
+	unredeem = function(self)
+        G.GAME.prism_extra_boosters = G.GAME.prism_extra_boosters - 1
+	end
+})
+SMODS.Voucher({
+    key = "bonus_packs",
+	atlas = "prismvouchers",
+	pos = { x = 1, y = 1},
+    unloked = true,
+	requires = {"v_prism_booster_box"},
 })
