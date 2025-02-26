@@ -1,6 +1,6 @@
 # Prism
 
-Prism is a content mod that aims to enrich the Balatro experience while maintaining the Vanilla Feel
+Prism is a content mod that aims to enrich the Balatro experience while maintaining the vanilla feel
 
 # Content
 
