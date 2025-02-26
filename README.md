@@ -12,8 +12,6 @@ The mod currently adds:
 - 4 Vouchers
 - 2 Challenges
 
-# Installation
-- Download [Steamodded](https://github.com/Steamopollys/Steamodded)
-- Download Prism's latest release
-- Extract the zip file inside the Mods directory (%appdata%/Balatro/Mods)
-- Enjoy!
+# Requirements
+- [Steamodded](https://github.com/Steamopollys/Steamodded)
+- [Lovely](https://github.com/ethangreen-dev/lovely-injector)
