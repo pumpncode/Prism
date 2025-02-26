@@ -11,7 +11,7 @@ The mod currently adds:
 - 0 new Challenges(Coming Soon)
 
 # Installation
-- Download the latest version of Steamodded [at](https://github.com/Steamopollys/Steamodded)
-- Download Prism here
+- Download [Steamodded](https://github.com/Steamopollys/Steamodded)
+- Download Prism's latest release
 - Extract the downloaded file and put the folder into the Mods directory (%appdata%/Balatro/Mods)
 - Enjoy!
