@@ -4,6 +4,13 @@ G.PRISM.FUNCS = {}
 G.PRISM.C.myth_1 = HEX("ABB7A8")
 G.PRISM.C.myth_2 = HEX("4A745A")
 
+SMODS.Atlas({
+    key = 'modicon',
+    path = 'modicon.png',
+    px = '34',
+    py = '34'
+})
+
 local lc = loc_colour
 function loc_colour(_c, _default)
     if not G.ARGS.LOC_COLOURS then
