@@ -8,8 +8,7 @@ The mod currently adds:
 - A brand new Consumable type: Myth Cards
 - 4 new Enhancements and 2 new Seals
 - 19 new Jokers
-- 0 new Challenges(Coming Soon)
-- A few other tweaks
+- 2 new Challenges
 
 # Installation
 - Download [Steamodded](https://github.com/Steamopollys/Steamodded)

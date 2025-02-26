@@ -113,3 +113,38 @@ for i=1, #G.deck.cards - 1 do
 end
 '''
 match_indent = true
+
+#ban djinn from jokerless challenge
+[[patches]]
+[patches.pattern]
+target = "challenges.lua"
+pattern = "{id = 'c_soul'},"
+position = "after"
+payload = '''
+{id = 'c_prism_spectral_djinn'},
+'''
+match_indent = true
+
+#ban enhancers from fragile challenge
+[[patches]]
+[patches.pattern]
+target = "challenges.lua"
+pattern = "{id = 'c_lovers'},"
+position = "after"
+payload = '''
+{id = 'c_prism_myth_dwarf'},
+{id = 'c_prism_myth_dragon'},
+{id = 'c_prism_myth_twin'},
+{id = 'c_prism_myth_siren'},
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "challenges.lua"
+pattern = "{id = 'j_marble'},"
+position = "after"
+payload = '''
+{id = 'j_prism_medusa'},
+'''
+match_indent = true

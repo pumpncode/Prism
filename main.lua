@@ -43,6 +43,7 @@ NFS.load(SMODS.current_mod.path .. 'objects/myth_cards.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/vouchers.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/decks.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/tags.lua')()
+NFS.load(SMODS.current_mod.path .. 'objects/challenges.lua')()
 
 SMODS.Sound({
 	key = "myth_music",

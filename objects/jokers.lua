@@ -556,7 +556,7 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	end
 	return nil
 end
-SMODS.Joker({
+--[[ SMODS.Joker({
 	key = "motherboard",
 	atlas = "prismjokers",
 	pos = {x=1,y=4},
@@ -569,7 +569,7 @@ SMODS.Joker({
 	perishable_compat = false,
 	config = {extra = 7},
 	
-})
+}) ]]
 SMODS.Joker({
 	key = "plasma_lamp",
 	atlas = "prismjokers",
@@ -599,7 +599,7 @@ SMODS.Joker({
 		card.ability.poker_hand_2 = pseudorandom_element(_poker_hands, pseudoseed('plasma'))
 	end,
 	calculate = function(self, card, context)
-		if (context.end_of_round and not context.blueprint) or (context.after and card.ability.reset) then
+		if context.cardarea == G.jokers and ((context.end_of_round and not context.blueprint) or (context.after and card.ability.reset)) then
 			card.ability.reset = false
 			local _poker_hands = {}
 			for k, v in pairs(G.GAME.hands) do

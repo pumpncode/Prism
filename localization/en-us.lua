@@ -109,7 +109,8 @@ return {
             },
             j_prism_vip_pass = {
                 name = "Vip Pass",
-                text = {"{C:chips}Common {C:attention}Jokers{} can't appear",
+                text = {"{C:chips}Common {C:attention}Jokers",
+                "can't appear",
                 },
             },
             j_prism_plasma_lamp = {
@@ -119,7 +120,7 @@ return {
                     "is {C:attention}#1#{}",
                     "or {C:attention}#2#{}",
                     "{s:0.8}Poker hand changes every",
-                    "{s:0.8}round and after trigger"
+                    "{s:0.8}round and after each trigger"
                 },
             },
             j_prism_hopscotch = {
@@ -304,7 +305,7 @@ return {
             c_prism_spectral_djinn = {
                 name = "Djinn",
                 text = {"Wish for {C:dark_edition}any",
-                    "Joker to create",
+                    "{C:attention}Joker{} to create",
                     "{C:inactive}(Legendary Jokers",
                     "{C:inactive}excluded)"
                 }
@@ -403,6 +404,10 @@ return {
         },
     },
     misc = {
+        challenge_names={
+            c_prism_aerial_warfare = "Aerial Warfare",
+            c_prism_mvp = "MVP",
+        },
         dictionary = {
             k_stone = "Stone",
             k_promoted = "Promoted!",
