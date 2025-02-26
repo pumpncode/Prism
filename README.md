@@ -6,9 +6,11 @@ Prism is a content mod that aims to enrich the Balatro experience while maintain
 
 The mod currently adds:
 - A brand new Consumable type: Myth Cards
-- 4 new Enhancements and 2 new Seals
-- 19 new Jokers
-- 2 new Challenges
+- 19 Jokers
+- 15 Consumables
+- 4 Enhancements and 2 Seals
+- 4 Vouchers
+- 2 Challenges
 
 # Installation
 - Download [Steamodded](https://github.com/Steamopollys/Steamodded)
