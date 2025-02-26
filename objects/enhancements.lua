@@ -13,7 +13,7 @@ SMODS.Enhancement({
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
         return {
-            vars = { card_ability.extra.x_mult, card_ability.extra.x_gain }
+            vars = { card_ability.extra.x_mult, card_ability.extra.x_gain}
         }
     end,
     calculate = function(self, card, context)
@@ -100,9 +100,9 @@ SMODS.Enhancement({
     end,
 })
 
-local override_highlight = Card.highlight
+local orig_highlight = Card.highlight
 function Card:highlight(highlighted)
-    override_highlight(self, highlighted)
+    orig_highlight(self, highlighted)
     if highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand and #G.hand.highlighted == 1 then
         self.children.use_button = UIBox{
             definition = G.UIDEF.use_switch_button(self), 
@@ -147,8 +147,8 @@ SMODS.Seal({
     pos = {x = 1, y = 0},
     discovered = false,
     badge_colour = HEX('65AE5E'),
-    always_scores = true
 })
+
 
 SMODS.Seal({
     key = "moon",
@@ -170,5 +170,4 @@ SMODS.Seal({
             level_up_hand(card,G.GAME.last_hand_played)
         end
     end
-    
 })

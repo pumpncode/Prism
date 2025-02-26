@@ -95,3 +95,21 @@ payload = '''
 perma_mult = self.ability and self.ability.perma_mult or 0,
 '''
 match_indent = true
+
+#green seal
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "G.deck:shuffle('nr'..G.GAME.round_resets.ante)"
+position = "after"
+payload = '''
+for i=1, #G.deck.cards - 1 do
+    local card = nil
+    if G.deck.cards[i].seal == "prism_green" then
+        card = G.deck.cards[i]
+        table.remove(G.deck.cards,i)
+    end
+    if card then table.insert(G.deck.cards,card) end
+end
+'''
+match_indent = true

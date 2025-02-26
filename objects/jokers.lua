@@ -51,7 +51,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {extra = {mult = 5}},
+	config = {extra = {mult = 6}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.mult, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral * center.ability.extra.mult or 0} }
 	end,
@@ -74,7 +74,7 @@ SMODS.Joker({
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
-	perishable_compat = false,
+	perishable_compat = true,
 	config = {extra = 7},
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
@@ -185,7 +185,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {mult = 0,extra = 4},
+	config = {mult = 0,extra = 3},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.mult,center.ability.extra} }
 	end,
@@ -213,7 +213,6 @@ SMODS.Joker({
 			end
         end
     end
-	
 })
 SMODS.Joker({
 	key = "exotic_card",
@@ -245,11 +244,103 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "hopscotch",
+	atlas = "prismjokers",
+	pos = {x=1,y=10},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = false,
+	config = {rank = 14,mult = 0,extra = 1},
+	loc_vars = function(self, info_queue, center)
+		local rank = center.ability.rank
+		if rank < 11 then rank = tostring(rank)
+		elseif rank == 11 then rank = 'Jack'
+		elseif rank == 12 then rank = 'Queen'
+		elseif rank == 13 then rank = 'King'
+		elseif rank == 14 then rank = 'Ace' end
+		return { vars = {center.ability.extra,center.ability.mult,localize(rank, 'ranks')} }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				mult = card.ability.mult,
+			}
+		end
+        if context.cardarea == G.play and context.individual and not context.blueprint then
+			if context.other_card:get_id() == card.ability.rank then
+				card.ability.mult = card.ability.mult + card.ability.extra
+				card.ability.rank = card.ability.rank == 14 and 2 or math.min(card.ability.rank + 1, 14)
+				return {
+					focus = card,
+					colour = G.C.RED,
+					message = localize({ type = "variable", key = "a_mult", vars = { card.ability.mult } }),
+					card = card,
+				}
+			end
+        end
+    end
+})
+SMODS.Joker({
+	key = "aces_high",
+	atlas = "prismjokers",
+	pos = {x=1,y=11},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue+1] = {key = 'tag_uncommon', set = 'Tag'}
+		info_queue[#info_queue+1] = {key = 'tag_rare', set = 'Tag'}
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			local aces = 0
+			for i = 1, #context.scoring_hand do
+				if context.scoring_hand[i]:get_id() == 14 then aces = aces + 1 end
+			end
+			if aces >= 1 and next(context.poker_hands["Straight"]) then
+				if pseudorandom('aces high') < 1 / 3 then
+					G.E_MANAGER:add_event(Event({
+						trigger = 'before',
+						func = (function()
+							add_tag(Tag('tag_rare'))
+						return true
+					end)}))
+					return {
+						message = localize('k_plus_rare'),
+						colour = G.C.RED,
+						card = card,
+					}
+				else
+					G.E_MANAGER:add_event(Event({
+						trigger = 'before',
+						func = (function()
+							add_tag(Tag('tag_uncommon'))
+						return true
+					end)}))
+					return {
+						message = localize('k_plus_uncommon'),
+						colour = G.C.GREEN,
+						card = card,
+					}
+				end
+			end
+		end
+    end
+})
+SMODS.Joker({
 	key = "medusa",
 	atlas = "prismjokers",
 	pos = {x=0,y=6},
 	rarity = 2,
-	cost = 6,
+	cost = 5,
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = false,
@@ -287,6 +378,48 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "amethyst",
+	atlas = "prismjokers",
+	pos = {x=1,y=7},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = false,
+	config = {x_mult = 1, extra = 0.15},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_prism_crystal
+		return {vars = {center.ability.x_mult,center.ability.extra}}
+	end,
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_prism_crystal') then return true end
+		end
+		return false
+	end,
+	calculate = function(self, card, context)
+        if context.joker_main then
+			return {
+				xmult = card.ability.x_mult
+			}
+		end
+		if context.end_of_round and context.individual and context.cardarea == G.hand and not context.blueprint then
+			if SMODS.has_enhancement(context.other_card,'m_prism_crystal') then
+				card.ability.x_mult = card.ability.x_mult + card.ability.extra
+				return {
+					focus = card,
+					colour = G.C.RED,
+					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.x_mult } }),
+					card = card,
+				}
+			end
+        end
+    end
+	
+})
+SMODS.Joker({
 	key = "minstrel",
 	atlas = "prismjokers",
 	pos = {x=1,y=0},
@@ -307,6 +440,42 @@ SMODS.Joker({
 			G.GAME.consumeable_buffer = 0
 			myth:juice_up(0.3, 0.5)
 			return nil,true
+		end
+	end
+})
+SMODS.Joker({
+	key = "promotion",
+	atlas = "prismjokers",
+	pos = {x=0,y=9},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+		if context.first_hand_drawn then
+			local eval = function() return G.GAME.current_round.hands_played == 0 end
+			juice_card_until(card, eval, true)
+		end
+		if context.cardarea == G.jokers and context.before then
+			if #context.full_hand == 1 then
+				local _card = context.full_hand[1]
+				local suit = string.sub(_card.base.suit, 1, 1)..'_'
+                _card:set_base(G.P_CARDS[suit..'Q'])
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						_card:juice_up(0.3, 0.5)
+						return true
+					end
+				}))
+				return {
+					message = localize('k_promoted'),
+					focus = _card,
+					card = card,
+				}
+			end
 		end
 	end
 })
@@ -348,10 +517,10 @@ SMODS.Joker({
 	perishable_compat = true,
 	
 })
-local override_poll_rarity = SMODS.poll_rarity
+local orig_poll_rarity = SMODS.poll_rarity
 function SMODS.poll_rarity(_pool_key, _rand_key)
 	if not next(find_joker('j_prism_vip_pass')) then
-		return override_poll_rarity(_pool_key, _rand_key)
+		return orig_poll_rarity(_pool_key, _rand_key)
 	end
 	local rarity_poll = pseudorandom(pseudoseed(_rand_key or ('rarity'..G.GAME.round_resets.ante))) -- Generate the poll value
 	local available_rarities = copy_table(SMODS.ObjectTypes[_pool_key].rarities) -- Table containing a list of rarities and their rates
@@ -388,42 +557,6 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	return nil
 end
 SMODS.Joker({
-	key = "promotion",
-	atlas = "prismjokers",
-	pos = {x=0,y=9},
-	rarity = 2,
-	cost = 7,
-	unlocked = true,
-	discovered = false,
-	blueprint_compat = false,
-	eternal_compat = true,
-	perishable_compat = true,
-	calculate = function(self, card, context)
-		if context.first_hand_drawn then
-			local eval = function() return G.GAME.current_round.hands_played == 0 end
-			juice_card_until(card, eval, true)
-		end
-		if context.cardarea == G.jokers and context.before then
-			if #context.full_hand == 1 then
-				local _card = context.full_hand[1]
-				local suit = string.sub(_card.base.suit, 1, 1)..'_'
-                _card:set_base(G.P_CARDS[suit..'Q'])
-				G.E_MANAGER:add_event(Event({
-					func = function()
-						_card:juice_up(0.3, 0.5)
-						return true
-					end
-				}))
-				return {
-					message = localize('k_promoted'),
-					focus = _card,
-					card = card,
-				}
-			end
-		end
-	end
-})
-SMODS.Joker({
 	key = "motherboard",
 	atlas = "prismjokers",
 	pos = {x=1,y=4},
@@ -436,6 +569,66 @@ SMODS.Joker({
 	perishable_compat = false,
 	config = {extra = 7},
 	
+})
+SMODS.Joker({
+	key = "plasma_lamp",
+	atlas = "prismjokers",
+	pos = {x=1,y=9},
+	rarity = 3,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {poker_hand_1 = 'High Card',poker_hand_2 = 'Three of a Kind',reset = false},
+	loc_vars = function(self, info_queue, center)
+		return {vars = {localize(center.ability.poker_hand_1, 'poker_hands'),localize(center.ability.poker_hand_2, 'poker_hands')}}
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.reset = false
+		local _poker_hands = {}
+		for k, v in pairs(G.GAME.hands) do
+			if v.visible then _poker_hands[#_poker_hands+1] = k end
+		end
+		card.ability.poker_hand_1 = pseudorandom_element(_poker_hands, pseudoseed('plasma'))
+		_poker_hands = {}
+		for k, v in pairs(G.GAME.hands) do
+			if v.visible and k ~= card.ability.poker_hand_1 then _poker_hands[#_poker_hands+1] = k end
+		end
+		card.ability.poker_hand_2 = pseudorandom_element(_poker_hands, pseudoseed('plasma'))
+	end,
+	calculate = function(self, card, context)
+		if (context.end_of_round and not context.blueprint) or (context.after and card.ability.reset) then
+			card.ability.reset = false
+			local _poker_hands = {}
+			for k, v in pairs(G.GAME.hands) do
+				if v.visible and k ~= card.ability.poker_hand_1 and k ~= card.ability.poker_hand_2 then _poker_hands[#_poker_hands+1] = k end
+			end
+			card.ability.poker_hand_1 = pseudorandom_element(_poker_hands, pseudoseed('plasma'))
+			_poker_hands = {}
+			for k, v in pairs(G.GAME.hands) do
+				if v.visible and k ~= card.ability.poker_hand_1 and k ~= card.ability.poker_hand_2 then _poker_hands[#_poker_hands+1] = k end
+			end
+			card.ability.poker_hand_2 = pseudorandom_element(_poker_hands, pseudoseed('plasma'))
+			return {
+				message = localize('k_reset')
+			}
+		end
+		if context.joker_main then
+			if context.scoring_name == card.ability.poker_hand_1 or context.scoring_name == card.ability.poker_hand_2 then
+				local tot = hand_chips + mult
+				hand_chips = math.floor(tot/2)
+				mult = math.floor(tot/2)
+				update_hand_text({delay = 0}, {mult = mult, chips = hand_chips})
+				card.ability.reset = true
+				return {
+					message = localize("k_balanced"),
+					colour = { 0.8, 0.45, 0.85, 1 },
+				}
+			end
+		end
+	end
 })
 SMODS.Joker({
 	key = "razor_blade",
@@ -496,10 +689,9 @@ SMODS.Joker({
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = true,
-	
 })
 
-local override_is_suit = Card.is_suit
+local orig_is_suit = Card.is_suit
 function Card.is_suit(self, suit, bypass_debuff, flush_calc)
     local is_numbered = self:get_id() >= 2 and self:get_id() <= 10
 	if not (self.debuff and not bypass_debuff) and (next(SMODS.find_card('j_prism_prism'))) and is_numbered then
@@ -508,7 +700,7 @@ function Card.is_suit(self, suit, bypass_debuff, flush_calc)
             return true
         end
 	end
-    return override_is_suit(self, suit, bypass_debuff, flush_calc)
+    return orig_is_suit(self, suit, bypass_debuff, flush_calc)
 end
 
 SMODS.Joker({

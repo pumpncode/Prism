@@ -35,6 +35,7 @@ NFS.load(SMODS.current_mod.path .. 'objects/jokers.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/myth_cards.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/vouchers.lua')()
 NFS.load(SMODS.current_mod.path .. 'objects/decks.lua')()
+NFS.load(SMODS.current_mod.path .. 'objects/tags.lua')()
 
 SMODS.Sound({
 	key = "myth_music",
@@ -60,14 +61,14 @@ function G.PRISM.create_booster()
 	end
 end
 
-local override_get_chip_mult = Card.get_chip_mult
+local orig_get_chip_mult = Card.get_chip_mult
 function Card:get_chip_mult()
     if self.debuff then return 0 end
-	return override_get_chip_mult(self) + (self.ability.perma_mult or 0)
+	return orig_get_chip_mult(self) + (self.ability.perma_mult or 0)
 end
-local override_generate_ui = SMODS.Enhancement.generate_ui
+local orig_generate_ui = SMODS.Enhancement.generate_ui
 function SMODS.Enhancement.generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
-	override_generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
+	orig_generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
 	if specific_vars and specific_vars.bonus_mult then
 		localize{type = 'other', key = 'card_extra_mult', nodes = desc_nodes, vars = {specific_vars.bonus_mult}}
 	end

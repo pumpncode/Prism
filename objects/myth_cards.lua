@@ -143,23 +143,25 @@ SMODS.Consumable({
 	end
 
 })
+
 SMODS.Consumable({
-    key = 'myth_beast',
+    key = 'myth_treant',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=3, y=1},
+    pos = {x=7, y=0},
     discovered = false,
-    can_use = function(self,card)
-        return G.consumeables.config.card_limit > #G.consumeables.cards
-    end,
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue+1] = {key = 'tag_investment', set = 'Tag',specific_vars = {25}}
+	end,
+    can_use = function(self, card)
+		return true
+	end,
     use = function(self, card, area, copier)
-        if G.consumeables.config.card_limit > #G.consumeables.cards then
-            play_sound('timpani')
-            local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'beast')
-            _card:add_to_deck()
-            G.consumeables:emplace(_card)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+            play_sound('tarot1')
             card:juice_up(0.3, 0.5)
-        end
+            add_tag(Tag('tag_investment'))
+        return true end }))
     end
 })
 SMODS.Consumable({
@@ -168,6 +170,9 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=6, y=0},
     discovered = false,
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue+1] = {key = 'tag_double', set = 'Tag'}
+	end,
     can_use = function(self, card)
 		return true
 	end,
@@ -195,7 +200,7 @@ SMODS.Consumable({
     use = function(self, card, area, copier)
         local rightmost = G.hand.highlighted[1]
         for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
-        local rank = rightmost.base.id == 14 and 2 or math.min(rightmost.base.id, 14)
+        local rank = rightmost.base.id
         if rank < 10 then rank = tostring(rank)
         elseif rank == 10 then rank = 'T'
         elseif rank == 11 then rank = 'J'
@@ -251,7 +256,7 @@ SMODS.Consumable({
         end
         for i=1, #G.hand.highlighted do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-                local rank = G.hand.highlighted[i].base.id == 14 and 2 or math.min(G.hand.highlighted[i].base.id, 14)
+                local rank = G.hand.highlighted[i].base.id
                 if rank < 10 then rank = tostring(rank)
                 elseif rank == 10 then rank = 'T'
                 elseif rank == 11 then rank = 'J'
@@ -275,7 +280,7 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=5, y=0},
     discovered = false,
-    config = {seal_conv = "prism_green", max_highlighted = 3},
+    config = {seal_conv = "prism_green", max_highlighted = 1},
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue + 1] = G.P_SEALS[self.config.seal_conv]
 
@@ -387,19 +392,22 @@ SMODS.Consumable({
     end
 })
 SMODS.Consumable({
-    key = 'myth_treant',
+    key = 'myth_beast',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=7, y=0},
+    pos = {x=3, y=1},
     discovered = false,
-    config = {max_highlighted = 2},
-    loc_vars = function(self, info_queue)
-		return { vars = { self.config.max_highlighted } }
-	end,
-    can_use = function(self, card)
-		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 2
-	end,
+    can_use = function(self,card)
+        return G.consumeables.config.card_limit > #G.consumeables.cards
+    end,
     use = function(self, card, area, copier)
+        if G.consumeables.config.card_limit > #G.consumeables.cards then
+            play_sound('timpani')
+            local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'beast')
+            _card:add_to_deck()
+            G.consumeables:emplace(_card)
+            card:juice_up(0.3, 0.5)
+        end
     end
 })
 SMODS.Consumable({

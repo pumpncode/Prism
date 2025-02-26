@@ -112,6 +112,50 @@ return {
                 text = {"{C:chips}Common {C:attention}Jokers{} can't appear",
                 },
             },
+            j_prism_plasma_lamp = {
+                name = "Plasma Lamp",
+                text = {"Balance {C:chips}Chips{} and",
+                    "{C:mult}Mult{} if {C:attention}poker hand",
+                    "is {C:attention}#1#{}",
+                    "or {C:attention}#2#{}",
+                    "{s:0.8}Poker hand changes every",
+                    "{s:0.8}round and after trigger"
+                },
+            },
+            j_prism_hopscotch = {
+                name = "Hopscotch",
+                text = {"When a played {C:attention}#3#{} is",
+                    "scored, this Joker gains",
+                    "{C:red}+#1#{} Mult and required",
+                    "rank increases by {C:attention}1",
+                    "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
+                },
+                unlock= {
+                "{E:1,s:1.3}?????",
+                },
+            },
+            j_prism_amethyst = {
+                name = "Amethyst",
+                text = {"This Joker gains {X:mult,C:white} X#2# {} Mult",
+                    "for each {C:attention}Crystal Card{} held",
+                    "in hand at end of round",
+                    "{C:inactive}(Currently {X:mult,C:white}X#1# {C:inactive} Mult)",
+                },
+                unlock= {
+                "{E:1,s:1.3}?????",
+                },
+            },
+            j_prism_aces_high = {
+                name = "Aces High",
+                text = {"Create an {C:green}Uncommon",
+                    "{C:green}Tag{} or a {C:rare}Rare Tag{} if",
+                    "poker hand contains an",
+                    "{C:attention}Ace{} and a {C:attention}Straight",
+                },
+                unlock= {
+                "{E:1,s:1.3}?????",
+                },
+            },
         },
         Back = {
             b_prism_ancient = {
@@ -119,6 +163,13 @@ return {
                 text = {"Start run with",
                     "{C:myth,T:v_prism_myth_merchant}Myth Merchant{} and",
                     "{C:attention,T:v_prism_booster_box}Booster Box{}"
+                },
+            },
+            b_prism_market = {
+                name = "Overproduction Deck",
+                text = {"Start run with",
+                    "{C:attention,T:v_overstock_norm}Overstock{} and",
+                    "{C:attention,T:v_reroll_surplus}Reroll Surplus{}"
                 },
             },
         },
@@ -228,7 +279,7 @@ return {
                 name = "Ooze",
                 text = {"Add a {C:green}Green Seal{}",
                     "to {C:attention}#1#{} selected",
-                    "cards in your hand"
+                    "card in your hand"
                 }
             },
             c_prism_myth_roc = {
@@ -245,9 +296,7 @@ return {
             },
             c_prism_myth_treant = {
                 name = "Treant",
-                text = {"Converts up to {C:attention}#1#{}",
-                    "selected cards to",
-                    "the {C:attention}right{} card's {C:attention}Suit{}"
+                text = {"Create a {C:attention}Investment Tag"
                 }
             },
         },
@@ -295,6 +344,15 @@ return {
             },
 
         },
+        Tag = {
+            tag_prism_myth = {
+                name = "Song Tag",
+                text = {
+                    "Gives a free",
+                    "{C:myth}Mega Myth Pack",
+                },
+            },
+        },
         Other = {
             p_prism_small_myth_1 = {
                 name = "Legend Pack",
@@ -326,7 +384,9 @@ return {
             },
             prism_green_seal = {
                 name = "Green Seal",
-                text = {"Always scores"
+                text = {"{C:attention}Always{} drawn to",
+                    "hand at start",
+                    "of round"
                 },
             },
             prism_moon_seal = {
@@ -348,6 +408,8 @@ return {
             k_promoted = "Promoted!",
             k_prism_myth_pack = "Legend Pack",
             k_uno_reverse = "Reversed",
+            k_plus_uncommon = "Uncommon",
+            k_plus_rare = "Rare",
             prism_create = "Make Wish",
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
