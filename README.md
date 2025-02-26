@@ -13,5 +13,5 @@ The mod currently adds:
 # Installation
 - Download [Steamodded](https://github.com/Steamopollys/Steamodded)
 - Download Prism's latest release
-- Extract the downloaded file and put the folder into the Mods directory (%appdata%/Balatro/Mods)
+- Extract the zip file inside the Mods directory (%appdata%/Balatro/Mods)
 - Enjoy!
