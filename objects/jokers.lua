@@ -714,7 +714,7 @@ SMODS.Joker({
 	unlock_condition = {hidden = true},
 	discovered = false,
 	blueprint_compat = true,
-	eternal_compat = true,
+	eternal_compat = false,
 	perishable_compat = false,
 	config = { extra = { bonus = 0.1, x_mult = 1}, first_s=false,first_h=false,first_c=false,first_d=false},
 	loc_vars = function(self, info_queue, center)
@@ -765,4 +765,44 @@ SMODS.Joker({
 		end
 	end,
 	
+})
+
+SMODS.Joker({
+	key = "rigoletto",
+	atlas = "prismjokers",
+	pos = { x = 0, y = 7 },
+	soul_pos = { x = 0, y = 8 },
+	rarity = 4,
+	cost = 20,
+	unlocked = false,
+	unlock_condition = {hidden = true},
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = false,
+	perishable_compat = false,
+	config = { extra = 1, hand_size = 0},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.extra,center.ability.hand_size} }
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.hand:change_size(-card.ability.hand_size)
+	end,
+	calculate = function(self, card, context)
+		if (context.cardarea == G.jokers and context.before) or context.discard and context.other_card == context.full_hand[1] then
+			card.ability.hand_size = card.ability.hand_size + card.ability.extra
+			G.hand:change_size(card.ability.extra)
+			return {
+				message = localize{type='variable',key='a_handsize_plus',vars={card.ability.extra}},
+				colour = G.C.FILTER
+			}
+		end
+		if context.cardarea == G.jokers and context.end_of_round then
+			G.hand:change_size(-card.ability.hand_size)
+			card.ability.hand_size = 0
+			return {
+				card = card,
+				message = localize('k_reset')
+			}
+		end
+	end,
 })

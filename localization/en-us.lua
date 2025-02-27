@@ -20,7 +20,17 @@ return {
                 text = {"This Joker gains {X:mult,C:white} X#1# {} Mult",
                     "when the first played card",
                     "of each {C:attention}Suit{} is scored",
-                    "{C:inactive}(Currently {X:mult,C:white}X#2# {C:inactive} Mult)",
+                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+                },
+                unlock= {
+                "{E:1,s:1.3}?????",
+                }
+            },
+            j_prism_rigoletto = {
+                name = "Rigoletto",
+                text = {"{C:attention}+1{} hand size this round",
+                    "after {C:attention}play{} or {C:attention}discard",
+                    "{C:inactive}(Currently {C:attention}+#2#{C:inactive} hand size)",
                 },
                 unlock= {
                 "{E:1,s:1.3}?????",
@@ -131,9 +141,6 @@ return {
                     "rank increases by {C:attention}1",
                     "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
                 },
-                unlock= {
-                "{E:1,s:1.3}?????",
-                },
             },
             j_prism_amethyst = {
                 name = "Amethyst",
@@ -142,9 +149,6 @@ return {
                     "in hand at end of round",
                     "{C:inactive}(Currently {X:mult,C:white}X#1# {C:inactive} Mult)",
                 },
-                unlock= {
-                "{E:1,s:1.3}?????",
-                },
             },
             j_prism_aces_high = {
                 name = "Aces High",
@@ -152,9 +156,6 @@ return {
                     "{C:green}Tag{} or a {C:rare}Rare Tag{} if",
                     "poker hand contains an",
                     "{C:attention}Ace{} and a {C:attention}Straight",
-                },
-                unlock= {
-                "{E:1,s:1.3}?????",
                 },
             },
         },
@@ -419,6 +420,9 @@ return {
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
             prism_switch = "Switch"
+        },
+        v_dictionary = {
+            a_handsize_plus="+#1# Hand Size",
         },
         labels = {
             prism_green_seal = "Green Seal",
