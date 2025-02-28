@@ -642,10 +642,10 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {extra = 0.75},
+	config = {extra = 1},
 	loc_vars = function(self, info_queue, center)
 		local x_mult = 1
-		if G.playing_cards then
+		if G.GAME.prism_start_deck_ranks then
 			for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 				local is_present = false
 				for _k, _v in pairs(G.playing_cards) do

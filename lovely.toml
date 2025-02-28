@@ -148,3 +148,16 @@ payload = '''
 {id = 'j_prism_medusa'},
 '''
 match_indent = true
+
+# Platinum Stake
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+position = 'after'
+pattern = '''
+self.GAME.round_resets.blind_choices.Boss = get_new_boss()
+'''
+payload = '''
+if G.GAME.modifiers.prism_platinum then self.GAME.round_resets.blind_choices.Big = get_new_mini_boss() end
+'''
+match_indent = true

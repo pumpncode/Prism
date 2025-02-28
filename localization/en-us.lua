@@ -402,6 +402,23 @@ return {
             card_extra_mult = {
                 text={"{C:mult}+#1#{} extra mult"}
             },
+            prism_platinum_sticker={
+                name="Platinum Sticker",
+                text={
+                    "Used this Joker",
+                    "to win on {C:attention}Platinum",
+                    "{C:attention}Stake{} difficulty",
+                },
+            },
+        },
+        Blind = {
+            bl_prism_rose_club = {
+                name = "Rose Club",
+                text = {
+                    "Playng a #1#",
+                    "debuffs all played cards"
+                },
+            }
         },
     },
     misc = {
