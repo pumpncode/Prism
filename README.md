@@ -9,6 +9,7 @@ The mod currently adds:
 - 20 Jokers
 - 15 Consumables
 - 4 Enhancements and 2 Seals
+- 2 Decks
 - 4 Vouchers
 - 3 Boss Blinds
 - 2 Challenges
