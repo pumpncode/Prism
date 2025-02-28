@@ -26,7 +26,7 @@ SMODS.Joker({
 		}
 	end,
 	calculate = function(self, card, context)
-		if context.selling_card and pseudorandom('rich') < G.GAME.probabilities.normal / card.ability.odds then
+		if context.selling_card and context.card ~= card and pseudorandom('rich') < G.GAME.probabilities.normal / card.ability.odds then
 			ease_dollars(card.ability.money)
 			card_eval_status_text(
 				context.blueprint_card or card,
@@ -695,8 +695,7 @@ local orig_is_suit = Card.is_suit
 function Card.is_suit(self, suit, bypass_debuff, flush_calc)
     local is_numbered = self:get_id() >= 2 and self:get_id() <= 10
 	if not (self.debuff and not bypass_debuff) and (next(SMODS.find_card('j_prism_prism'))) and is_numbered then
-        local joker = SMODS.find_card('j_prism_prism')
-        for _, card in pairs(joker) do
+        if SMODS.find_card('j_prism_prism') then
             return true
         end
 	end

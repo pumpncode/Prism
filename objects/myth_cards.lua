@@ -574,7 +574,6 @@ end
 
 --Djinn
 G.PRISM.FUNCS.find_card = function(entered_text)
-    --local card
 	local function clean_string(str)
 		str = str:gsub("%b{}", ""):gsub("%s+", "")
 		if string.len(str) == 1 then
@@ -600,19 +599,18 @@ function djinn_UIBox(card)
 	local t = create_UIBox_generic_options({
 		no_back = true,
 		colour = G.C.SPECTRAL,
-		outline_colour = G.C.SECONDARY_SET.Code,
+		outline_colour = G.C.DARK_EDITION,
 		contents = {
 			{
 				n = G.UIT.R,
 				nodes = {
 					create_text_input({
 						colour = G.C.DARK_EDITION,
-						--hooked_colour = darken(copy_table(G.C.EDITION), 0.3),
 						w = 4,
 						h = 1,
+                        prompt_text = localize("prism_enter_card"),
 						max_length = 100,
 						extended_corpus = true,
-						prompt_text = localize("prism_enter_card"),
 						ref_table = G,
 						ref_value = "ENTERED_TEXT",
 						keyboard_offset = 1,
