@@ -418,6 +418,20 @@ return {
                     "Playng a #1#",
                     "debuffs all played cards"
                 },
+            },
+            bl_prism_birch = {
+                name = "The Birch",
+                text = {
+                    "All crads with even",
+                    "rank are debuffed"
+                },
+            },
+            bl_prism_yew = {
+                name = "The Yew",
+                text = {
+                    "All crads with odd",
+                    "rank are debuffed"
+                },
             }
         },
     },
