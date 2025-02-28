@@ -10,6 +10,7 @@ The mod currently adds:
 - 15 Consumables
 - 4 Enhancements and 2 Seals
 - 4 Vouchers
+- 1 Boss Blind
 - 2 Challenges
 
 # Requirements
