@@ -1,4 +1,4 @@
-![Prism Logo](https://github.com/user-attachments/assets/5cb7a598-90fe-4dd7-9cb4-44db744887a0)
+![Prism Logo](https://github.com/user-attachments/assets/11ab82a9-2720-4476-bd74-4ee80071d285)
 
 Prism is a content mod that aims to enrich the Balatro experience while maintaining the vanilla feel
 
