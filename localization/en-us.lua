@@ -253,7 +253,7 @@ return {
             },
             c_prism_myth_gnome = {
                 name = "Gnome",
-                text = {"Earn {C:money}$#1#{}-{C:money}$#2#{}"
+                text = {"Create a {C:attention}Investment Tag"
                 }
             },
             c_prism_myth_mirror = {
@@ -291,14 +291,14 @@ return {
             },
             c_prism_myth_kraken = {
                 name = "Kraken",
-                text = {"Converts up to {C:attention}#1#{}",
-                    "selected cards to",
-                    "the {C:attention}right{} card's {C:attention}Suit{}"
+                text = {"Create a {C:attention}Juggle Tag"
                 }
             },
             c_prism_myth_treant = {
                 name = "Treant",
-                text = {"Create a {C:attention}Investment Tag"
+                text = {"Converts up to {C:attention}#1#{}",
+                    "selected cards to",
+                    "the {C:attention}right{} card's {C:attention}Suit{}"
                 }
             },
         },

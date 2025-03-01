@@ -128,28 +128,6 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=3, y=0},
     discovered = false,
-    config = {min_money = 3, max_money = 21},
-    loc_vars = function(self, info_queue)
-		return { vars = { self.config.min_money,self.config.max_money} }
-    end,
-    can_use = function(self, card) return true end,
-    use = function(self, card, area, copier)
-        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-            play_sound('tarot1')
-            card:juice_up(0.3, 0.5)
-            return true end }))
-        local option = pseudorandom(pseudoseed("gnome"), self.config.min_money, self.config.max_money)
-		ease_dollars(option)
-	end
-
-})
-
-SMODS.Consumable({
-    key = 'myth_treant',
-    set = 'Myth',
-    atlas = 'prismmyth',
-    pos = {x=7, y=0},
-    discovered = false,
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue+1] = {key = 'tag_investment', set = 'Tag',specific_vars = {25}}
 	end,
@@ -161,6 +139,28 @@ SMODS.Consumable({
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
             add_tag(Tag('tag_investment'))
+        return true end }))
+    end
+
+})
+
+SMODS.Consumable({
+    key = 'myth_kraken',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=5, y=1},
+    discovered = false,
+    loc_vars = function(self, info_queue)
+		info_queue[#info_queue+1] = {key = 'tag_juggle', set = 'Tag',specific_vars = {3}}
+	end,
+    can_use = function(self, card)
+		return true
+	end,
+    use = function(self, card, area, copier)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            add_tag(Tag('tag_juggle'))
         return true end }))
     end
 })
@@ -230,10 +230,10 @@ SMODS.Consumable({
     end
 }) 
 SMODS.Consumable({
-    key = 'myth_kraken',
+    key = 'myth_treant',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=5, y=1},
+    pos = {x=7, y=0},
     discovered = false,
     config = {max_highlighted = 3},
     loc_vars = function(self, info_queue)
