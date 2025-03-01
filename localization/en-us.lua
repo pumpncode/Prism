@@ -450,6 +450,7 @@ return {
             prism_create = "Make Wish",
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
+            prism_invalid_card = "Invalid Card!",
             prism_switch = "Switch"
         },
         v_dictionary = {

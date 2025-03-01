@@ -123,7 +123,16 @@ end
 function G.UIDEF.use_switch_button(card)
     local button = nil
     button = {n=G.UIT.C, config={align = "tm"}, nodes={
-            {n=G.UIT.C, config={ref_table = card, align = "tm",maxw = 2, padding = 0.1, r=1, minw = 1.4, minh = 0.8, hover = true, colour = G.C.RED, button = 'switch_button'}, nodes={
+            {n=G.UIT.C, config={
+                ref_table = card, 
+                align = "tm",maxw = 2, 
+                padding = 0.1, r=1, 
+                minw = 1.4, 
+                minh = 0.8, 
+                hover = true, 
+                colour = G.C.RED, 
+                button = 'switch_button'}, 
+                nodes={
                 {n=G.UIT.T, config={text = localize("prism_switch"), colour = G.C.UI.TEXT_LIGHT, scale = 0.35, shadow = true}}
             }}
         }}
