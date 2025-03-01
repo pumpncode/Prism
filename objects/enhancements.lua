@@ -167,11 +167,10 @@ SMODS.Seal({
     badge_colour = HEX('86ADB3'),
     config = {extra = {odds = 2}},
     loc_vars = function(self, info_queue, card)
-        local card_ability = card and card.ability or self.config
         return {
             vars = {
-                "" .. (G.GAME and G.GAME.probabilities.normal or 1), 
-                card_ability.extra.odds}
+                "" .. (G.GAME and G.GAME.probabilities.normal or 1),
+                self.config.extra.odds}
         }
     end,
     calculate = function(self, card, context)
