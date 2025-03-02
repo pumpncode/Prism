@@ -17,3 +17,7 @@ The mod currently adds:
 # Requirements
 - [Steamodded](https://github.com/Steamopollys/Steamodded)
 - [Lovely](https://github.com/ethangreen-dev/lovely-injector)
+
+# Known Issues
+- Taking a Song Tag with Codex Arcanum installed will freeze the game
+
