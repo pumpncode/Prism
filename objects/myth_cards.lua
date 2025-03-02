@@ -417,6 +417,7 @@ SMODS.Consumable({
     pos = {x=7, y=1},
     discovered = false,
     cost = 4,
+    hidden = true,
     soul_set = "Myth",
     can_use = function(self, card)
 		return G.jokers.config.card_limit > #G.jokers.cards
@@ -445,6 +446,7 @@ SMODS.Consumable({
 --Boosters
 local small_boosters = {keys = {'small_myth_1','small_myth_2'}, info = {
     atlas = 'prismboosters',
+    kind = "Myth",
     config = {choose = 1, extra = 3},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -478,6 +480,7 @@ local small_boosters = {keys = {'small_myth_1','small_myth_2'}, info = {
 }}
 local mid_boosters = {keys = {'mid_myth'}, info = {
     atlas = 'prismboosters',
+    kind = "Myth",
     config = {choose = 1, extra = 5},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -511,6 +514,7 @@ local mid_boosters = {keys = {'mid_myth'}, info = {
 }}
 local large_boosters = {keys = {'large_myth'}, info = {
     atlas = 'prismboosters',
+    kind = "Myth",
     config = {choose = 2, extra = 5},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -549,7 +553,7 @@ for i, key in ipairs(small_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i - 1, y = 0 }
-    booster_args.ortalab_type = 'Myth'
+    booster_args.kind = 'Myth'
     SMODS.Booster(booster_args)
 end
 for i, key in ipairs(mid_boosters.keys) do
@@ -559,7 +563,7 @@ for i, key in ipairs(mid_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i + 1, y = 0 }
-    booster_args.ortalab_type = 'Myth'
+    booster_args.kind = 'Myth'
     SMODS.Booster(booster_args)
 end
 for i, key in ipairs(large_boosters.keys) do
@@ -569,7 +573,7 @@ for i, key in ipairs(large_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i + 2, y = 0 }
-    booster_args.ortalab_type = 'Myth'
+    booster_args.kind = 'Myth'
     SMODS.Booster(booster_args)
 end
 
