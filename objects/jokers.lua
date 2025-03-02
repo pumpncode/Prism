@@ -124,8 +124,8 @@ SMODS.Joker({
 			G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
 				local eligible_cards = {}
 				for k, v in ipairs(G.hand.cards) do
-					if not v.ability.set == 'Enhanced' then
-						eligible_cards[#eligible_cards + 1] = v
+					if v.ability.set ~= 'Enhanced' then
+						table.insert(eligible_cards,v)
 					end
 				end
 				local random_card = pseudorandom_element(eligible_cards, pseudoseed('geo'))
