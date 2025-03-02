@@ -460,7 +460,7 @@ SMODS.Joker({
 			juice_card_until(card, eval, true)
 		end
 		if context.cardarea == G.jokers and context.before then
-			if #context.full_hand == 1 then
+			if #context.full_hand == 1 and G.GAME.current_round.hands_played == 0 then
 				local _card = context.full_hand[1]
 				local suit = string.sub(_card.base.suit, 1, 1)..'_'
                 _card:set_base(G.P_CARDS[suit..'Q'])
