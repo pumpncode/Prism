@@ -23,7 +23,7 @@ end
 
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
-		G.GAME.prism_extra_boosters = 0
+		G.GAME.modifiers.extra_boosters = 0
 		G.GAME.prism_start_deck_ranks = {}
 		for i, v in pairs(G.playing_cards) do
 			local already_added = false

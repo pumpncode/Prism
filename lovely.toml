@@ -22,6 +22,7 @@ target = 'game.lua'
 pattern = '''for i = 1, 2 do'''
 position = 'before'
 payload = '''
+print(G.GAME.prism_extra_boosters)
 for i = 1, G.GAME.prism_extra_boosters do
     G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
     if not G.GAME.current_round.used_packs[i] then
