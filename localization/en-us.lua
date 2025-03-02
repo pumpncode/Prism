@@ -87,7 +87,7 @@ return {
             },
             j_prism_vaquero = {
                 name = "Vaquero",
-                text = {"Played {C:attention}Wild Crads{}",
+                text = {"Played {C:attention}Wild Cards{}",
                     "give {X:mult,C:white} X#1# {} Mult",
                     "when scored"
                 },
@@ -219,7 +219,7 @@ return {
                 name = "Dwarf",
                 text = {"Enhances {C:attention}#1#{}",
                     " selected cards to",
-                    "{C:attention}Crytsal Cards"
+                    "{C:attention}Crystal Cards"
                 }
             },
             c_prism_myth_siren = {
@@ -422,14 +422,14 @@ return {
             bl_prism_birch = {
                 name = "The Birch",
                 text = {
-                    "All crads with even",
+                    "All cards with even",
                     "rank are debuffed"
                 },
             },
             bl_prism_yew = {
                 name = "The Yew",
                 text = {
-                    "All crads with odd",
+                    "All cards with odd",
                     "rank are debuffed"
                 },
             }
