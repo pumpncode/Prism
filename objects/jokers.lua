@@ -185,7 +185,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {mult = 0,extra = 3},
+	config = {mult = 0,extra = 2},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.mult,center.ability.extra} }
 	end,

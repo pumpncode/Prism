@@ -424,7 +424,7 @@ SMODS.Consumable({
     use = function(self, card, area, copier)
         G.ENTERED_TEXT = ""
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-            djinn_background_color()
+            --djinn_background_color()
             play_sound('tarot2')
             card:juice_up(0.3, 0.5)
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.5, func = function()
@@ -656,12 +656,12 @@ G.FUNCS.djinn_create = function()
 		card:add_to_deck()
 		G.jokers:emplace(card)
         play_sound('timpani')
-        ease_background_colour({
+        --[[ ease_background_colour({
             special_colour = G.DJINN_OLD_COLORS.special_colour, 
             tertiary_colour = G.DJINN_OLD_COLORS.tertiary_colour, 
             new_colour = G.DJINN_OLD_COLORS.new_colour
         })
-        G.booster_pack_sparkles:remove()
+        G.booster_pack_sparkles:remove() ]]
     else 
         djinn_text(localize("prism_invalid_card"))
     end
@@ -669,15 +669,15 @@ end
 
 G.FUNCS.djinn_cancel = function()
 	G.CHOOSE_CARD:remove()
-    ease_background_colour({
+    --[[ ease_background_colour({
         new_colour = G.DJINN_OLD_COLORS.new_colour,
         special_colour = G.DJINN_OLD_COLORS.special_colour,
         tertiary_colour = G.DJINN_OLD_COLORS.tertiary_colour,
     })
-    G.booster_pack_sparkles:remove()
+    G.booster_pack_sparkles:remove() ]]
 end
 
-function djinn_background_color()
+--[[ function djinn_background_color()
     G.DJINN_OLD_COLORS = {
         new_colour = copy_table(G.C.BACKGROUND.L),
         special_colour = copy_table(G.C.BACKGROUND.C),
@@ -701,7 +701,7 @@ function djinn_background_color()
         special_colour = G.C.SET.Spectral,
         tertiary_colour = G.C.SET.GOLD,
     }
-end
+end ]]
 
 function djinn_text(message)
     attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -3},major = G.ROOM_ATTACH})
