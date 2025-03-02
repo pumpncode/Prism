@@ -188,7 +188,7 @@ return {
                 name = "Burnt Card",
                 text = {"Draw {C:attention}#1#{} more",
                     "cards after this",
-                    "card is {C:attention}discarted"
+                    "card is {C:attention}discarded"
                 }
             },
             m_prism_double = {
