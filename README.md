@@ -19,5 +19,5 @@ The mod currently adds:
 - [Lovely](https://github.com/ethangreen-dev/lovely-injector)
 
 # Known Issues
-- Taking a Song Tag with Codex Arcanum installed will freeze the game
+- Taking a Song Tag with Codex Arcanum installed will freeze the game, using [Redux Arcanum](https://github.com/jumbocarrot0/Redux-Arcanum) instead fixes the issue
 
