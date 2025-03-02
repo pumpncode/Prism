@@ -108,7 +108,7 @@ function Card:highlight(highlighted)
             definition = G.UIDEF.use_switch_button(self), 
             config = {align = 'tm', offset = {x=0, y=0.4}, parent = self, id = 'm_prism_double'}
         }
-    elseif self.area and #self.area.highlighted > 0 then
+    elseif self.area and #self.area.highlighted > 0 and not G.STATE == G.STATES.STANDARD_PACK then
         for _, card in ipairs(self.area.highlighted) do
             if card.config.center_key == 'm_prism_double' then
                 card.children.use_button = #self.area.highlighted == 1 and UIBox{
