@@ -444,9 +444,11 @@ SMODS.Consumable({
 })
 
 --Boosters
-local small_boosters = {keys = {'small_myth_1','small_myth_2'}, info = {
+SMODS.Booster({
+    key = 'small_myth_1',
     atlas = 'prismboosters',
     kind = "Myth",
+    pos = { x = 0, y = 0 },
     config = {choose = 1, extra = 3},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -477,10 +479,48 @@ local small_boosters = {keys = {'small_myth_1','small_myth_2'}, info = {
         G.booster_pack_sparkles.fade_alpha = 1
         G.booster_pack_sparkles:fade(1, 0)
     end,
-}}
-local mid_boosters = {keys = {'mid_myth'}, info = {
+})
+SMODS.Booster({
+    key = 'small_myth_2',
     atlas = 'prismboosters',
     kind = "Myth",
+    pos = { x = 1, y = 0 },
+    config = {choose = 1, extra = 3},
+    loc_vars = function(self, info_queue, card)
+        return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
+    end,
+    create_card = function(self, card)
+        return create_card("Myth", G.pack_cards, nil, nil, true,  true, nil, "mythpack")
+    end,
+    ease_background_colour = function(self)
+        ease_colour(G.C.DYN_UI.MAIN, G.PRISM.C.myth_1)
+        ease_background_colour{new_colour = G.PRISM.C.myth_1, special_colour = G.C.BLACK, contrast = 2}
+    end,
+    group_key = 'k_prism_myth_pack',
+    draw_hand = true,
+    cost = 4,
+    weight = 1,
+    particles = function(self)
+        G.booster_pack_sparkles = Particles(1, 1, 0,0, {
+            timer = 0.015,
+            scale = 0.2,
+            initialize = true,
+            lifespan = 1,
+            speed = 1.1,
+            padding = -1,
+            attach = G.ROOM_ATTACH,
+            colours = {G.PRISM.C.myth_1, lighten(G.PRISM.C.myth_1, 0.4), lighten(G.PRISM.C.myth_1, 0.2), darken(G.PRISM.C.myth_1, 0.2)},
+            fill = true
+        })
+        G.booster_pack_sparkles.fade_alpha = 1
+        G.booster_pack_sparkles:fade(1, 0)
+    end,
+})
+SMODS.Booster({
+    key = 'mid_myth',
+    atlas = 'prismboosters',
+    kind = "Myth",
+    pos = { x = 2, y = 0 },
     config = {choose = 1, extra = 5},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -511,10 +551,12 @@ local mid_boosters = {keys = {'mid_myth'}, info = {
         G.booster_pack_sparkles.fade_alpha = 1
         G.booster_pack_sparkles:fade(1, 0)
     end,
-}}
-local large_boosters = {keys = {'large_myth'}, info = {
+})
+SMODS.Booster({
+    key = 'large_myth',
     atlas = 'prismboosters',
     kind = "Myth",
+    pos = { x = 3, y = 0 },
     config = {choose = 2, extra = 5},
     loc_vars = function(self, info_queue, card)
         return {vars = {(card and card.ability.choose or self.config.choose), card and card.ability.extra or self.config.extra}}
@@ -545,37 +587,7 @@ local large_boosters = {keys = {'large_myth'}, info = {
         G.booster_pack_sparkles.fade_alpha = 1
         G.booster_pack_sparkles:fade(1, 0)
     end,
-}}
-for i, key in ipairs(small_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(small_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i - 1, y = 0 }
-    booster_args.kind = 'Myth'
-    SMODS.Booster(booster_args)
-end
-for i, key in ipairs(mid_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(mid_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i + 1, y = 0 }
-    booster_args.kind = 'Myth'
-    SMODS.Booster(booster_args)
-end
-for i, key in ipairs(large_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(large_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i + 2, y = 0 }
-    booster_args.kind = 'Myth'
-    SMODS.Booster(booster_args)
-end
+})
 
 --Djinn
 G.PRISM.FUNCS.find_card = function(entered_text)
