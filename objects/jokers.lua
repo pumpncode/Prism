@@ -140,41 +140,6 @@ SMODS.Joker({
 	end
 })
 SMODS.Joker({
-	key = "vaquero",
-	atlas = "prismjokers",
-	pos = {x=1,y=2},
-	rarity = 1,
-	cost = 5,
-	unlocked = true,
-	discovered = false,
-	blueprint_compat = true,
-	eternal_compat = true,
-	perishable_compat = true,
-	config = {extra = {x_mult = 1.75}},
-	loc_vars = function(self, info_queue, center)
-		info_queue[#info_queue + 1] = G.P_CENTERS.m_wild
-		return {
-		vars = {center.ability.extra.x_mult}
-		}
-	end,
-	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
-			if SMODS.has_enhancement(v,'m_wild') then return true end
-		end
-		return false
-	end,
-	calculate = function(self, card, context)
-        if context.cardarea == G.play and context.individual then
-            if SMODS.has_enhancement(context.other_card,'m_wild') then
-                return {
-                    xmult = 1.5,
-                    card = card
-                }
-            end
-        end
-    end
-})
-SMODS.Joker({
 	key = "air_balloon",
 	atlas = "prismjokers",
 	pos = {x=0,y=0},
@@ -242,6 +207,41 @@ SMODS.Joker({
         end
     end
 	
+})
+SMODS.Joker({
+	key = "vaquero",
+	atlas = "prismjokers",
+	pos = {x=1,y=2},
+	rarity = 2,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {x_mult = 1.75}},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_wild
+		return {
+		vars = {center.ability.extra.x_mult}
+		}
+	end,
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_wild') then return true end
+		end
+		return false
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if SMODS.has_enhancement(context.other_card,'m_wild') then
+                return {
+                    xmult = 1.5,
+                    card = card
+                }
+            end
+        end
+    end
 })
 SMODS.Joker({
 	key = "hopscotch",
