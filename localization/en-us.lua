@@ -59,9 +59,9 @@ return {
             },
             j_prism_ghost = {
                 name = "Occultist",
-                text = {"{C:red}+#1#{} Mult per {C:spectral}Spectral{}",
+                text = {"{C:chips}+#1#{} Chips per {C:spectral}Spectral{}",
                     "card used this run",
-                    "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
                 },
             },
             j_prism_prism = {

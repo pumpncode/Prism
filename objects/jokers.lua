@@ -85,14 +85,14 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {extra = {mult = 6}},
+	config = {extra = {chips = 33}},
 	loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.mult, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral * center.ability.extra.mult or 0} }
+		return { vars = { center.ability.extra.chips, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral * center.ability.extra.chips or 0} }
 	end,
 	calculate = function(self, card, context)
 		if context.joker_main and G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral > 0 then
 			return {
-				mult = G.GAME.consumeable_usage_total.spectral * card.ability.extra.mult
+				chips = G.GAME.consumeable_usage_total.spectral * card.ability.extra.chips
 			}
 		end
     end
