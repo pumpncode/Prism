@@ -167,7 +167,7 @@ SMODS.Seal({
     pos = {x = 1, y = 1},
     discovered = false,
     badge_colour = HEX('86ADB3'),
-    config = {extra = {odds = 2}},
+    config = {extra = {odds = 3}},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
