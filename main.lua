@@ -17,6 +17,7 @@ function loc_colour(_c, _default)
         lc()
     end
     G.ARGS.LOC_COLOURS.moon = HEX('86ADB3')
+	G.ARGS.LOC_COLOURS.myth_light = HEX('80987A')
     return lc(_c, _default)
 end
 

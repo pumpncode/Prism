@@ -72,9 +72,16 @@ return {
             },
             j_prism_minstrel = {
                 name = "Minstrel",
-                text = {"Create a {C:myth}Myth{} card",
+                text = {"Create a {C:myth_light}Myth{} card",
                     "when {C:attention}Blind{} is selected",
                     "{C:inactive}(Must have room)",
+                },
+            },
+            j_prism_happily = {
+                name = "Happily Ever After",
+                text = {"Create a {C:myth_light}Myth{} card",
+                    "if played hand contains a",
+                    "scoring {C:attention}King{} and {C:attention}Queen"
                 },
             },
             j_prism_geo_hammer = {
@@ -163,7 +170,7 @@ return {
             b_prism_ancient = {
                 name = "Ancient Deck",
                 text = {"Start run with",
-                    "{C:myth,T:v_prism_myth_merchant}Myth Merchant{} and",
+                    "{C:myth_light,T:v_prism_myth_merchant}Myth Merchant{} and",
                     "{C:attention,T:v_prism_booster_box}Booster Box{}"
                 },
             },
@@ -316,7 +323,7 @@ return {
             v_prism_myth_merchant = {
                 name = "Myth Merchant",
                 text = {
-                    "{C:myth} Myth{} cards appear",
+                    "{C:myth_light} Myth{} cards appear",
                     "{C:attention}2X{} more frequently",
                     "in the shop",
                 },
@@ -324,7 +331,7 @@ return {
             v_prism_myth_tycoon = {
                 name = "Myth Tycoon",
                 text = {
-                    "{C:myth} Myth{} cards appear",
+                    "{C:myth_light} Myth{} cards appear",
                     "{C:attention}4X{} more frequently",
                     "in the shop",
                 },
@@ -351,7 +358,7 @@ return {
                 name = "Song Tag",
                 text = {
                     "Gives a free",
-                    "{C:myth}Mega Myth Pack",
+                    "{C:myth_light}Mega Myth Pack",
                 },
             },
         },
@@ -360,28 +367,28 @@ return {
                 name = "Legend Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:myth} Myth{} cards",
+                    "{C:attention}#2#{C:myth_light} Myth{} cards",
                 },
             },
             p_prism_small_myth_2 = {
                 name = "Legend Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:myth} Myth{} cards",
+                    "{C:attention}#2#{C:myth_light} Myth{} cards",
                 },
             },
             p_prism_mid_myth = {
                 name = "Jumbo Legend Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:myth} Myth{} cards",
+                    "{C:attention}#2#{C:myth_light} Myth{} cards",
                 },
             },
             p_prism_large_myth = {
                 name = "Mega Legend Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:myth} Myth{} cards",
+                    "{C:attention}#2#{C:myth_light} Myth{} cards",
                 },
             },
             prism_green_seal = {
