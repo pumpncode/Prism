@@ -104,13 +104,17 @@ target = "functions/state_events.lua"
 pattern = "G.deck:shuffle('nr'..G.GAME.round_resets.ante)"
 position = "after"
 payload = '''
+local cards = {}
 for i=1, #G.deck.cards - 1 do
-    local card = nil
-    if G.deck.cards[i].seal == "prism_green" then
-        card = G.deck.cards[i]
+    while i <= #G.deck.cards and G.deck.cards[i].seal == "prism_green" do
+        table.insert(cards, G.deck.cards[i])
         table.remove(G.deck.cards,i)
     end
-    if card then table.insert(G.deck.cards,card) end
+end
+print(cards)
+for _, card in pairs(cards) do
+    local pos = (pseudorandom('green') < 0.5 and #G.deck.cards) or pseudorandom('green_pos', 1, #G.deck.cards + 1)
+    table.insert(G.deck.cards,pos,card)
 end
 '''
 match_indent = true

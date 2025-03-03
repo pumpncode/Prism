@@ -158,8 +158,11 @@ SMODS.Seal({
     pos = {x = 1, y = 0},
     discovered = false,
     badge_colour = HEX('65AE5E'),
+    config = {extra = {draw_odds = 2}},
+    loc_vars = function(self, info_queue, card)
+        return {vars = { self.config.extra.draw_odds}}
+    end,
 })
-
 
 SMODS.Seal({
     key = "moon",

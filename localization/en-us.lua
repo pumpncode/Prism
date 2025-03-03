@@ -386,9 +386,9 @@ return {
             },
             prism_green_seal = {
                 name = "Green Seal",
-                text = {"{C:attention}Always{} drawn to",
-                    "hand at start",
-                    "of round"
+                text = {"{C:green}1 in #1#{} chance",
+                    "to be drawn in",
+                    "first hand of round"
                 },
             },
             prism_moon_seal = {

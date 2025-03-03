@@ -693,7 +693,7 @@ SMODS.Joker({
 
 local orig_is_suit = Card.is_suit
 function Card.is_suit(self, suit, bypass_debuff, flush_calc)
-    local is_numbered = self:get_id() >= 2 and self:get_id() <= 10
+    local is_numbered = is_number(self:get_id()) and (self:get_id() >= 2 and self:get_id() <= 10) or false
 	if not (self.debuff and not bypass_debuff) and (next(SMODS.find_card('j_prism_prism'))) and is_numbered then
         if SMODS.find_card('j_prism_prism') then
             return true
