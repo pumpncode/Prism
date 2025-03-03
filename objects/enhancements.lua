@@ -103,20 +103,23 @@ SMODS.Enhancement({
 local orig_highlight = Card.highlight
 function Card:highlight(highlighted)
     orig_highlight(self, highlighted)
-    if highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand and #G.hand.highlighted == 1 then
+    if highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand then
         self.children.use_button = UIBox{
-            definition = G.UIDEF.use_switch_button(self), 
+            definition = G.UIDEF.use_switch_button(self),
             config = {align = 'tm', offset = {x=0, y=0.4}, parent = self, id = 'm_prism_double'}
         }
     elseif self.area and #self.area.highlighted > 0 and not G.STATE == G.STATES.STANDARD_PACK then
         for _, card in ipairs(self.area.highlighted) do
             if card.config.center_key == 'm_prism_double' then
-                card.children.use_button = #self.area.highlighted == 1 and UIBox{
-                    definition = G.UIDEF.use_switch_button(card), 
+                card.children.use_button = UIBox{
+                    definition = G.UIDEF.use_switch_button(card),
                     config = {align = 'tm', offset = {x=0, y=0.4}, parent = card}
                 } or nil
             end
         end
+    end
+    if highlighted and self.children.use_button and self.children.use_button.config.id == 'm_prism_double' and self.config.center_key ~= 'm_prism_double' then
+        self.children.use_button:remove()
     end
 end
 
@@ -141,7 +144,6 @@ end
 
 G.FUNCS.switch_button = function(e, mute, nosave)
     local card = e.config.ref_table
-    print(card.config.center)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function()
         local _card = card.config.card
         card:set_base(card.ability.extra.card)
