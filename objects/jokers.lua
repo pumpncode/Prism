@@ -243,6 +243,72 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "elf",
+	atlas = "prismjokers",
+	pos = {x=1,y=13},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {x_mult = 2.5, active = false}},
+	loc_vars = function(self, info_queue, center)
+		local active = center.ability.extra.active
+		return {
+			vars = {center.ability.extra.x_mult},
+			main_end = (center.area and center.area == G.jokers) and {{
+				n = G.UIT.C,
+				config = {
+					align = "bm",
+					minh = 0.4
+				},
+				nodes = {{
+					n = G.UIT.C,
+					config = {
+						ref_table = center,
+						align = "m", 
+						colour = active and G.C.GREEN or G.C.RED,
+						r = 0.05, 
+						padding = 0.06,
+					},
+					nodes = {{
+						n = G.UIT.T,
+						config = {
+							text = ' '..localize(active and 'k_active' or 'k_inactive')..' ',
+							colour = G.C.UI.TEXT_LIGHT,
+							scale = 0.32*0.9
+						}
+					}}
+				}}
+			}}
+		}
+	end,
+	calculate = function(self, card, context)
+        if context.using_consumeable and context.consumeable.ability.set  == 'Myth' and not context.blueprint and card.ability.extra.active == false then
+            card.ability.extra.active = true
+			return {
+				colour = G.C.GREEN,
+				message = localize('k_active_ex')
+			}
+        end
+		if context.cardarea == G.jokers and context.end_of_round and not context.blueprint and card.ability.extra.active then
+			card.ability.extra.active = false
+			return {
+				colour = G.C.RED,
+				message = localize('k_inactive_ex')
+			}
+		end
+		if context.joker_main then
+			return {
+				xmult = card.ability.extra.x_mult,
+				card = card
+			}
+		end
+    end
+})
+SMODS.Joker({
 	key = "vaquero",
 	atlas = "prismjokers",
 	pos = {x=1,y=2},
@@ -270,7 +336,7 @@ SMODS.Joker({
         if context.cardarea == G.play and context.individual then
             if SMODS.has_enhancement(context.other_card,'m_wild') then
                 return {
-                    xmult = 1.5,
+                    xmult = card.ability.extra.x_mult,
                     card = card
                 }
             end

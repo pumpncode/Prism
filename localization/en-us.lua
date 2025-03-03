@@ -165,6 +165,13 @@ return {
                     "{C:attention}Ace{} and a {C:attention}Straight",
                 },
             },
+            j_prism_elf = {
+                name = "Elf",
+                text = {"{X:mult,C:white} X#1# {} Mult if a {C:myth_light}Myth{} card",
+                    "as been used since",
+                    "the end of {C:attention}last round",
+                },
+            },
         },
         Back = {
             b_prism_ancient = {
@@ -458,7 +465,9 @@ return {
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
             prism_invalid_card = "Invalid Card!",
-            prism_switch = "Switch"
+            prism_switch = "Switch",
+            k_inactive = "inactive",
+            k_inactive_ex = "Inactive!",
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
