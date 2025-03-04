@@ -14,6 +14,8 @@ The mod currently adds:
 - 3 Boss Blinds
 - 2 Challenges
 
+You can see a more datailed list of additions in the mods [Wiki](https://balatromods.miraheze.org/wiki/Prism) (Still WIP)
+
 # Requirements
 - [Steamodded](https://github.com/Steamopollys/Steamodded)
 - [Lovely](https://github.com/ethangreen-dev/lovely-injector)
