@@ -398,7 +398,7 @@ SMODS.Consumable({
     pos = {x=3, y=1},
     discovered = false,
     can_use = function(self,card)
-        return G.consumeables.config.card_limit > #G.consumeables.cards
+        return G.consumeables.config.card_limit > #G.consumeables.cards or card.area == G.consumeables
     end,
     use = function(self, card, area, copier)
         if G.consumeables.config.card_limit > #G.consumeables.cards then
