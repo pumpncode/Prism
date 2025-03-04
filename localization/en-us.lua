@@ -233,21 +233,21 @@ return {
             c_prism_myth_dwarf = {
                 name = "Dwarf",
                 text = {"Enhances {C:attention}#1#{}",
-                    " selected cards to",
+                    "selected cards to",
                     "{C:attention}Crystal Cards"
                 }
             },
             c_prism_myth_siren = {
                 name = "Siren",
                 text = {"Enhances {C:attention}#1#{}",
-                    " selected cards to",
+                    "selected cards to",
                     "{C:attention}Echo Cards"
                 }
             },
             c_prism_myth_dragon = {
                 name = "Dragon",
                 text = {"Enhances {C:attention}#1#{}",
-                    " selected cards to",
+                    "selected cards to",
                     "{C:attention}Burnt Cards"
                 }
             },
@@ -268,7 +268,7 @@ return {
             },
             c_prism_myth_gnome = {
                 name = "Gnome",
-                text = {"Create a {C:attention}Investment Tag"
+                text = {"Create an {C:attention}Investment Tag"
                 }
             },
             c_prism_myth_mirror = {
