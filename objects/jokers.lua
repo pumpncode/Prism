@@ -52,7 +52,7 @@ SMODS.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	calculate = function(self, card, context)
-		if context.joker_main and not context.before and not context.after then
+		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
 			local kings = 0
 			local queens = 0
 			for i = 1, #context.scoring_hand do
@@ -62,7 +62,7 @@ SMODS.Joker({
 			if kings >= 1 and queens >= 1 then
 				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
 				play_sound("timpani")
-				play_sound("polychrome1",2)
+				play_sound("polychrome1",2,0.5)
 				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'happily')
 				myth:add_to_deck()
 				G.consumeables:emplace(myth)
