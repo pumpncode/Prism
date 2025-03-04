@@ -114,11 +114,11 @@ return {
                     "{C:mult}+#1#{} Mult when scored"
                 },
             },
-            j_prism_motherboard = {
+            --[[ j_prism_motherboard = {
                 name = "Motherboard",
                 text = {""
                 },
-            },
+            }, ]]
             j_prism_reverse_card = {
                 name = "Reverse Card",
                 text = {"Swap current",
@@ -366,7 +366,7 @@ return {
                 name = "Song Tag",
                 text = {
                     "Gives a free",
-                    "{C:myth_light}Mega Myth Pack",
+                    "{C:myth_light}Mega Legend Pack",
                 },
             },
         },
@@ -417,14 +417,14 @@ return {
             card_extra_mult = {
                 text={"{C:mult}+#1#{} extra mult"}
             },
-            prism_platinum_sticker={
+            --[[ prism_platinum_sticker={
                 name="Platinum Sticker",
                 text={
                     "Used this Joker",
                     "to win on {C:attention}Platinum",
                     "{C:attention}Stake{} difficulty",
                 },
-            },
+            }, ]]
         },
         Blind = {
             bl_prism_rose_club = {
