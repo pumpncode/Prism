@@ -26,7 +26,7 @@ SMODS.ConsumableType({
         }
     },
     collection_rows = {4, 3},
-    shop_rate = 0.85,
+    shop_rate = 2,
     default = 'c_prism_myth_gnome'
 })
 SMODS.UndiscoveredSprite({

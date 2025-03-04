@@ -12,7 +12,7 @@ SMODS.Voucher({
     redeem = function(self)
 		G.E_MANAGER:add_event(Event({
 			func = function()
-				G.GAME.myth_rate = (G.GAME.myth_rate or 0.85) * 2
+				G.GAME.myth_rate = (G.GAME.myth_rate or 2) * 2
 				return true
 			end,
 		}))
@@ -20,7 +20,7 @@ SMODS.Voucher({
 	unredeem = function(self)
         G.E_MANAGER:add_event(Event({
             func = function()
-                G.GAME.myth_rate = (G.GAME.myth_rate or 1.7) * 0.5
+                G.GAME.myth_rate = (G.GAME.myth_rate or 4) * 0.5
                 return true
             end,
 	    }))
@@ -35,7 +35,7 @@ SMODS.Voucher({
     redeem = function(self)
 		G.E_MANAGER:add_event(Event({
 			func = function()
-				G.GAME.myth_rate = (G.GAME.myth_rate or 1.7) * 2
+				G.GAME.myth_rate = (G.GAME.myth_rate or 4) * 2
 				return true
 			end,
 		}))
@@ -43,7 +43,7 @@ SMODS.Voucher({
 	unredeem = function(self)
         G.E_MANAGER:add_event(Event({
             func = function()
-                G.GAME.myth_rate = (G.GAME.myth_rate or 3.4) * 0.5
+                G.GAME.myth_rate = (G.GAME.myth_rate or 8) * 0.5
                 return true
             end,
 	    }))
