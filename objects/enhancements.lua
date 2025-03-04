@@ -94,7 +94,7 @@ SMODS.Enhancement({
             }
         else 
             return {
-                vars = {"another card"}
+                vars = {localize('k_another_card')}
             }
         end
     end,

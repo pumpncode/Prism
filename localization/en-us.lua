@@ -96,7 +96,7 @@ return {
             j_prism_vaquero = {
                 name = "Vaquero",
                 text = {"Played {C:attention}Wild Cards{}",
-                    "give {X:mult,C:white} X#1# {} Mult",
+                    "give {X:mult,C:white}X#1#{} Mult",
                     "when scored"
                 },
             },
@@ -469,6 +469,7 @@ return {
             prism_switch = "Switch",
             k_inactive = "inactive",
             k_inactive_ex = "Inactive!",
+            k_another_card = "another card"
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
