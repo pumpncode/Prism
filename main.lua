@@ -38,14 +38,14 @@ function SMODS.current_mod.reset_game_globals(run_start)
 	G.GAME.prism_extra_draw = 0
 end
 
-NFS.load(SMODS.current_mod.path .. 'objects/enhancements.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/jokers.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/myth_cards.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/vouchers.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/decks.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/tags.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/blinds.lua')()
-NFS.load(SMODS.current_mod.path .. 'objects/challenges.lua')()
+SMODS.load_file('objects/jokers.lua')()
+SMODS.load_file('objects/enhancements.lua')()
+SMODS.load_file('objects/myth_cards.lua')()
+SMODS.load_file('objects/vouchers.lua')()
+SMODS.load_file('objects/decks.lua')()
+SMODS.load_file('objects/tags.lua')()
+SMODS.load_file('objects/blinds.lua')()
+SMODS.load_file('objects/challenges.lua')()
 
 SMODS.Sound({
 	key = "myth_music",
