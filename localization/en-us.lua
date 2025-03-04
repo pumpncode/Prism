@@ -81,7 +81,8 @@ return {
                 name = "Happily Ever After",
                 text = {"Create a {C:myth_light}Myth{} card",
                     "if played hand contains a",
-                    "scoring {C:attention}King{} and {C:attention}Queen"
+                    "scoring {C:attention}King{} and {C:attention}Queen",
+                    "{C:inactive}(Must have room)",
                 },
             },
             j_prism_geo_hammer = {
