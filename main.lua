@@ -36,6 +36,7 @@ function SMODS.current_mod.reset_game_globals(run_start)
     else
 	end
 	G.GAME.prism_extra_draw = 0
+	G.GAME.prism_shop_legend = false
 end
 
 SMODS.load_file('objects/jokers.lua')()

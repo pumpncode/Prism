@@ -198,11 +198,23 @@ return {
                     "{C:attention,T:v_prism_booster_box}Booster Box{}"
                 },
             },
+            sleeve_prism_ancientsleeve_alt = {
+                name = "Ancient Sleeve",
+                text = {"The shop always has",
+                    "{C:myth_light}Legend Pack"
+                },
+            },
             sleeve_prism_marketsleeve = {
                 name = "Overproduction Sleeve",
                 text = {"Start run with",
                     "{C:attention,T:v_overstock_norm}Overstock{} and",
                     "{C:attention,T:v_reroll_surplus}Reroll Surplus{}"
+                },
+            },
+            sleeve_prism_marketsleeve_alt = {
+                name = "Overproduction Sleeve",
+                text = {"Start run with",
+                    "{C:attention,T:v_prism_booster_box}Booster Box{}"
                 },
             },
         },
