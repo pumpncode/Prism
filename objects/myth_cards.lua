@@ -200,13 +200,13 @@ SMODS.Consumable({
     use = function(self, card, area, copier)
         local rightmost = G.hand.highlighted[1]
         for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
-        local rank = rightmost.base.id
-        if rank < 11 then rank = tostring(rank)
+        local rank = rightmost.config.card.value
+        --[[ if rank < 11 then rank = tostring(rank)
         elseif rank == 11 then rank = 'Jack'
         elseif rank == 12 then rank = 'Queen'
         elseif rank == 13 then rank = 'King'
         elseif rank == 14 then rank = 'Ace'
-        end
+        end ]]
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
