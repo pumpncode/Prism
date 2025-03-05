@@ -24,3 +24,5 @@ You can see a more datailed list of additions in the mods [Wiki](https://balatro
 # Known Issues
 - Using the mod togather with Codex Arcanum will crash the game, using [Redux Arcanum](https://github.com/jumbocarrot0/Redux-Arcanum) instead fixes the issue
 
+# Credits
+- Chinese localization by 姓氏是个毛
