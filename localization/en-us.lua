@@ -201,7 +201,7 @@ return {
             sleeve_prism_ancientsleeve_alt = {
                 name = "Ancient Sleeve",
                 text = {"The shop always has",
-                    "{C:myth_light}Legend Pack"
+                    "a {C:myth_light}Legend Pack"
                 },
             },
             sleeve_prism_marketsleeve = {
