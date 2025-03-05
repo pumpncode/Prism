@@ -21,5 +21,5 @@ You can see a more datailed list of additions in the mods [Wiki](https://balatro
 - [Lovely](https://github.com/ethangreen-dev/lovely-injector)
 
 # Known Issues
-- Taking a Song Tag with Codex Arcanum installed will freeze the game, using [Redux Arcanum](https://github.com/jumbocarrot0/Redux-Arcanum) instead fixes the issue
+- Using the mod togather with Codex Arcanum will crash the game, using [Redux Arcanum](https://github.com/jumbocarrot0/Redux-Arcanum) instead fixes the issue
 

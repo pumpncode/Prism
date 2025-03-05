@@ -190,6 +190,22 @@ return {
                 },
             },
         },
+        Sleeve = {
+            sleeve_prism_ancientsleeve = {
+                name = "Ancient Sleeve",
+                text = {"Start run with",
+                    "{C:myth_light,T:v_prism_myth_merchant}Myth Merchant{} and",
+                    "{C:attention,T:v_prism_booster_box}Booster Box{}"
+                },
+            },
+            sleeve_prism_marketsleeve = {
+                name = "Overproduction Sleeve",
+                text = {"Start run with",
+                    "{C:attention,T:v_overstock_norm}Overstock{} and",
+                    "{C:attention,T:v_reroll_surplus}Reroll Surplus{}"
+                },
+            },
+        },
         Enhanced = {
             m_prism_crystal = {
                 name = "Crystal Card",

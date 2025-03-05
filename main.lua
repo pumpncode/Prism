@@ -46,6 +46,7 @@ SMODS.load_file('objects/decks.lua')()
 SMODS.load_file('objects/tags.lua')()
 SMODS.load_file('objects/blinds.lua')()
 SMODS.load_file('objects/challenges.lua')()
+if CardSleeves then SMODS.load_file('objects/cardsleeves.lua')() end
 
 SMODS.Sound({
 	key = "myth_music",
