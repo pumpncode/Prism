@@ -82,6 +82,7 @@ payload = '''
 '''
 match_indent = true
 
+#Sets double cards starting value
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
