@@ -300,7 +300,7 @@ SMODS.Joker({
 				message = localize('k_inactive_ex')
 			}
 		end
-		if context.joker_main then
+		if context.joker_main and card.ability.extra.active then
 			return {
 				xmult = card.ability.extra.x_mult,
 				card = card
