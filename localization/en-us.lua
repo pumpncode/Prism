@@ -494,7 +494,8 @@ return {
             prism_switch = "Switch",
             k_inactive = "inactive",
             k_inactive_ex = "Inactive!",
-            k_another_card = "another card"
+            k_another_card = "another card",
+            k_of = "of",
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",

@@ -85,12 +85,9 @@ SMODS.Enhancement({
     config = {extra = {card = nil}},
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
-        if card.config and not card_ability.extra.card and card.config.card.suit then
-            card_ability.extra.card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
-        end
         if card_ability.extra.card then 
             return {
-                vars = {card_ability.extra.card.name}
+                vars = {string.format("%s %s %s",localize(card_ability.extra.card.value, 'ranks'), localize('k_of'), localize(card_ability.extra.card.suit, 'suits_plural'))}
             }
         else 
             return {
