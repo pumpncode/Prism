@@ -201,12 +201,11 @@ SMODS.Consumable({
         local rightmost = G.hand.highlighted[1]
         for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
         local rank = rightmost.base.id
-        if rank < 10 then rank = tostring(rank)
-        elseif rank == 10 then rank = 'T'
-        elseif rank == 11 then rank = 'J'
-        elseif rank == 12 then rank = 'Q'
-        elseif rank == 13 then rank = 'K'
-        elseif rank == 14 then rank = 'A'
+        if rank < 11 then rank = tostring(rank)
+        elseif rank == 11 then rank = 'Jack'
+        elseif rank == 12 then rank = 'Queen'
+        elseif rank == 13 then rank = 'King'
+        elseif rank == 14 then rank = 'Ace'
         end
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
@@ -218,8 +217,7 @@ SMODS.Consumable({
         end
         for i=1, #G.hand.highlighted do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-                local suit = string.sub(G.hand.highlighted[i].base.suit, 1, 1)..'_'
-                G.hand.highlighted[i]:set_base(G.P_CARDS[suit..rank])
+                SMODS.change_base(G.hand.highlighted[i],nil,rank)
             return true end }))
         end
         for i=1, #G.hand.highlighted do
@@ -245,7 +243,7 @@ SMODS.Consumable({
     use = function(self, card, area, copier)
         local rightmost = G.hand.highlighted[1]
         for i=1, #G.hand.highlighted do if G.hand.highlighted[i].T.x > rightmost.T.x then rightmost = G.hand.highlighted[i] end end
-        local suit = string.sub(rightmost.base.suit, 1, 1)..'_'
+        local suit = rightmost.base.suit
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
@@ -256,15 +254,7 @@ SMODS.Consumable({
         end
         for i=1, #G.hand.highlighted do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-                local rank = G.hand.highlighted[i].base.id
-                if rank < 10 then rank = tostring(rank)
-                elseif rank == 10 then rank = 'T'
-                elseif rank == 11 then rank = 'J'
-                elseif rank == 12 then rank = 'Q'
-                elseif rank == 13 then rank = 'K'
-                elseif rank == 14 then rank = 'A'
-                end
-                G.hand.highlighted[i]:set_base(G.P_CARDS[suit..rank])
+                SMODS.change_base(G.hand.highlighted[i],suit,nil)
             return true end }))
         end
         for i=1, #G.hand.highlighted do
