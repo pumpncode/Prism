@@ -414,9 +414,6 @@ return {
                     "played and scoring"
                 },
             },
-            card_extra_mult = {
-                text={"{C:mult}+#1#{} extra mult"}
-            },
             --[[ prism_platinum_sticker={
                 name="Platinum Sticker",
                 text={

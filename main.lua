@@ -70,16 +70,3 @@ function G.PRISM.create_booster()
 		G.shop_booster:emplace(card)
 	end
 end
-
-local orig_get_chip_mult = Card.get_chip_mult
-function Card:get_chip_mult()
-    if self.debuff then return 0 end
-	return orig_get_chip_mult(self) + (self.ability.perma_mult or 0)
-end
-local orig_generate_ui = SMODS.Enhancement.generate_ui
-function SMODS.Enhancement.generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
-	orig_generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
-	if specific_vars and specific_vars.bonus_mult then
-		localize{type = 'other', key = 'card_extra_mult', nodes = desc_nodes, vars = {specific_vars.bonus_mult}}
-	end
-end
