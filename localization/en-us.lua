@@ -194,6 +194,13 @@ return {
                     "{C:inactive}(Next 5 digits are: #3#)",
                 },
             },
+            j_prism_solo_joker = {
+                name = "Solo Joker",
+                text = {"If played hand",
+                    "has only {C:attention}1{} card,",
+                    "retigger it {C:attention}#1#{} times"
+                },
+            },
         },
         Back = {
             b_prism_ancient = {

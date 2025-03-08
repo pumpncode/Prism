@@ -277,6 +277,34 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "solo_joker",
+	atlas = "prismjokers",
+	pos = {x=1,y=14},
+	rarity = 2,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 4, trigger = false},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.extra} }
+	end,
+	calculate = function(self, card, context)
+		if context.cardarea == G.jokers and context.before then
+			if #context.full_hand == 1 then card.ability.trigger = true else card.ability.trigger = false end
+		end
+        if context.repetition and context.cardarea == G.play and card.ability.trigger then
+			return {
+				message = localize('k_again_ex'),
+				repetitions = card.ability.extra,
+				card = card
+			}
+        end
+    end
+})
+SMODS.Joker({
 	key = "cookie",
 	atlas = "prismjokers",
 	pos = {x=2,y=0},
@@ -327,42 +355,6 @@ SMODS.Joker({
 				end
 			end
 		end
-    end
-	
-})
-SMODS.Joker({
-	key = "pie",
-	atlas = "prismjokers",
-	pos = {x=2,y=1},
-	rarity = 3,
-	cost = 7,
-	unlocked = true,
-	discovered = false,
-	blueprint_compat = true,
-	eternal_compat = true,
-	perishable_compat = true,
-	config = {extra = {index = 1,x_mult = 2.5}},
-	loc_vars = function(self, info_queue, center)
-		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
-		if rank == "1" then rank = "Ace" end
-		return{ vars = {localize(rank,'ranks'),
-		center.ability.extra.x_mult,
-		string.sub(G.PRISM.PI,center.ability.extra.index + 1,center.ability.extra.index + 5)}}
-	end,
-	calculate = function(self, card, context)
-        if context.cardarea == G.play and context.individual then
-			print(context.other_card.config.card.value)
-			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
-			if rank == "1" then rank = "Ace" end
-			if context.other_card.config.card.value == rank then
-				card.ability.extra.index = card.ability.extra.index + 1
-				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
-				return {
-					xmult = card.ability.extra.x_mult,
-					card = card
-				}
-			end
-        end
     end
 	
 })
@@ -780,6 +772,42 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	end
 	return nil
 end
+SMODS.Joker({
+	key = "pie",
+	atlas = "prismjokers",
+	pos = {x=2,y=1},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {index = 1,x_mult = 2.5}},
+	loc_vars = function(self, info_queue, center)
+		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
+		if rank == "1" then rank = "Ace" end
+		return{ vars = {localize(rank,'ranks'),
+		center.ability.extra.x_mult,
+		string.sub(G.PRISM.PI,center.ability.extra.index + 1,center.ability.extra.index + 5)}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+			print(context.other_card.config.card.value)
+			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
+			if rank == "1" then rank = "Ace" end
+			if context.other_card.config.card.value == rank then
+				card.ability.extra.index = card.ability.extra.index + 1
+				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				return {
+					xmult = card.ability.extra.x_mult,
+					card = card
+				}
+			end
+        end
+    end
+	
+})
 SMODS.Joker({
 	key = "plasma_lamp",
 	atlas = "prismjokers",
