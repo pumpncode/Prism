@@ -265,7 +265,7 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
         if context.repetition and context.cardarea == G.play then
-            if context.other_card.ability.set ~= 'Enhanced' then
+            if context.other_card.ability.set == 'Enhanced' then
                 return {
                     message = localize('k_again_ex'),
                     repetitions = card.ability.extra,
