@@ -75,35 +75,35 @@ SMODS.Joker({
 	end
 })
 SMODS.Joker({
-	key = "happily",
+	key = "motherboard",
 	atlas = "prismjokers",
-	pos = {x=1,y=12},
+	pos = {x=1,y=4},
 	rarity = 1,
-	cost = 5,
+	cost = 6,
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
-	perishable_compat = true,
+	perishable_compat = false,
+	config = {chips = 0, extra = 2},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra, center.ability.chips} }
+	end,
 	calculate = function(self, card, context)
-		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-			local kings = 0
-			local queens = 0
-			for i = 1, #context.scoring_hand do
-				if context.scoring_hand[i]:get_id() == 12 then queens = queens + 1 end
-				if context.scoring_hand[i]:get_id() == 13 then kings = kings + 1 end
-			end
-			if kings >= 1 and queens >= 1 then
-				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-				play_sound("timpani")
-				play_sound("polychrome1",2,0.5)
-				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'happily')
-				myth:add_to_deck()
-				G.consumeables:emplace(myth)
-				G.GAME.consumeable_buffer = 0
-				myth:juice_up(0.3, 0.5)
-				card:juice_up(0.3, 0.5)
-				return nil,true
+		if context.joker_main then
+			return{
+			chips = card.ability.chips
+			}
+		end
+		if context.cardarea == G.play and context.individual and not context.blueprint then
+			if context.other_card.ability.set ~= 'Enhanced' and not context.other_card.seal and not context.other_card.edition then
+				card.ability.chips = card.ability.chips + card.ability.extra
+				return {
+					focus = card,
+					colour = G.C.CHIPS,
+					message = localize({ type = "variable", key = "a_chips", vars = { card.ability.chips } }),
+					card = card,
+				}
 			end
 		end
 	end
@@ -265,7 +265,7 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
         if context.repetition and context.cardarea == G.play then
-            if context.other_card.ability.set == 'Enhanced' then
+            if context.other_card.ability.set ~= 'Enhanced' then
                 return {
                     message = localize('k_again_ex'),
                     repetitions = card.ability.extra,
@@ -744,20 +744,6 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	end
 	return nil
 end
---[[ SMODS.Joker({
-	key = "motherboard",
-	atlas = "prismjokers",
-	pos = {x=1,y=4},
-	rarity = 3,
-	cost = 7,
-	unlocked = true,
-	discovered = false,
-	blueprint_compat = true,
-	eternal_compat = true,
-	perishable_compat = false,
-	config = {extra = 7},
-	
-}) ]]
 SMODS.Joker({
 	key = "plasma_lamp",
 	atlas = "prismjokers",

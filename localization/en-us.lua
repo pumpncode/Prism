@@ -114,11 +114,15 @@ return {
                     "{C:mult}+#1#{} Mult when scored"
                 },
             },
-            --[[ j_prism_motherboard = {
+            j_prism_motherboard = {
                 name = "Motherboard",
-                text = {""
+                text = {"This Joker gains {C:chips}+#1#{} Chips",
+                    "when each played card",
+                    "with no {C:attention}Enhancement{},",
+                    "{C:attention}Seal{} or {C:dark_edition}Edition{} is scored",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
                 },
-            }, ]]
+            },
             j_prism_reverse_card = {
                 name = "Reverse Card",
                 text = {"Swap current",
