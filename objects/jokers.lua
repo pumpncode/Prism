@@ -75,6 +75,40 @@ SMODS.Joker({
 	end
 })
 SMODS.Joker({
+	key = "happily",
+	atlas = "prismjokers",
+	pos = {x=1,y=12},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+			local kings = 0
+			local queens = 0
+			for i = 1, #context.scoring_hand do
+				if context.scoring_hand[i]:get_id() == 12 then queens = queens + 1 end
+				if context.scoring_hand[i]:get_id() == 13 then kings = kings + 1 end
+			end
+			if kings >= 1 and queens >= 1 then
+				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+				play_sound("timpani")
+				play_sound("polychrome1",2,0.5)
+				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'happily')
+				myth:add_to_deck()
+				G.consumeables:emplace(myth)
+				G.GAME.consumeable_buffer = 0
+				myth:juice_up(0.3, 0.5)
+				card:juice_up(0.3, 0.5)
+				return nil,true
+			end
+		end
+	end
+})
+SMODS.Joker({
 	key = "ghost",
 	atlas = "prismjokers",
 	pos = {x=0,y=13},
@@ -251,7 +285,7 @@ SMODS.Joker({
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = false,
-	eternal_compat = true,
+	eternal_compat = false,
 	perishable_compat = true,
 	config = {extra = 100},
 	loc_vars = function(self, info_queue, center)
