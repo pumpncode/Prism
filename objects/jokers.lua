@@ -331,6 +331,42 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "pie",
+	atlas = "prismjokers",
+	pos = {x=2,y=1},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {index = 1,x_mult = 2.5}},
+	loc_vars = function(self, info_queue, center)
+		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
+		if rank == "1" then rank = "Ace" end
+		return{ vars = {localize(rank,'ranks'),
+		center.ability.extra.x_mult,
+		string.sub(G.PRISM.PI,center.ability.extra.index + 1,center.ability.extra.index + 5)}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+			print(context.other_card.config.card.value)
+			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
+			if rank == "1" then rank = "Ace" end
+			if context.other_card.config.card.value == rank then
+				card.ability.extra.index = card.ability.extra.index + 1
+				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				return {
+					xmult = card.ability.extra.x_mult,
+					card = card
+				}
+			end
+        end
+    end
+	
+})
+SMODS.Joker({
 	key = "elf",
 	atlas = "prismjokers",
 	pos = {x=1,y=13},

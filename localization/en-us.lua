@@ -172,7 +172,7 @@ return {
             },
             j_prism_elf = {
                 name = "Elf",
-                text = {"{X:mult,C:white} X#1# {} Mult if a {C:myth_light}Myth{} card",
+                text = {"{X:mult,C:white}X#1#{} Mult if a {C:myth_light}Myth{} card",
                     "as been used since",
                     "the end of {C:attention}last round",
                 },
@@ -183,6 +183,15 @@ return {
                     "make all {C:green}probalilities",
                     "{C:attention}guaranteed{} for",
                     "this round"
+                },
+            },
+            j_prism_pie = {
+                name = "math.pie",
+                text = {"When a played {C:attention}#1#{} is scored,",
+                    "it gives {X:mult,C:white}X#2#{} Mult and",
+                    "required rank changes",
+                    "to next digit of {C:attention}Pi",
+                    "{C:inactive}(Next 5 digits are: #3#)",
                 },
             },
         },
