@@ -243,6 +243,60 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "cookie",
+	atlas = "prismjokers",
+	pos = {x=2,y=0},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 100},
+	loc_vars = function(self, info_queue, center)
+		local active = G.STATE == G.STATES.SELECTING_HAND
+		return {
+			main_end = (center.area and center.area == G.jokers) and {{
+				n = G.UIT.C,
+				config = {
+					align = "bm",
+					minh = 0.4
+				},
+				nodes = {{
+					n = G.UIT.C,
+					config = {
+						ref_table = center,
+						align = "m", 
+						colour = active and G.C.GREEN or G.C.RED,
+						r = 0.05, 
+						padding = 0.06,
+					},
+					nodes = {{
+						n = G.UIT.T,
+						config = {
+							text = ' '..localize(active and 'k_active' or 'k_inactive')..' ',
+							colour = G.C.UI.TEXT_LIGHT,
+							scale = 0.32*0.9
+						}
+					}}
+				}}
+			}}
+		}
+	end,
+	calculate = function(self, card, context)
+		if context.selling_self then
+			if G.STATE == G.STATES.SELECTING_HAND then
+				G.GAME.prism_fortune_cookie = true
+				for k, v in pairs(G.GAME.probabilities) do
+					G.GAME.probabilities[k] = v * 9999
+				end
+			end
+		end
+    end
+	
+})
+SMODS.Joker({
 	key = "elf",
 	atlas = "prismjokers",
 	pos = {x=1,y=13},

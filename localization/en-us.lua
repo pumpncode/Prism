@@ -173,6 +173,14 @@ return {
                     "the end of {C:attention}last round",
                 },
             },
+            j_prism_cookie = {
+                name = "Fortune Cookie",
+                text = {"Sell this card to",
+                    "make all {C:green}probalilities",
+                    "{C:attention}guaranteed{} for",
+                    "this round"
+                },
+            },
         },
         Back = {
             b_prism_ancient = {

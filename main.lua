@@ -37,6 +37,12 @@ function SMODS.current_mod.reset_game_globals(run_start)
 	end
 	G.GAME.prism_extra_draw = 0
 	G.GAME.prism_shop_legend = false
+	if G.GAME.prism_fortune_cookie then
+		G.GAME.prism_fortune_cookie = false
+		for k, v in pairs(G.GAME.probabilities) do
+			G.GAME.probabilities[k] = v / 9999
+		end
+	end
 end
 
 SMODS.load_file('objects/jokers.lua')()
