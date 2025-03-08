@@ -180,7 +180,7 @@ return {
             j_prism_cookie = {
                 name = "Fortune Cookie",
                 text = {"Sell this card to",
-                    "make all {C:green}probalilities",
+                    "make all {C:green}probabilities",
                     "{C:attention}guaranteed{} for",
                     "this round"
                 },
