@@ -113,11 +113,14 @@ return {
                     "{C:mult}+#1#{}倍率"
                 },
             },
-            --[[ j_prism_motherboard = {
-                name = "Motherboard",
-                text = {""
+            j_prism_motherboard = {
+                name = "主板",
+                text = {"每当没有{C:attention}增强{}，{C:attention}蜡封{}和{C:dark_edition}版本{}",
+                    "的打出的牌计分时",
+                    "这张小丑牌获得{C:chips}+#1#{}筹码",
+                    "{C:inactive}(当前为{C:chips}+#2#{C:inactive}筹码)",
                 },
-            }, ]]
+            },
             j_prism_reverse_card = {
                 name = "UNO反转卡",
                 text = {"交换当前的",
@@ -170,8 +173,30 @@ return {
                     "则{X:mult,C:white} X#1# {}倍率 ",
                 },
             },
+            j_prism_cookie = {
+                name = "幸运饼干",
+                text = {"售出这张卡后",
+                    "本回合内所有的{C:green}概率事件",
+                    "都{C:attention}必定发生{}"
+                },
+            },
+            j_prism_pie = {
+                name = "数学派",
+                text = {"每当一张打出的{C:attention}#1#{}计分时,",
+                    "给予{X:mult,C:white}X#2#{}倍率",
+                    "然后将所需的点数",
+                    "调整为{C:attention}圆周率的下一位数{}",
+                    "{C:inactive}(下五个数字为:#3#)",
+                },
+            },
+            j_prism_solo_joker = {
+                name = "独行侠",
+                text = {"如果只打出{C:attention}1{}张牌",
+                    "将其重新触发{C:attention}#1#{}次"
+                },
+            },
         },
-        Back = {
+	Back = {
             b_prism_ancient = {
                 name = "古代牌组",
                 text = {"开局时即拥有",
@@ -470,31 +495,31 @@ return {
     },
     misc = {
         challenge_names={
-            c_prism_aerial_warfare = "Aerial Warfare",
-            c_prism_mvp = "MVP",
+            c_prism_aerial_warfare = "空战",
+            c_prism_mvp = "你看，他们像柱子一样",
         },
         dictionary = {
-            k_stone = "Stone",
-            k_promoted = "Promoted!",
-            k_prism_myth_pack = "Legend Pack",
-            k_uno_reverse = "Reversed",
-            k_plus_uncommon = "Uncommon",
-            k_plus_rare = "Rare",
-            prism_create = "Make Wish",
-            prism_cancel = "Cancel",
-            prism_enter_card = "Enter Card",
-            prism_invalid_card = "Invalid Card!",
-            prism_switch = "Switch",
-            k_inactive = "inactive",
-            k_inactive_ex = "Inactive!",
-            k_another_card = "another card"
+            k_stone = "石头牌",
+            k_promoted = "升变！",
+            k_prism_myth_pack = "传说包",
+            k_uno_reverse = "反转",
+            k_plus_uncommon = "罕见",
+            k_plus_rare = "稀有",
+            prism_create = "许愿",
+            prism_cancel = "取消",
+            prism_enter_card = "输入卡片",
+            prism_invalid_card = "无效卡片！",
+            prism_switch = "切换",
+            k_inactive = "未激活",
+            k_inactive_ex = "未激活！",
+            k_another_card = "另一张牌"
         },
         v_dictionary = {
-            a_handsize_plus="+#1# Hand Size",
+            a_handsize_plus="+#1#手牌上限",
         },
         labels = {
-            prism_green_seal = "Green Seal",
-            prism_moon_seal = "Moon Seal",
+            prism_green_seal = "绿色蜡封",
+            prism_moon_seal = "月球蜡封",
         }
     }
 }

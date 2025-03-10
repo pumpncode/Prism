@@ -9,7 +9,7 @@ return {
             },
             j_prism_razor_blade = {
                 name = "Hoja de afeitar",
-                text = {"{X:mult,C:white} X#1#{} Mult por cada",
+                text = {"{X:mult,C:white} X#1#{} Multi por cada",
                     "{C:attention}categoria{} que ya no esté presente",
                     "en tu {C:attention}baraja completa{}",
                     "{C:inactive}(Actual {X:mult,C:white}X#2# {C:inactive} Multi)"
@@ -115,7 +115,11 @@ return {
             },
             j_prism_motherboard = {
                 name = "Placa madre",
-                text = {""
+                text = {"Este comodín obtiene {C:chips}+#1#{} fichas",
+                    "cuando una carta jugada",
+                    "sin {C:attention}mejora{},",
+                    "{C:attention}Sello{} o {C:dark_edition}edición{} anota",
+                    "{C:inactive}(Actual {C:chips}+#2#{C:inactive} fichas)",
                 },
             },
             j_prism_reverse_card = {
@@ -172,6 +176,30 @@ return {
                     "la {C:attention}última ronda",
                 },
             },
+            j_prism_cookie = {
+                name = "Galleta de la fortuna",
+                text = {"Vende esta carta para que",
+                    "todas las {C:green}probabilidades",
+                    "sean {C:attention}guarantizadas{} por",
+                    "esta ronda"
+                },
+            },
+            j_prism_pie = {
+                name = "math.pie",
+                text = {"Cuando un {C:attention}#1#{} anota,",
+                    "Otorga {X:mult,C:white}X#2#{} multi y",
+                    "la categoría requerida cambia al",
+                    "próximo número de {C:attention}Pi",
+                    "{C:inactive}(Los próximos 5 números son: #3#)",
+                },
+            },
+            j_prism_solo_joker = {
+                name = "Comodín aviador",
+                text = {"Si la mano jugada",
+                    "contiene solo {C:attention}1{} carta",
+                    "reactivalá {C:attention}#1#{} veces"
+                },
+            },
         },
         Back = {
             b_prism_ancient = {
@@ -186,6 +214,34 @@ return {
                 text = {"Comienza la partida con",
                     "{C:attention,T:v_overstock_norm}Excedente{} y",
                     "{C:attention,T:v_reroll_surplus}Gula de renovaciones{}"
+                },
+            },
+        },
+         Sleeve = {
+            sleeve_prism_ancientsleeve = {
+                name = "Manga antigua",
+                text = {"Comienza la partida con",
+                    "{C:myth_light,T:v_prism_myth_merchant}Mercader mítico{} y",
+                    "{C:attention,T:v_prism_booster_box}Caja de potenciadores{}"
+                },
+            },
+            sleeve_prism_ancientsleeve_alt = {
+                name = "Manga antigua",
+                text = {"La tienda siempre contiene",
+                    "un {C:myth_light}Paquete legendario"
+                },
+            },
+            sleeve_prism_marketsleeve = {
+                name = "Manga Sobreproductiva",
+                text = {"Comienza la partida con",
+                    "{C:attention,T:v_overstock_norm}Excedente{} y",
+                    "{C:attention,T:v_reroll_surplus}Gula de renovaciones{}"
+                },
+            },
+            sleeve_prism_marketsleeve_alt = {
+                name = "Manga Sobreproductiva",
+                text = {"Comienza la partida con",
+                    "{C:attention,T:v_prism_booster_box}Caja de potenciadores{}"
                 },
             },
         },
