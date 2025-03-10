@@ -194,6 +194,13 @@ return {
                     "{C:inactive}(Next 5 digits are: #3#)",
                 },
             },
+            j_prism_polydactyly = {
+                name = "Polydactyly",
+                text = {"Can play and",
+                    "discard up",
+                    "to {C:attention}6{} cards"
+                },
+            },
             j_prism_solo_joker = {
                 name = "Solo Joker",
                 text = {"If played hand",

@@ -1,7 +1,7 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 5
+priority = 12
 
 # Burnt card extra card draw
 [[patches]]
@@ -98,3 +98,14 @@ if self.config.center_key == 'm_prism_double' then
  end
 '''
 match_indent = true
+
+#Allows to play more than 5 cards
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+pattern = """if #G.hand.highlighted <= 0 or G.GAME.blind.block_play or #G.hand.highlighted > 5 then"""
+position = 'at'
+match_indent = true
+payload = """
+if #G.hand.highlighted <= 0 or G.GAME.blind.block_play or #G.hand.highlighted > G.hand.config.highlighted_limit then
+"""

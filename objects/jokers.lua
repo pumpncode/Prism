@@ -5,6 +5,27 @@ SMODS.Atlas {
     py = 95
 }
 SMODS.Joker({
+	key = "polydactyly",
+	atlas = "prismjokers",
+	pos = {x=2,y=2},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	add_to_deck = function(self, card, from_debuff)
+		G.hand.config.highlighted_limit = 6
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.hand.config.highlighted_limit = 5
+		if not G.GAME.before_play_buffer then
+			G.hand:unhighlight_all()
+		end
+	end,
+})
+SMODS.Joker({
 	key = "rich_joker",
 	atlas = "prismjokers",
 	pos = {x=0,y=12},
