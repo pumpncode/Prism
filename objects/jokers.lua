@@ -16,10 +16,10 @@ SMODS.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	add_to_deck = function(self, card, from_debuff)
-		G.hand.config.highlighted_limit = 6
+		G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + 1
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.hand.config.highlighted_limit = 5
+		G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1
 		if not G.GAME.before_play_buffer then
 			G.hand:unhighlight_all()
 		end
