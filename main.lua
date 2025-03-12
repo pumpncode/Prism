@@ -25,6 +25,7 @@ end
 
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
+		G.GAME.price_scaling = 0
 		G.GAME.modifiers.extra_boosters = 0
 		G.GAME.prism_start_deck_ranks = {}
 		for i, v in pairs(G.playing_cards) do
@@ -54,6 +55,7 @@ SMODS.load_file('objects/decks.lua')()
 SMODS.load_file('objects/tags.lua')()
 SMODS.load_file('objects/blinds.lua')()
 SMODS.load_file('objects/challenges.lua')()
+SMODS.load_file('objects/stakes.lua')()
 if CardSleeves then SMODS.load_file('objects/cardsleeves.lua')() end
 
 SMODS.Sound({

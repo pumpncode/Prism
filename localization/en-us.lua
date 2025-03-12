@@ -470,6 +470,15 @@ return {
                 },
             },
         },
+        Stake = {
+            stake_prism_platinum = {
+                name = "Platinum Stake",
+                text = {
+                    "All prices increase",
+                    "by {C:money}$1{} every {C:attention}2 Antes"
+                }
+            }
+        },
         Other = {
             p_prism_small_myth_1 = {
                 name = "Legend Pack",
@@ -514,14 +523,15 @@ return {
                     "played and scoring"
                 },
             },
-            --[[ prism_platinum_sticker={
+
+            prism_platinum_sticker={
                 name="Platinum Sticker",
                 text={
                     "Used this Joker",
                     "to win on {C:attention}Platinum",
                     "{C:attention}Stake{} difficulty",
                 },
-            }, ]]
+            },
         },
         Blind = {
             bl_prism_rose_club = {

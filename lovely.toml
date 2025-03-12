@@ -148,3 +148,13 @@ if G.GAME.chips - G.GAME.blind.chips >= 0 or
 	(not G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1) then
 """
 match_indent = true
+#platinum stake
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = """self.extra_cost = 0 + G.GAME.inflation"""
+position = 'after'
+payload = """ 
+if G.GAME.modifiers.price_scaling then self.extra_cost = self.extra_cost + G.GAME.price_scaling end
+"""
+match_indent = true

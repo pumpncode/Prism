@@ -26,6 +26,15 @@ SMODS.Stake({
     sticker_pos = {x = 0, y = 0},
     sticker_atlas = 'prismstickers',
     modifiers = function()
-        G.GAME.modifiers.pice_scaling = true
+        G.GAME.modifiers.price_scaling = true
+        G.GAME.price_scaling = 0
     end,
 })
+
+local orig_ease_ante = ease_ante
+function ease_ante(mod)
+    while G.GAME.modifiers.price_scaling and G.GAME.round_resets.ante + mod >= (G.GAME.price_scaling + 1) * 2 do
+        G.GAME.price_scaling = G.GAME.price_scaling + 1
+    end
+    orig_ease_ante(mod)
+end
