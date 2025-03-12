@@ -105,7 +105,46 @@ match_indent = true
 target = 'functions/button_callbacks.lua'
 pattern = """if #G.hand.highlighted <= 0 or G.GAME.blind.block_play or #G.hand.highlighted > 5 then"""
 position = 'at'
-match_indent = true
 payload = """
 if #G.hand.highlighted <= 0 or G.GAME.blind.block_play or #G.hand.highlighted > G.hand.config.highlighted_limit then
 """
+match_indent = true
+
+#Purple deck
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = """ease_discard(-1)"""
+position = 'at'
+payload = """
+if G.GAME.modifiers.purple_deck and G.GAME.current_round.discards_left <= 0 then
+    ease_hands_played(-1)
+else 
+    ease_discard(-1)
+end
+"""
+match_indent = true
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = """ease_hands_played(-1)"""
+position = 'at'
+payload = """
+if G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left <= 0 then
+    ease_discard(-1)
+else 
+    ease_hands_played(-1)
+end
+"""
+match_indent = true
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = """if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1 then"""
+position = 'at'
+payload = """
+if G.GAME.chips - G.GAME.blind.chips >= 0 or 
+	(G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1 and G.GAME.current_round.discards_left < 1) or
+	(not G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1) then
+"""
+match_indent = true

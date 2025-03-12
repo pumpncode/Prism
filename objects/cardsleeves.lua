@@ -5,6 +5,30 @@ SMODS.Atlas {
     py = 95
 }
 CardSleeves.Sleeve({
+    key = "purplesleeve",
+	atlas = "prismsleeves",
+	pos = {x = 2, y = 0},
+    unlocked = false,
+    unlock_condition = {deck = "b_prism_purple", stake = 3},
+    loc_vars = function(self)
+        local key
+        if self.get_current_deck_key() ~= "b_prism_purple" then
+            key = self.key
+            self.config = {matching = false}
+        else
+            key = self.key .. "_alt"
+            self.config = {matching = true}
+        end
+        return {key = key}
+    end,
+    apply = function(self)
+        G.GAME.modifiers.purple_deck = true
+        if self.config.matching then
+            G.GAME.starting_params.hand_size = G.GAME.starting_params.hand_size + 1
+        end
+    end,
+})
+CardSleeves.Sleeve({
     key = "ancientsleeve",
 	atlas = "prismsleeves",
 	pos = {x = 0, y = 0},
@@ -25,7 +49,7 @@ CardSleeves.Sleeve({
         if self.config.matching then G.GAME.modifiers.myth_always_in_shop = true end
         if self.config.vouchers then
             for k, v in pairs(self.config.vouchers) do
-                G.GAME.used_vouchers[v ] = true
+                G.GAME.used_vouchers[v] = true
                 G.GAME.starting_voucher_count = (G.GAME.starting_voucher_count or 0) + 1
                 G.E_MANAGER:add_event(Event({
                     func = function()

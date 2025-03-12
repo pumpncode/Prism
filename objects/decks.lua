@@ -5,6 +5,30 @@ SMODS.Atlas {
     py = 95
 }
 SMODS.Back({
+	key = "purple", 
+	atlas = "prismdecks",
+	pos = {x = 2, y = 0},
+    unlocked = false,
+	apply = function(self)
+		G.GAME.modifiers.purple_deck = true
+	end,
+    unlock_condition = {type = 'discover_amount', amount = 150}
+})
+local orig_can_discard = G.FUNCS.can_discard
+G.FUNCS.can_discard = function(e)
+	if G.GAME.modifiers.purple_deck and G.GAME.current_round.discards_left < 1 and #G.hand.highlighted > 0 and
+	(G.GAME.current_round.hands_left > 1 or G.GAME.current_round.discards_left > 1) then 
+		e.config.colour = G.C.RED
+        e.config.button = 'discard_cards_from_highlighted'
+	elseif G.GAME.current_round.hands_left > 0 or G.GAME.current_round.discards_left > 1 then
+		orig_can_discard(e)
+	else
+		e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.button = nil
+	end
+end
+
+SMODS.Back({
 	key = "ancient", 
 	atlas = "prismdecks",
 	pos = {x = 0, y = 0},

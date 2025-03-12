@@ -210,6 +210,14 @@ return {
             },
         },
         Back = {
+            b_prism_purple = {
+                name = "Purple Deck",
+                text = {"Can use {C:chips}Hands{} and",
+                    "{C:red}Discards{} interchangeably",
+                    "{C:inactive}Cand discard using hands if no",
+                    "{C:inactive}discards left end vice versa"
+                },
+            },
             b_prism_ancient = {
                 name = "Ancient Deck",
                 text = {"Start run with",
@@ -226,6 +234,19 @@ return {
             },
         },
         Sleeve = {
+            sleeve_prism_purplesleeve = {
+                name = "Purple Sleeve",
+                text = {"Can use {C:chips}Hands{} and",
+                    "{C:red}Discards{} interchangeably",
+                    "{C:inactive}Cand discard using hands if no",
+                    "{C:inactive}discards left end vice versa"
+                },
+            },
+            sleeve_prism_purplesleeve_alt = {
+                name = "Purple Sleeve",
+                text = {"{C:attention}+1{} hand size",
+                },
+            },
             sleeve_prism_ancientsleeve = {
                 name = "Ancient Sleeve",
                 text = {"Start run with",
