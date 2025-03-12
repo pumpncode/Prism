@@ -208,6 +208,14 @@ return {
                     "retigger it {C:attention}#1#{} times"
                 },
             },
+            j_prism_economics = {
+                name = "Economics 101",
+                text = {"When {C:attention}Blind{} is selected, lose",
+                    "all money and this Joker gains",
+                    "{X:mult,C:white}X#1#{} Mult for every {C:money}$#2#{} lost",
+                    "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
+                },
+            },
         },
         Back = {
             b_prism_purple = {

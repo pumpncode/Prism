@@ -380,6 +380,42 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "economics",
+	atlas = "prismjokers",
+	pos = {x=1,y=8},
+	rarity = 2,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = false,
+	config = {extra = {x_mult = 1,gain = 0.1,dollars = 2}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.extra.gain,center.ability.extra.dollars,center.ability.extra.x_mult} }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				xmult = card.ability.extra.x_mult,
+			}
+		end
+		if context.setting_blind and not context.blueprint_card then
+			local x_mult_gain = card.ability.extra.gain*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
+			ease_dollars(-G.GAME.dollars, true)
+			card.ability.extra.x_mult = card.ability.extra.x_mult + x_mult_gain
+			if x_mult_gain > 0 then
+				return {
+					focus = card,
+					colour = G.C.RED,
+					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
+					card = card,
+				}
+			end
+		end
+	end
+})
+SMODS.Joker({
 	key = "elf",
 	atlas = "prismjokers",
 	pos = {x=1,y=13},
