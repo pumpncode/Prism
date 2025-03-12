@@ -298,6 +298,46 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "whiskey",
+	atlas = "prismjokers",
+	pos = {x=2,y=3},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {required = 4,current = 0},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue+1] = {key = 'tag_double', set = 'Tag'}
+		return { vars = {center.ability.required,center.ability.current} }
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:get_id() == 11 then
+                card.ability.current = card.ability.current + 1
+				if card.ability.current >= card.ability.required then
+					card.ability.current = 0
+					G.E_MANAGER:add_event(Event({
+						func = (function()
+							add_tag(Tag('tag_double'))
+							play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+							play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+						   return true
+					   end)
+					}))
+				end
+				return {
+					message = (card.ability.current == 0) and localize('k_plus_double') or (card.ability.current..'/'..card.ability.required),
+					colour = G.C.FILTER,
+					card = card
+				}
+            end
+        end
+    end
+})
+SMODS.Joker({
 	key = "solo_joker",
 	atlas = "prismjokers",
 	pos = {x=1,y=14},

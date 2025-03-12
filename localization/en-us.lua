@@ -216,6 +216,14 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
                 },
             },
+            j_prism_whiskey = {
+                name = "Whiskey",
+                text = {"Create a {C:attention}Double Tag",
+                    "after {C:attention}#1#{} Jacks",
+                    "have been scored",
+                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+                },
+            },
         },
         Back = {
             b_prism_purple = {
@@ -551,6 +559,7 @@ return {
             k_uno_reverse = "Reversed",
             k_plus_uncommon = "Uncommon",
             k_plus_rare = "Rare",
+            k_plus_double = "Double Tag",
             prism_create = "Make Wish",
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
