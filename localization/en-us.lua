@@ -230,7 +230,7 @@ return {
                 name = "Purple Deck",
                 text = {"Can use {C:chips}Hands{} and",
                     "{C:red}Discards{} interchangeably",
-                    "{C:inactive}Cand discard using hands if no",
+                    "{C:inactive}Can discard using hands if no",
                     "{C:inactive}discards left end vice versa"
                 },
             },
