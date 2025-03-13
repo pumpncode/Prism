@@ -475,7 +475,8 @@ return {
                 name = "Platinum Stake",
                 text = {
                     "All prices increase",
-                    "by {C:money}$1{} every {C:attention}2 Antes"
+                    "by {C:money}$1{} every {C:attention}2 Antes",
+                    "{s:0.8}Applies all previous Stakes"
                 }
             }
         },
