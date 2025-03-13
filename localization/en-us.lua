@@ -230,8 +230,8 @@ return {
                 name = "Purple Deck",
                 text = {"Can use {C:chips}Hands{} and",
                     "{C:red}Discards{} interchangeably",
-                    "{C:inactive}Can discard using hands if no",
-                    "{C:inactive}discards left end vice versa"
+                    "{C:inactive}(Can discard using hands if no",
+                    "{C:inactive}discards left end vice versa)"
                 },
             },
             b_prism_ancient = {
@@ -254,8 +254,8 @@ return {
                 name = "Purple Sleeve",
                 text = {"Can use {C:chips}Hands{} and",
                     "{C:red}Discards{} interchangeably",
-                    "{C:inactive}Cand discard using hands if no",
-                    "{C:inactive}discards left end vice versa"
+                    "{C:inactive}(Can discard using hands if no",
+                    "{C:inactive}discards left end vice versa)"
                 },
             },
             sleeve_prism_purplesleeve_alt = {
