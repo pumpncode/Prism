@@ -62,6 +62,23 @@ SMODS.Joker({
 	end,
 })
 SMODS.Joker({
+	key = "hit_record",
+	atlas = "prismjokers",
+	pos = {x=0,y=11},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+		if context.cardarea == G.play and context.individual then
+			context.other_card.config.cycling = true
+		end
+	end
+})
+SMODS.Joker({
 	key = "happily",
 	atlas = "prismjokers",
 	pos = {x=1,y=12},

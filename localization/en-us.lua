@@ -224,6 +224,13 @@ return {
                     "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
                 },
             },
+            j_prism_hit_record = {
+                name = "Hit Record",
+                text = {"Played cards",
+                    "{C:attention}return{} to deck",
+                    "after being scored"
+                },
+            },
         },
         Back = {
             b_prism_purple = {

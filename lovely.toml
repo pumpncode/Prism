@@ -158,3 +158,28 @@ payload = """
 if G.GAME.modifiers.price_scaling then self.extra_cost = self.extra_cost + G.GAME.price_scaling end
 """
 match_indent = true
+
+#hit record
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "draw_card(G.play,G.discard, it*100/play_count,'down', false, v)"
+position = "before"
+payload = '''
+if v.config.cycling then
+    v.config.cycling = false
+	draw_card(G.play,G.deck, it*100/play_count,'down', false, v)
+	G.deck:shuffle('hitr'..G.GAME.round_resets.ante)
+else
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "draw_card(G.play,G.discard, it*100/play_count,'down', false, v)"
+position = "after"
+payload = '''
+end
+'''
+match_indent = true
