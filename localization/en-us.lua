@@ -238,7 +238,7 @@ return {
                 text = {"Can use {C:chips}Hands{} and",
                     "{C:red}Discards{} interchangeably",
                     "{C:inactive}(Can discard using hands if no",
-                    "{C:inactive}discards left end vice versa)"
+                    "{C:inactive}discards left and vice versa)"
                 },
             },
             b_prism_ancient = {
@@ -262,7 +262,7 @@ return {
                 text = {"Can use {C:chips}Hands{} and",
                     "{C:red}Discards{} interchangeably",
                     "{C:inactive}(Can discard using hands if no",
-                    "{C:inactive}discards left end vice versa)"
+                    "{C:inactive}discards left and vice versa)"
                 },
             },
             sleeve_prism_purplesleeve_alt = {
