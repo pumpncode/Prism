@@ -193,6 +193,13 @@ return {
                     "{C:inactive}(Los próximos 5 números son: #3#)",
                 },
             },
+            j_prism_polydactyly = {
+                name = "Polidactilia",
+                text = {"Se puede jugar y",
+                    "descartar hasta",
+                    "{C:attention}6{} cartas"
+                },
+            },
             j_prism_solo_joker = {
                 name = "Comodín aviador",
                 text = {"Si la mano jugada",
@@ -200,8 +207,32 @@ return {
                     "reactivalá {C:attention}#1#{} veces"
                 },
             },
+            j_prism_economics = {
+                name = "Economía 101",
+                text = {"Cuando se selecciona la {C:attention}Ciega{}, pierde",
+                    "todo tu dinero y este comodín obtiene",
+                    "{X:mult,C:white}X#1#{} multi por cada {C:money}$#2#{} perdido",
+                    "{C:inactive}(Actual {X:mult,C:white}X#3#{C:inactive} multi)"
+                },
+            },
+            j_prism_whiskey = {
+                name = "Whisky",
+                text = {"Crea una {C:attention}Etiqueta doble{} gratis",
+                    "luego de haber anotado",
+                    "{C:attention}#1#{} Jotas",
+                    "{C:inactive}(Actual {C:attention}#2#{C:inactive}/#1#)"
+                },
+            },
         },
         Back = {
+             b_prism_purple = {
+                name = "Baraja púrpura",
+                text = {"Puedes usar {C:chips}manos{} y",
+                    "{C:red}descartes{} de forma intercambiable",
+                    "{C:inactive}(Puedes descartar usando manos si ya no",
+                    "{C:inactive}quedan descartes y viceversa)"
+                },
+            },
             b_prism_ancient = {
                 name = "Baraja antigua",
                 text = {"Comienza la partida con",
@@ -218,6 +249,19 @@ return {
             },
         },
          Sleeve = {
+             sleeve_prism_purplesleeve = {
+                name = "Manga púrpura",
+                 text = {"Puedes usar {C:chips}manos{} y",
+                    "{C:red}descartes{} de forma intercambiable",
+                    "{C:inactive}(Puedes descartar usando manos si ya no",
+                    "{C:inactive}quedan descartes y viceversa)"
+                },  
+            },
+             sleeve_prism_purplesleeve_alt = {
+                name = "Manga púrpura",
+                text = {"{C:attention}+1{} de tamaño de mano",
+                },
+            },
             sleeve_prism_ancientsleeve = {
                 name = "Manga antigua",
                 text = {"Comienza la partida con",
@@ -421,6 +465,15 @@ return {
                     "{C:myth_light}Paquete mítico mega",
                 },
             },
+        },
+         Stake = {
+            stake_prism_platinum = {
+                name = "Pozo de platino",
+                text = {
+                    "Todos los precios aumentan",
+                    "por {C:money}$1{} cada {C:attention}2 apuestas iniciales"
+                }
+            }
         },
         Other = {
             p_prism_small_myth_1 = {
