@@ -641,6 +641,8 @@ SMODS.Joker({
 						trigger = 'before',
 						func = (function()
 							add_tag(Tag('tag_rare'))
+							play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+							play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
 						return true
 					end)}))
 					return {
@@ -653,6 +655,8 @@ SMODS.Joker({
 						trigger = 'before',
 						func = (function()
 							add_tag(Tag('tag_uncommon'))
+							play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+							play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
 						return true
 					end)}))
 					return {

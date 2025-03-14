@@ -136,7 +136,8 @@ SMODS.Consumable({
 	end,
     use = function(self, card, area, copier)
         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-            play_sound('tarot1')
+            play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+			play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
             card:juice_up(0.3, 0.5)
             add_tag(Tag('tag_investment'))
         return true end }))
@@ -158,7 +159,8 @@ SMODS.Consumable({
 	end,
     use = function(self, card, area, copier)
         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-            play_sound('tarot1')
+            play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+			play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
             card:juice_up(0.3, 0.5)
             add_tag(Tag('tag_juggle'))
         return true end }))
@@ -178,7 +180,8 @@ SMODS.Consumable({
 	end,
     use = function(self, card, area, copier)
         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-            play_sound('tarot1')
+            play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+			play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
             card:juice_up(0.3, 0.5)
             add_tag(Tag('tag_double'))
         return true end }))
