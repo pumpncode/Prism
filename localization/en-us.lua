@@ -231,6 +231,13 @@ return {
                     "after being scored"
                 },
             },
+            j_prism_patch = {
+                name = "Band Patch",
+                text = {"Create a {C:dark_edition}Negative",
+                "{C:dark_edition}Tag{} if poker hand",
+                "contains {C:attention}3{} scoring {C:attention}6s",
+                },
+            },
         },
         Back = {
             b_prism_purple = {
@@ -578,6 +585,7 @@ return {
             k_plus_uncommon = "Uncommon",
             k_plus_rare = "Rare",
             k_plus_double = "Double Tag",
+            k_plus_negative = "Negative",
             prism_create = "Make Wish",
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",

@@ -473,6 +473,44 @@ SMODS.Joker({
 	end
 })
 SMODS.Joker({
+	key = "patch",
+	atlas = "prismjokers",
+	pos = {x=2,y=6},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = false,
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue+1] = {key = 'tag_negative', set = 'Tag'}
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			local sixes = 0
+			for i = 1, #context.scoring_hand do
+				if context.scoring_hand[i]:get_id() == 6 then sixes = sixes + 1 end
+			end
+			if sixes == 3 then
+				G.E_MANAGER:add_event(Event({
+					trigger = 'before',
+					func = (function()
+						add_tag(Tag('tag_negative'))
+						play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+						play_sound('negative', 1.2 + math.random()*0.1, 0.4)
+					return true
+				end)}))
+				return {
+					message = localize('k_plus_negative'),
+					colour = G.C.DARK_EDITION,
+					card = card,
+				}
+			end
+		end
+	end
+})
+SMODS.Joker({
 	key = "elf",
 	atlas = "prismjokers",
 	pos = {x=1,y=13},
