@@ -415,6 +415,14 @@ SMODS.Joker({
 			}
         end
 	end,
+	add_to_deck = function(self, card, from_debuff)
+		print("o")
+		G.GAME.pool_flags.day_can_spawn = false
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		print("a")
+		G.GAME.pool_flags.day_can_spawn = true
+	end
 })
 SMODS.Joker({
 	key = "whiskey",
