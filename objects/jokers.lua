@@ -315,6 +315,108 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "day",
+	atlas = "prismjokers",
+	pos = {x=2,y=7},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 1,trigger = false},
+	yes_pool_flag = "day_can_spawn",
+	loc_vars = function(self, info_queue, center)
+		if not center.fake_card then info_queue[#info_queue + 1] = G.P_CENTERS.j_prism_night end
+	end,
+	calculate = function(self, card, context)
+		if context.before then
+			local right_suits, all_cards = 0, 0
+			for k, v in ipairs(G.play.cards) do
+				all_cards = all_cards + 1
+				if v:is_suit('Hearts', nil, true) or v:is_suit('Diamonds', nil, true) then
+					right_suits = right_suits + 1
+				end
+			end
+			if right_suits == all_cards then 
+				card.ability.trigger = true
+			end
+		end
+		if context.after and card.ability.trigger then
+			G.E_MANAGER:add_event(Event({
+				func = function()
+					play_sound('tarot2', 1.1, 0.6)
+					card:set_ability(G.P_CENTERS.j_prism_night)
+					return true
+				end
+			}))
+			return {
+				message = localize('k_sunset'),
+				card = card
+			}
+		end
+		if context.repetition and context.cardarea == G.play and card.ability.trigger then
+			return {
+				message = localize('k_again_ex'),
+				repetitions = card.ability.extra,
+				card = card
+			}
+        end
+	end
+})
+SMODS.Joker({
+	key = "night",
+	atlas = "prismjokers",
+	pos = {x=2,y=8},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 1,trigger = false},
+	yes_pool_flag = "night_can_spawn",
+	loc_vars = function(self, info_queue, center)
+		if not center.fake_card then info_queue[#info_queue + 1] = G.P_CENTERS.j_prism_day end
+	end,
+	calculate = function(self, card, context)
+		if context.before then
+			local right_suits, all_cards = 0, 0
+			for k, v in ipairs(G.play.cards) do
+				all_cards = all_cards + 1
+				if v:is_suit('Clubs', nil, true) or v:is_suit('Spades', nil, true) then
+					right_suits = right_suits + 1
+				end
+			end
+			if right_suits == all_cards then 
+				card.ability.trigger = true
+			end
+		end
+		if context.after and card.ability.trigger then
+			G.E_MANAGER:add_event(Event({
+				func = function()
+					play_sound('tarot2', 1.1, 0.6)
+					card:set_ability(G.P_CENTERS.j_prism_day)
+					return true
+				end
+			}))
+			return {
+				message = localize('k_sunrise'),
+				card = card
+			}
+		end
+		if context.repetition and context.cardarea == G.play and card.ability.trigger then
+			return {
+				message = localize('k_again_ex'),
+				repetitions = card.ability.extra,
+				card = card
+			}
+        end
+	end,
+})
+SMODS.Joker({
 	key = "whiskey",
 	atlas = "prismjokers",
 	pos = {x=2,y=3},
@@ -482,7 +584,7 @@ SMODS.Joker({
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
-	perishable_compat = false,
+	perishable_compat = true,
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue+1] = {key = 'tag_negative', set = 'Tag'}
 	end,

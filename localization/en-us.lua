@@ -234,8 +234,24 @@ return {
             j_prism_patch = {
                 name = "Band Patch",
                 text = {"Create a {C:dark_edition}Negative",
-                "{C:dark_edition}Tag{} if poker hand",
-                "contains {C:attention}3{} scoring {C:attention}6s",
+                    "{C:dark_edition}Tag{} if poker hand",
+                    "contains {C:attention}3{} scoring {C:attention}6s",
+                },
+            },
+            j_prism_day = {
+                name = "Day",
+                text = {"If played hand contains",
+                    "only {C:hearts}Hearts{} or {C:diamonds}Diamonds{},",
+                    "retrigger all played cards",
+                    "and it becomes {C:attention}Night"
+                },
+            },
+            j_prism_night = {
+                name = "Night",
+                text = {"If played hand contains",
+                    "only {C:clubs}Clubs or {C:spades}Spades{},",
+                    "retrigger all played cards",
+                    "and it becomes {C:attention}Day"
                 },
             },
         },
@@ -595,6 +611,8 @@ return {
             k_inactive_ex = "Inactive!",
             k_another_card = "another card",
             k_of = "of",
+            k_sunset = "Sunset",
+            k_sunrise = "Sunrise",
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
