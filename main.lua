@@ -26,7 +26,7 @@ end
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
 		G.GAME.pool_flags.day_can_spawn = true
-		G.GAME.pool_flags.night_can_spawn = true
+		G.GAME.pool_flags.night_can_spawn = false
 
 		G.GAME.price_scaling = 0
 		G.GAME.modifiers.extra_boosters = 0
