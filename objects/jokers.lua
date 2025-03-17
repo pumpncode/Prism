@@ -139,7 +139,7 @@ SMODS.Joker({
 				return {
 					focus = card,
 					colour = G.C.CHIPS,
-					message = localize({ type = "variable", key = "a_chips", vars = { card.ability.chips } }),
+					message = localize('k_upgrade_ex'),
 					card = card,
 				}
 			end
@@ -578,7 +578,6 @@ SMODS.Joker({
 			if x_mult_gain > 0 then
 				return {
 					focus = card,
-					colour = G.C.RED,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
 					card = card,
 				}
@@ -759,7 +758,7 @@ SMODS.Joker({
 				return {
 					focus = card,
 					colour = G.C.RED,
-					message = localize({ type = "variable", key = "a_mult", vars = { card.ability.mult } }),
+					message = localize('k_upgrade_ex'),
 					card = card,
 				}
 			end
@@ -897,7 +896,7 @@ SMODS.Joker({
 				return {
 					focus = card,
 					colour = G.C.RED,
-					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.x_mult } }),
+					message = localize('k_upgrade_ex'),
 					card = card,
 				}
 			end
@@ -1264,7 +1263,6 @@ SMODS.Joker({
 			if upgrade == true then
 				return {
 					focus = card,
-					colour = G.C.RED,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
 					card = card,
 				}
@@ -1299,7 +1297,7 @@ SMODS.Joker({
 			card.ability.hand_size = card.ability.hand_size + card.ability.extra
 			G.hand:change_size(card.ability.extra)
 			return {
-				message = localize{type='variable',key='a_handsize_plus',vars={card.ability.extra}},
+				message = localize('k_reset'),
 				colour = G.C.FILTER
 			}
 		end
