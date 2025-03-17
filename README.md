@@ -16,7 +16,7 @@ The mod currently adds:
 - 1 Stake
 - 2 Challenges
 
-You can see a more detailed list of additions in the mods [Wiki](https://balatromods.miraheze.org/wiki/Prism)
+You can see a more detailed list of additions in the mod's [Wiki](https://balatromods.miraheze.org/wiki/Prism)
 
 # Requirements
 - [Steamodded](https://github.com/Steamopollys/Steamodded)
@@ -26,5 +26,5 @@ You can see a more detailed list of additions in the mods [Wiki](https://balatro
 - Using the mod together with Codex Arcanum will crash the game, using [Redux Arcanum](https://github.com/jumbocarrot0/Redux-Arcanum) instead fixes the issue
 
 # Credits
-- Chinese localization by 姓氏是个毛
+- Chinese localization by 姓氏是个毛 and VisJoker
 - Spanish localization by Frander

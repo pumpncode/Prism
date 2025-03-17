@@ -189,14 +189,75 @@ return {
                     "{C:inactive}(下五个数字为:#3#)",
                 },
             },
+            j_prism_polydactyly = {
+                name = "六指症",
+                text = {"可打出和弃掉最多",
+                    "{C:attention}6{}张牌"
+                },
+            },
             j_prism_solo_joker = {
                 name = "独行侠",
                 text = {"如果只打出{C:attention}1{}张牌",
                     "将其重新触发{C:attention}#1#{}次"
                 },
             },
+            j_prism_economics = {
+                name = "经济学基础",
+                text = {"当选择{C:attention}盲注{}时，失去所有金钱",
+                    "每失去{C:money}$#2#{}",
+                    "获得{X:mult,C:white}X#1#{}倍率",
+                    "{C:inactive}(当前为{X:mult,C:white}X#3#{C:inactive}倍率)"
+                },
+            },
+            j_prism_whiskey = {
+                name = "威士忌",
+                text = {"在计分{C:attention}#1#{}张J后",
+                    "生成一个{C:attention}双倍标签",
+                    "{C:inactive}(当前进度 {C:attention}#2#{C:inactive}/#1#)"
+                },
+            },
+            j_prism_hit_record = {
+
+                name = "命中记录", 
+                text = {
+
+                    "打出的牌", 
+                    "{C:attention}计分后{}返回牌堆", 
+                },
+            },
+            j_prism_patch = {
+                name = "乐队贴纸", 
+                text = {
+                    "如果手牌中包含 {C:attention}3{} 张计分的 {C:attention}6{}", 
+                    "则创建一个 {C:dark_edition}负片{} 标签", 
+                },
+            },
+            j_prism_day = {
+                name = "白昼", 
+                text = {
+                    "如果打出的牌中只包含 {C:hearts}红桃{} 或 {C:diamonds}方块{}", 
+                    "则重新触发所有打出的牌", 
+                    "此牌变为 {C:attention}黑夜{}", 
+                },
+            },
+            j_prism_night = {
+                name = "黑夜", 
+                text = {
+                    "如果打出的手牌只包含 {C:clubs}梅花{} 或 {C:spades}黑桃{}", 
+                    "则重新触发所有打出的牌", 
+                    "此牌变为 {C:attention}白昼{}", 
+                },
+            },
         },
-	Back = {
+        Back = {
+            b_prism_purple = {
+                name = "紫色牌组",
+                text = {"可互换使用{C:chips}手牌{}和",
+                    "{C:red}弃牌{}次数",
+                    "{C:inactive}当手牌用尽时可使用弃牌，",
+                    "{C:inactive}反之亦然"
+                },
+            },
             b_prism_ancient = {
                 name = "古代牌组",
                 text = {"开局时即拥有",
@@ -213,17 +274,30 @@ return {
             },
         },
         Sleeve = {
+            sleeve_prism_purplesleeve = {
+                name = "紫色卡套",
+                text = {"可互换使用{C:chips}手牌{}和",
+                    "{C:red}弃牌{}次数",
+                    "{C:inactive}当弃牌用尽时可使用手牌，",
+                    "{C:inactive}反之亦然"
+                },
+            },
+            sleeve_prism_purplesleeve_alt = {
+                name = "紫色卡套",
+                text = {"{C:attention}+1{} 手牌上限",
+                },
+            },
+            sleeve_prism_ancientsleeve_alt = {
+                name = "古代牌套",
+                text = {"商店中总会有一个",
+                    "{C:myth_light}传说包"
+                },
+            },
             sleeve_prism_ancientsleeve = {
                 name = "古代牌套",
                 text = {"开局时即拥有",
                     "{C:myth_light,T:v_prism_myth_merchant}神话商人{}和",
                     "{C:attention,T:v_prism_booster_box}增强包（箱装）{}"
-                },
-            },
-            sleeve_prism_ancientsleeve_alt = {
-                name = "古代牌套",
-                text = {"商店总会出现",
-                    "a {C:myth_light}传说包"
                 },
             },
             sleeve_prism_marketsleeve = {
@@ -368,7 +442,7 @@ return {
         Spectral = {
             c_prism_spectral_djinn = {
                 name = "阿拉丁",
-                text = {"许愿一张{C:dark_edition}任意",
+                text = {"许愿{C:dark_edition}任意一张",
                     "{C:attention}小丑牌{}",
                     "{C:inactive}(传奇小丑除外)",
                 }
@@ -405,7 +479,6 @@ return {
                     "{C:attention}1{}张牌",
                 },
             },
-
         },
         Tag = {
             tag_prism_myth = {
@@ -415,6 +488,14 @@ return {
                     "{C:myth_light}超级传说包",
                 },
             },
+        },
+        Stake = {
+            stake_prism_platinum = {
+                name = "铂金注",
+                text = {"每{C:attention}2个盲注{}后",
+                    "所有价格上涨{C:money}$1{}"
+                }
+            }
         },
         Other = {
             p_prism_small_myth_1 = {
@@ -460,14 +541,14 @@ return {
                     "你打出的牌型",
                 },
             },
-            --[[ prism_platinum_sticker={
+            prism_platinum_sticker={
                 name="铂金标贴",
                 text={
                     "使用这张小丑牌",
                     "在{C:attention}铂金注{}",
                     "难度下获胜",
                 },
-            }, ]]
+            },
         },
         Blind = {
             bl_prism_rose_club = {
@@ -495,24 +576,29 @@ return {
     },
     misc = {
         challenge_names={
-            c_prism_aerial_warfare = "空战",
-            c_prism_mvp = "你看，他们像柱子一样",
+            c_prism_aerial_warfare = "制空霸权",
+            c_prism_mvp = "战场主宰",
         },
         dictionary = {
-            k_stone = "石头牌",
-            k_promoted = "升变！",
+            k_stone = "石头",
+            k_promoted = "晋升！",
             k_prism_myth_pack = "传说包",
             k_uno_reverse = "反转",
             k_plus_uncommon = "罕见",
             k_plus_rare = "稀有",
+            k_plus_double = "双倍标签",
+            k_plus_negative = "负面",
             prism_create = "许愿",
             prism_cancel = "取消",
-            prism_enter_card = "输入卡片",
-            prism_invalid_card = "无效卡片！",
+            prism_enter_card = "输入卡牌",
+            prism_invalid_card = "无效卡牌！",
             prism_switch = "切换",
             k_inactive = "未激活",
             k_inactive_ex = "未激活！",
-            k_another_card = "另一张牌"
+            k_another_card = "另一张牌",
+            k_of = "的",
+            k_sunset = "日落",
+            k_sunrise = "日出",
         },
         v_dictionary = {
             a_handsize_plus="+#1#手牌上限",
