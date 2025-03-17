@@ -234,7 +234,7 @@ return {
             j_prism_patch = {
                 name = "Band Patch",
                 text = {"Create a {C:dark_edition}Negative",
-                    "{C:dark_edition}Tag{} if poker hand",
+                    "{C:dark_edition}Tag{} if played hand",
                     "contains {C:attention}3{} scoring {C:attention}6s",
                 },
             },
