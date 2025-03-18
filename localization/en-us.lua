@@ -256,7 +256,7 @@ return {
             },
             j_prism_metalhead = {
                 name = "Metalhead",
-                text = {"{C:attention}Stone Cards{} are",
+                text = {"{C:attention}Stone Cards{} are also",
                     "considered {C:attention}Steel Cards"
                 },
             },
