@@ -621,8 +621,8 @@ SMODS.Joker({
 		if context.setting_blind and not context.blueprint_card then
 			local x_mult_gain = card.ability.extra.gain*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
 			ease_dollars(-G.GAME.dollars, true)
-			card.ability.extra.x_mult = card.ability.extra.x_mult + x_mult_gain
-			if x_mult_gain > 0 then
+			if bignum(x_mult_gain) > bignum(0) then 
+				card.ability.extra.x_mult = card.ability.extra.x_mult + x_mult_gain
 				return {
 					focus = card,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
