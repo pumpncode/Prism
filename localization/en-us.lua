@@ -254,6 +254,12 @@ return {
                     "and it becomes {C:attention}Day"
                 },
             },
+            j_prism_metalhead = {
+                name = "Metalhead",
+                text = {"{C:attention}Stone Cards{} are",
+                    "considered {C:attention}Steel Cards"
+                },
+            },
         },
         Back = {
             b_prism_purple = {

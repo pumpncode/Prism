@@ -286,6 +286,47 @@ SMODS.Joker({
     end
 })
 SMODS.Joker({
+	key = "metalhead",
+	atlas = "prismjokers",
+	pos = {x=2,y=5},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_steel
+	end,
+	add_to_deck = function(self, card, from_debuff)
+        for _, deck_card in pairs(G.playing_cards) do
+            if SMODS.has_enhancement(deck_card,"m_stone") then
+                deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
+            end
+        end
+        G.P_CENTERS.m_stone.config.h_x_mult = (G.P_CENTERS.m_stone.config.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        for _, deck_card in pairs(G.playing_cards) do
+            if SMODS.has_enhancement(deck_card,"m_stone") then
+                deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or G.P_CENTERS.m_steel.config.h_x_mult) - G.P_CENTERS.m_steel.config.h_x_mult
+            end
+        end
+        G.P_CENTERS.m_stone.config.h_x_mult = (G.P_CENTERS.m_stone.config.h_x_mult or G.P_CENTERS.m_steel.config.h_x_mult) - G.P_CENTERS.m_steel.config.h_x_mult
+    end
+})
+
+local orig_get_enhancements = SMODS.get_enhancements
+function SMODS.get_enhancements(card, extra_only)
+	local enhancements = orig_get_enhancements(card,extra_only)
+	if next(find_joker("j_prism_metalhead")) and card.config.center == G.P_CENTERS.m_stone then
+		enhancements["m_steel"] = true
+	end
+	return enhancements
+end
+SMODS.Joker({
 	key = "exotic_card",
 	atlas = "prismjokers",
 	pos = {x=0,y=2},
