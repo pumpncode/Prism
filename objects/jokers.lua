@@ -296,6 +296,12 @@ SMODS.Joker({
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = true,
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_stone') then return true end
+		end
+		return false
+	end,
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_steel
