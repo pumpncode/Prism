@@ -262,7 +262,7 @@ return {
             },
             j_prism_shork = {
                 name = "Shark Plush",
-                text = {"If a card or Joker whould",
+                text = {"If a card or Joker would",
                     "gain another {C:spectral}Edition{}, it",
                     "gains {C:dark_edition}Polychrome{} {C:attention}instead"
                 },
