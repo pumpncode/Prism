@@ -4,7 +4,7 @@ SMODS.Atlas({
     px = '34',
     py = '34'
 })
-
+if G.PRISM.config.myth_enabled then
 SMODS.Tag({
     key = 'myth',
     atlas = 'prismtags',
@@ -34,3 +34,4 @@ SMODS.Tag({
 		end
     end
 })
+end

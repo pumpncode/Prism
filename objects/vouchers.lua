@@ -4,6 +4,7 @@ SMODS.Atlas({
     px = '71',
     py = '95'
 })
+if G.PRISM.config.myth_enabled then
 SMODS.Voucher({
     key = "myth_merchant",
 	atlas = "prismvouchers",
@@ -49,6 +50,7 @@ SMODS.Voucher({
 	    }))
 	end
 })
+end
 SMODS.Voucher({
     key = "booster_box",
 	atlas = "prismvouchers",

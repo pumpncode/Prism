@@ -28,6 +28,7 @@ CardSleeves.Sleeve({
         end
     end,
 })
+if G.PRISM.config.myth_enabled then
 CardSleeves.Sleeve({
     key = "ancientsleeve",
 	atlas = "prismsleeves",
@@ -61,7 +62,7 @@ CardSleeves.Sleeve({
         end
     end,
 })
-
+end
 local orig_get_pack = get_pack
 function get_pack(_key, _type)
     if G.GAME.modifiers.myth_always_in_shop and not G.GAME.prism_shop_legend and G.GAME.first_shop_buffoon and not(
