@@ -1238,6 +1238,28 @@ SMODS.Joker({
 	end
 })
 
+SMODS.Joker({
+	key = "shork",
+	atlas = "prismjokers",
+	pos = {x=2,y=4},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+})
+
+local orig_set_edition = Card.set_edition
+function Card.set_edition(self,edition, immediate, silent)
+	if next(find_joker("j_prism_shork")) and edition ~= {polychrome = true} then
+		orig_set_edition(self,{polychrome = true}, immediate, silent)
+	else
+		orig_set_edition(self,edition, immediate, silent)
+	end
+
+end
 
 SMODS.Joker({
 	key = "prism",

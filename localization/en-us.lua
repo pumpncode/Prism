@@ -260,6 +260,13 @@ return {
                     "considered {C:attention}Steel Cards"
                 },
             },
+            j_prism_shork = {
+                name = "Shark Plush",
+                text = {"If a card or Joker whould",
+                    "gain another {C:spectral}Edition{}, it",
+                    "gains {C:dark_edition}Polychrome{} {C:attention}instead"
+                },
+            },
         },
         Back = {
             b_prism_purple = {
