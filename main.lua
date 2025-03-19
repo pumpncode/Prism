@@ -84,7 +84,7 @@ function G.PRISM.create_booster()
 		G.shop_booster:emplace(card)
 	end
 end
-
+--For Talisman Compatibility
 function bignum(x)
 	if Talisman then
 		return to_big(x)
