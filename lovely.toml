@@ -86,13 +86,13 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = '''if self.ability.name == 'Gold Card' and self.seal == 'Gold' and self.playing_card then'''
+pattern = '''if self.ability.name == 'Gold Card' and self.seal == 'Gold' and self.playing_card then*'''
 position = 'before'
 payload = '''
 if self.config.center_key == 'm_prism_double' then 
     local card_ability = self and self.ability or self.config
     if card_ability and not card_ability.extra.card and self.base then
-        card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
+        local card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
         card_ability.extra.card = card
     end
  end

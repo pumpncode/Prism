@@ -1253,7 +1253,7 @@ SMODS.Joker({
 
 local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
-	if next(find_joker("j_prism_shork")) and edition ~= {polychrome = true} then
+	if next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
 		orig_set_edition(self,{polychrome = true}, immediate, silent)
 	else
 		orig_set_edition(self,edition, immediate, silent)

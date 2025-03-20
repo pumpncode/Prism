@@ -86,6 +86,7 @@ SMODS.Enhancement({
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
         if card_ability.extra.card then 
+            print(card_ability.extra.card)
             return {
                 vars = {string.format("%s %s %s",localize(card_ability.extra.card.value, 'ranks'), localize('k_of'), localize(card_ability.extra.card.suit, 'suits_plural'))}
             }
@@ -125,13 +126,13 @@ function G.UIDEF.use_switch_button(card)
     button = {n=G.UIT.C, config={align = "tm"}, nodes={
             {n=G.UIT.C, config={
                 ref_table = card, 
-                align = "tm",maxw = 2, 
-                padding = 0.1, r=1, 
-                minw = 1.4, 
-                minh = 0.8, 
-                hover = true, 
-                colour = G.C.RED, 
-                button = 'switch_button'}, 
+                align = "tm",maxw = 2,
+                padding = 0.1, r=1,
+                minw = 1.4,
+                minh = 0.8,
+                hover = true,
+                colour = G.C.RED,
+                button = 'switch_button'},
                 nodes={
                 {n=G.UIT.T, config={text = localize("prism_switch"), colour = G.C.UI.TEXT_LIGHT, scale = 0.35, shadow = true}}
             }}
