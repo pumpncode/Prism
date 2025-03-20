@@ -248,6 +248,18 @@ return {
                     "此牌变为 {C:attention}白昼{}", 
                 },
             },
+            j_prism_metalhead = {
+                name = "金属狂热者",
+                text = {"{C:attention}化石牌{}同时视为",
+                    "{C:attention}钢铁牌"  -- 修改后
+                },
+            },
+            j_prism_shork = {
+                name = "鲨鱼玩偶",
+                text = {"所有未来的{C:spectral}版本{}",
+                    "{C:dark_edition}变为多彩版"  -- 修改后
+                },
+            },
         },
         Back = {
             b_prism_purple = {
@@ -587,18 +599,23 @@ return {
             k_plus_uncommon = "罕见",
             k_plus_rare = "稀有",
             k_plus_double = "双倍标签",
-            k_plus_negative = "负面",
-            prism_create = "许愿",
-            prism_cancel = "取消",
-            prism_enter_card = "输入卡牌",
-            prism_invalid_card = "无效卡牌！",
-            prism_switch = "切换",
+            k_plus_negative = "负片",
             k_inactive = "未激活",
             k_inactive_ex = "未激活！",
             k_another_card = "另一张牌",
             k_of = "的",
             k_sunset = "日落",
             k_sunrise = "日出",
+            prism_create = "许愿",
+            prism_cancel = "取消",
+            prism_enter_card = "输入卡牌",
+            prism_invalid_card = "无效卡牌！",
+            prism_switch = "切换",
+            prism_jokers_enabled = "小丑牌",
+            prism_myth_enabled = "神话牌",
+            prism_blinds_enabled = "BOSS盲注",
+            prism_feature_enable = "选择要启用的功能：",
+            prism_requires_restart = "需要重启游戏！",
         },
         v_dictionary = {
             a_handsize_plus="+#1#手牌上限",
