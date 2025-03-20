@@ -86,8 +86,11 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = '''if self.ability.name == 'Gold Card' and self.seal == 'Gold' and self.playing_card then*'''
-position = 'before'
+pattern = '''
+if center.consumeable then 
+    self.ability.consumeable = center.config
+end'''
+position = 'after'
 payload = '''
 if self.config.center_key == 'm_prism_double' then 
     local card_ability = self and self.ability or self.config
