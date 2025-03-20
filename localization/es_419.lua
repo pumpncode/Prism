@@ -223,6 +223,49 @@ return {
                     "{C:inactive}(Actual {C:attention}#2#{C:inactive}/#1#)"
                 },
             },
+            j_prism_hit_record = {
+                name = "Discazo",
+                text = {"Las cartas jugadas",
+                    "{C:attention}vuelven{} a tu baraja",
+                    "luego de puntuar"
+                },
+            },
+             j_prism_patch = {
+                name = "Bendita estampa",
+                text = {"Crea una {C:dark_edition}etiqueta",
+                    "{C:dark_edition}negativa{} si la mano jugada",
+                    "contiene {C:attention}3{} {C:attention}6s que anotan",
+                },
+            },
+             j_prism_day = {
+                name = "Día",
+                text = {"Si la mano jugada contiene",
+                    "solo {C:hearts}Corazones{} oo {C:diamonds}Diamantes{},",
+                    "reactiva todas las cartas jugadas",
+                    "y este comodín se transforma en {C:attention}Noche"
+                },
+            },
+             j_prism_night = {
+                name = "Noche",
+                text = {"Si la mano jugada contiene",
+                    "solo {C:clubs}Tréboles{} o {C:spades}Espadas{},",
+                    "reactiva todas las cartas jugadas",
+                    "y este comodín se transforma en {C:attention}Día"
+                },
+            },
+             j_prism_metalhead = {
+                name = "Metalhead",
+                text = {"Las {C:attention}cartas de piedra{} también son",
+                    "consideradas como {C:attention}Cartas de acero"
+                },
+            },
+            j_prism_shork = {
+                name = "Tiburón de peluche",
+                text = {"Todas las ediciones futuras {C:spectral}Ediciones{}",
+                    "obtenidas por una carta o comodín",
+                    "se convierten en {C:dark_edition}Policroma{}"
+                },
+            },
         },
         Back = {
              b_prism_purple = {
@@ -409,7 +452,7 @@ return {
                 name = "Treant",
                 text = {"Convierte hasta {C:attention}#1#{}",
                     "cartas seleccionadas al",
-                    "{C:attention}palo{} de la carta {C:attention}izquierda{}"
+                    "{C:attention}palo{} de la carta {C:attention}derecha{}"
                 }
             },
         },
