@@ -14,17 +14,6 @@ SMODS.ConsumableType({
     key = "Myth",
     primary_colour = G.PRISM.C.myth_1,
     secondary_colour = G.PRISM.C.myth_2,
-    loc_txt = {
-        name = "Myth Card",
-        collection = "Myth Cards",
-        undiscovered = {
-            name = 'Unknown Myth Card',
-            text = {
-                'Find this card in an unseeded',
-                'run to find out what it does'
-            }
-        }
-    },
     collection_rows = {4, 3},
     shop_rate = 2,
     default = 'c_prism_myth_gnome'

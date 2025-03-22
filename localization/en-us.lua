@@ -575,6 +575,13 @@ return {
                     "{C:attention}Stake{} difficulty",
                 },
             },
+            undiscovered_myth = {
+                name = 'Unknown Myth Card',
+                text = {
+                    'Find this card in an unseeded',
+                    'run to find out what it does'
+                }
+            }
         },
         Blind = {
             bl_prism_rose_club = {
@@ -606,6 +613,8 @@ return {
             c_prism_mvp = "MVP",
         },
         dictionary = {
+            k_myth = "Myth Card",
+            b_myth_cards = "Myth Cards",
             k_stone = "Stone",
             k_promoted = "Promoted!",
             k_prism_myth_pack = "Legend Pack",
