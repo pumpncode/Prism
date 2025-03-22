@@ -367,7 +367,7 @@ return {
                 name = "Druid",
                 text = {"Select {C:attention}#1#{} cards,",
                     "adds the {C:attention}right{} card's",
-                    "{C:enhanced}Enhacement{}, {C:dark_edition}Edition{} and",
+                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{} and",
                     "{C:attention}Seal{} to the {C:attention}left{} card"
                 }
 
