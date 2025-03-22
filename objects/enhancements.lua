@@ -85,8 +85,7 @@ SMODS.Enhancement({
     config = {extra = {card = nil}},
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
-        if card_ability.extra.card then 
-            print(card_ability.extra.card)
+        if card_ability.extra.card then
             return {
                 vars = {string.format("%s %s %s",localize(card_ability.extra.card.value, 'ranks'), localize('k_of'), localize(card_ability.extra.card.suit, 'suits_plural'))}
             }

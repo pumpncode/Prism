@@ -86,10 +86,7 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = '''
-if center.consumeable then 
-    self.ability.consumeable = center.config
-end'''
+pattern = '''if self.playing_card and not initial then check_for_unlock({type = 'modify_deck'}) end'''
 position = 'after'
 payload = '''
 if self.config.center_key == 'm_prism_double' then 
