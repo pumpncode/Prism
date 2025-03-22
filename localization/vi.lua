@@ -574,6 +574,13 @@ return {
                     "{C:attention}Cược Bạch Kim",
                 },
             },
+            undiscovered_myth = {
+                name = 'Lá Cổ Tích chưa khám phá',
+                text = {
+                    'Tìm lá này tại một trận không seed',
+                    'để biết được nó là gì'
+                }
+            }
         },
         Blind = {
             bl_prism_rose_club = {
@@ -605,6 +612,8 @@ return {
             c_prism_mvp = "MVP",
         },
         dictionary = {
+            k_myth = "Lá Cổ Tích",
+            b_myth_cards = "Lá Cổ Tích",
             k_stone = "Đá",
             k_promoted = "Phong Hậu!",
             k_prism_myth_pack = "Gói Cổ Tích",
