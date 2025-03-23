@@ -15,35 +15,15 @@ SMODS.Blind({
     mult = 2,
     boss = {min = 1, max = 10},
     boss_colour = HEX('a6c4a0'),
-    config = {extra = {ranks = {2,4,6,8,10}}},
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.playing_cards) do
-            for __, rank in pairs(self.config.extra.ranks) do
-                if rank == card:get_id() then card:set_debuff(true); card.boss_debuff = true end
-            end
-        end
-    end,
     recalc_debuff = function(self, card, from_blind)
-        for __, rank in pairs(self.config.extra.ranks) do
-            if rank == card:get_id() then
-                card.boss_debuff = true
-                return true 
-            else
-                card.boss_debuff = nil
-                return false
-            end
-        end
+        if card.area ~= G.jokers and not G.GAME.blind.disabled then
+			if card:get_id() == 2 or card:get_id() == 4 or card:get_id() == 6 or card:get_id() == 8 or card:get_id() == 10
+			then
+				return true
+			end
+			return false
+		end
     end,
-    disable = function(self)
-        for _, card in pairs(G.playing_cards) do
-            if card.boss_debuff then card:set_debuff(); card.boss_debuff = nil end
-        end
-    end,
-    defeat = function(self)
-        for _, card in pairs(G.playing_cards) do
-            if card.boss_debuff then card:set_debuff(); card.boss_debuff = nil end
-        end
-    end
 })
 SMODS.Blind({
     key = 'yew',
@@ -53,35 +33,15 @@ SMODS.Blind({
     mult = 2,
     boss = {min = 1, max = 10},
     boss_colour = HEX('66916b'),
-    config = {extra = {ranks = {3,5,7,9,14}}},
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.playing_cards) do
-            for __, rank in pairs(self.config.extra.ranks) do
-                if rank == card:get_id() then card:set_debuff(true); card.boss_debuff = true end
-            end
-        end
-    end,
     recalc_debuff = function(self, card, from_blind)
-        for __, rank in pairs(self.config.extra.ranks) do
-            if rank == card:get_id() then
-                card.boss_debuff = true
-                return true 
-            else
-                card.boss_debuff = nil
-                return false
-            end
-        end
+        if card.area ~= G.jokers and not G.GAME.blind.disabled then
+			if card:get_id() == 14 or card:get_id() == 3 or card:get_id() == 5 or card:get_id() == 7 or card:get_id() == 9
+			then
+				return true
+			end
+			return false
+		end
     end,
-    disable = function(self)
-        for _, card in pairs(G.playing_cards) do
-            if card.boss_debuff then card:set_debuff(); card.boss_debuff = nil end
-        end
-    end,
-    defeat = function(self)
-        for _, card in pairs(G.playing_cards) do
-            if card.boss_debuff then card:set_debuff(); card.boss_debuff = nil end
-        end
-    end
 })
 SMODS.Blind({
     key = 'rose_club',
@@ -106,7 +66,6 @@ SMODS.Blind({
                     card:set_debuff(true)
                 end
                 G.GAME.blind:wiggle()
----@diagnostic disable-next-line: inject-field
                 G.GAME.blind.triggered = true
             end
         end
