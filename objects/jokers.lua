@@ -787,14 +787,16 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {rank = 14,mult = 0,extra = 1},
+	config = {rank = 14, mult = 0,extra = 1},
+	immutable = true, --For Cryptid reasons
 	loc_vars = function(self, info_queue, center)
 		local rank = center.ability.rank
 		if rank < 11 then rank = tostring(rank)
 		elseif rank == 11 then rank = 'Jack'
 		elseif rank == 12 then rank = 'Queen'
 		elseif rank == 13 then rank = 'King'
-		elseif rank == 14 then rank = 'Ace' end
+		elseif rank == 14 then rank = 'Ace' 
+		end
 		return { vars = {center.ability.extra,center.ability.mult,localize(rank, 'ranks')} }
 	end,
 	calculate = function(self, card, context)
