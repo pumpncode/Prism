@@ -1373,8 +1373,8 @@ SMODS.Joker({
 			card.ability.hand_size = card.ability.hand_size + card.ability.extra
 			G.hand:change_size(card.ability.extra)
 			return {
-				message = localize('k_reset'),
-				colour = G.C.FILTER
+				message = localize('k_upgrade_ex'),
+				card = card,
 			}
 		end
 		if context.cardarea == G.jokers and context.end_of_round then
