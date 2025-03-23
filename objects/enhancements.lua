@@ -10,6 +10,7 @@ SMODS.Enhancement({
     pos = {x = 0, y = 0},
     discovered = false,
     config = {extra = {x_mult = 1,x_gain = 0.25}},
+    effect = "Glass Card",
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
         return {
@@ -32,6 +33,7 @@ SMODS.Enhancement({
         end
 	end
 })
+
 SMODS.Enhancement({
     key = "burnt",
     atlas = "prismenhanced",
