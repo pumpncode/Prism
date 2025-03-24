@@ -1262,6 +1262,19 @@ function Card.set_edition(self,edition, immediate, silent)
 	end
 
 end
+--[[ SMODS.Joker({
+	key = "hypercube",
+	atlas = "prismjokers",
+	pos = {x=2,y=10},
+	soul_pos = {x=2,y=11},
+	rarity = 3,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+}) ]]
 
 SMODS.Joker({
 	key = "prism",
@@ -1298,8 +1311,8 @@ SMODS.Joker({
 	unlock_condition = {hidden = true},
 	discovered = false,
 	blueprint_compat = true,
-	eternal_compat = false,
-	perishable_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
 	config = { extra = { bonus = 0.1, x_mult = 1}, first_s=false,first_h=false,first_c=false,first_d=false},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.extra.bonus,center.ability.extra.x_mult} }
@@ -1361,8 +1374,8 @@ SMODS.Joker({
 	unlock_condition = {hidden = true},
 	discovered = false,
 	blueprint_compat = false,
-	eternal_compat = false,
-	perishable_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
 	config = { extra = 1, hand_size = 0},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.extra,center.ability.hand_size} }
