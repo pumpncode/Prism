@@ -58,7 +58,7 @@ SMODS.Enhancement({
     pos = {x = 1, y = 2},
     discovered = false,
     calculate = function(self, card, context)
-        if context.repetition then
+        if context.repetition and context.cardarea == G.play then
             local retrig = 0
             for i, _card in pairs(G.hand.cards) do
                 if SMODS.has_enhancement(_card,'m_prism_echo') then
