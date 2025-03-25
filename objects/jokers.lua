@@ -983,6 +983,43 @@ SMODS.Joker({
 		end
 	end
 })
+SMODS.Joker({
+	key = "schrodinger",
+	atlas = "prismjokers",
+	pos = {x=2,y=12},
+	rarity = 2,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 0},
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_prism_double') then return true end
+		end
+		return false
+	end,
+	calculate = function(self, card, context)
+		if context.repetition and context.cardarea == G.play then
+			if context.other_card.config.center == G.P_CENTERS.m_prism_double then
+				print("yes")
+				card.ability.extra = card.ability.extra + 1
+				return {
+					message = localize('k_again_ex'),
+                    repetitions = card.ability.extra,
+					card = card
+				}
+		  	else
+				card.ability.extra = 0
+			end
+		end
+		if context.after and not context.blueprint then
+		  	card.ability.extra = 0
+		end
+	end
+})
 end
 SMODS.Joker({
 	key = "promotion",

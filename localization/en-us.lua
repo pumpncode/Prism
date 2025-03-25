@@ -266,6 +266,14 @@ return {
                     "become {C:dark_edition}Polychrome"
                 },
             },
+            j_prism_schrodinger = {
+                name = "Schrödinger's Cat",
+                text = {"Retrigger each played",
+                    "{C:attention}Double Card{} once for each",
+                    "consecutive {C:attention}Double Card{}",
+                    "scored this hand"
+                },
+            },
         },
         Back = {
             b_prism_purple = {
