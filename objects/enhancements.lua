@@ -125,7 +125,6 @@ function Card:highlight(highlighted)
             self.ability.seal.green_on = false
             G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1 
         end
-        print(self.ability.seal.green_on)
     end
 end
 
@@ -190,6 +189,7 @@ SMODS.Seal({
     discovered = false,
     badge_colour = HEX('65AE5E'),
 })
+end
 local orig_add_to_highlighted = CardArea.add_to_highlighted
 function CardArea:add_to_highlighted(card, silent)
     if card.seal == "prism_green" and not card.ability.seal.green_on then
@@ -198,7 +198,7 @@ function CardArea:add_to_highlighted(card, silent)
     end
     orig_add_to_highlighted(self, card, silent)
 end
-end
+
 SMODS.Seal({
     key = "moon",
     atlas = "prismenhanced",

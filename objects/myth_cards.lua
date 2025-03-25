@@ -256,7 +256,7 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=5, y=0},
     discovered = false,
-    config = {seal_conv = "prism_green", max_highlighted = 1},
+    config = {seal_conv = G.PRISM.config.old_green and "prism_green_old" or "prism_green", max_highlighted = 1},
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue + 1] = G.P_SEALS[self.config.seal_conv]
 
@@ -275,6 +275,7 @@ SMODS.Consumable({
         return true end }))
     end
 })
+
 SMODS.Consumable({
     key = 'myth_colossus',
     set = 'Myth',
