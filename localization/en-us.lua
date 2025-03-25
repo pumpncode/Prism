@@ -562,7 +562,14 @@ return {
             },
             prism_green_seal = {
                 name = "Green Seal",
-                text = {"{C:green}1 in #1#{} chance",
+                text = {"{C:attention}Ignores{} selection limit",
+                    "{C:green}#1# in #2#{} chance to",
+                    "destroy card",
+                }, 
+            },
+            prism_green_old_seal = {
+                name = "Green Seal",
+                text = {"{C:green}1 in 2{} chance",
                     "to be drawn in",
                     "first hand of round"
                 },
@@ -643,10 +650,11 @@ return {
             prism_enter_card = "Enter Card",
             prism_invalid_card = "Invalid Card!",
             prism_switch = "Switch",
-            prism_jokers_enabled = "Jokers",
-            prism_myth_enabled = "Myth Cards",
-            prism_blinds_enabled = "Boss Blinds",
-            prism_feature_enable = "Select features to enable:",
+            prism_jokers_enabled = "Enable Jokers",
+            prism_myth_enabled = "Enable Myth Cards",
+            prism_blinds_enabled = "Enable Boss Blinds",
+            prism_legacy_green = "Use Old Green Seal",
+            prism_feature_enable = "Select features:",
             prism_requires_restart = "Requires restart!",
         },
         v_dictionary = {

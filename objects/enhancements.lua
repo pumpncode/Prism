@@ -120,6 +120,13 @@ function Card:highlight(highlighted)
     if highlighted and self.children.use_button and self.children.use_button.config.id == 'm_prism_double' and self.config.center_key ~= 'm_prism_double' then
         self.children.use_button:remove()
     end
+    if self.seal == "prism_green" then
+        if not highlighted and self.ability.seal.green_on then
+            self.ability.seal.green_on = false
+            G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1 
+        end
+        print(self.ability.seal.green_on)
+    end
 end
 
 function G.UIDEF.use_switch_button(card)
@@ -150,19 +157,48 @@ G.FUNCS.switch_button = function(e, mute, nosave)
         card:juice_up(0.3, 0.5)
     return true end}))
 end
-
+if not G.PRISM.config.old_green then
 SMODS.Seal({
     key = "green",
     atlas = "prismenhanced",
     pos = {x = 1, y = 0},
     discovered = false,
     badge_colour = HEX('65AE5E'),
-    config = {extra = {draw_odds = 2}},
+    config = {green_on = false, extra = {odds = 6}},
     loc_vars = function(self, info_queue, card)
-        return {vars = { self.config.extra.draw_odds}}
+        return {
+            vars = {
+                "" .. (G.GAME and G.GAME.probabilities.normal or 1),
+                self.config.extra.odds}
+        }
     end,
+    calculate = function(self, card, context)
+        if context.destroy_card and context.cardarea == G.play then
+            if pseudorandom("green") < G.GAME.probabilities.normal / self.config.extra.odds then
+                return {
+                remove = true
+                }
+            end
+        end
+    end
 })
-
+else
+SMODS.Seal({
+    key = "green_old",
+    atlas = "prismenhanced",
+    pos = {x = 1, y = 0},
+    discovered = false,
+    badge_colour = HEX('65AE5E'),
+})
+local orig_add_to_highlighted = CardArea.add_to_highlighted
+function CardArea:add_to_highlighted(card, silent)
+    if card.seal == "prism_green" and not card.ability.seal.green_on then
+        card.ability.seal.green_on = true
+        G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + 1 
+    end
+    orig_add_to_highlighted(self, card, silent)
+end
+end
 SMODS.Seal({
     key = "moon",
     atlas = "prismenhanced",

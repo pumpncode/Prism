@@ -140,7 +140,12 @@ SMODS.current_mod.config_tab = function()
 					label = localize('prism_blinds_enabled'),
 					ref_table = G.PRISM.config,
 					ref_value = 'blinds_enabled',
-				  },
+				},
+				create_toggle {
+					label = localize('prism_legacy_green'),
+					ref_table = G.PRISM.config,
+					ref_value = 'old_green',
+				},
 			  }
 			},
 		  }
