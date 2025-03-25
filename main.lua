@@ -93,6 +93,13 @@ function bignum(x)
 		return x
 	end
 end
+function to_num(x)
+	if Talisman then
+		return x:to_number()
+	else 
+		return x
+	end
+end
 
 SMODS.current_mod.config_tab = function()
 	return {

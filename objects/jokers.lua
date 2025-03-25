@@ -618,7 +618,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		if context.joker_main then
 			return {
-				xmult = card.ability.extra.x_mult,
+				xmult = to_num(card.ability.extra.x_mult),
 			}
 		end
 		if context.setting_blind and not context.blueprint_card then
