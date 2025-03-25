@@ -1155,7 +1155,6 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
-			print(context.other_card.config.card.value)
 			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
 			if rank == "1" then rank = "Ace" end
 			if context.other_card.config.card.value == rank then
