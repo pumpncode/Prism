@@ -569,7 +569,7 @@ SMODS.Booster({
 --Djinn
 G.PRISM.FUNCS.find_card = function(entered_text)
 	local function clean_string(str)
-		str = str:gsub("%b{}", ""):gsub("%s+", "")
+		str = str:gsub("%b{}", ""):gsub("%s+", ""):gsub("ö", "o"):gsub("'", "")
 		if string.len(str) == 1 then
 			return str
 		end
