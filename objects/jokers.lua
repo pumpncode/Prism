@@ -1248,7 +1248,7 @@ SMODS.Joker({
 			for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 				local is_present = false
 				for _k, _v in pairs(G.playing_cards) do
-					if not is_present and _v.base.id == v then is_present = true end
+					if not is_present and _v:get_id() == v then is_present = true end
 				end
 				if not is_present then
 					x_mult = x_mult + center.ability.extra 

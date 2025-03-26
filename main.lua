@@ -35,9 +35,9 @@ function SMODS.current_mod.reset_game_globals(run_start)
 		for i, v in pairs(G.playing_cards) do
 			local already_added = false
 			for _, k in pairs(G.GAME.prism_start_deck_ranks) do
-				if not already_added and v.base.id == k then already_added = true end
+				if not already_added and v:get_id() == k then already_added = true end
 			end
-			if not already_added then table.insert(G.GAME.prism_start_deck_ranks,v.base.id) end
+			if not already_added then table.insert(G.GAME.prism_start_deck_ranks,v:get_id()) end
 		end
     else
 	end
