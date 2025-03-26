@@ -1298,7 +1298,7 @@ function Card.set_edition(self,edition, immediate, silent)
 	end
 
 end
---[[ SMODS.Joker({
+SMODS.Joker({
 	key = "hypercube",
 	atlas = "prismjokers",
 	pos = {x=2,y=10},
@@ -1307,10 +1307,25 @@ end
 	cost = 8,
 	unlocked = true,
 	discovered = false,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-}) ]]
+	config = {e_mult = 1.32},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.e_mult} }
+	end,
+	calculate = function(self, card, context)
+        if context.joker_main then
+			local hands = evaluate_poker_hand(G.hand.cards)
+      		local amount = #hands["Four of a Kind"]
+			if amount > 0 then
+				return {
+					emult = card.ability.e_mult
+				}
+			end
+		end
+	end
+}) 
 
 SMODS.Joker({
 	key = "prism",

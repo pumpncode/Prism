@@ -274,6 +274,13 @@ return {
                     "scored this hand"
                 },
             },
+            j_prism_hypercube = {
+                name = "Hypercube",
+                text = {"{X:dark_edition,C:white}^#1#{} Mult if a",
+                    "{C:attention}Four of a Kind{}",
+                    "is held in hand"
+                },
+            },
         },
         Back = {
             b_prism_purple = {

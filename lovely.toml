@@ -184,3 +184,23 @@ payload = '''
 end
 '''
 match_indent = true
+
+#emult
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "local extrafunc = nil"
+position = "after"
+payload = '''
+if not Talisman then
+	if eval_type == 'e_mult' then 
+		sound = 'prism_emult'
+		amt = amt
+		text = '^' .. amt .. ' Mult'
+		colour = G.C.MULT
+		config.type = 'fade'
+		config.scale = 0.7
+	end
+end
+'''
+match_indent = true
