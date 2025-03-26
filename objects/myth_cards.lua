@@ -576,7 +576,7 @@ G.PRISM.FUNCS.find_card = function(entered_text)
 		return string.lower(str)
 	end
 	for i, v in pairs(G.P_CENTERS) do
-		if v.set and v.set == "Joker" and v.rarity ~= 4 and clean_string(entered_text) == clean_string(localize({ type = "name_text", set = "Joker", key = i })) then
+		if v.set and v.set == "Joker" and v.rarity ~= 4 and v.rarity ~= "cry_exotic" and clean_string(entered_text) == clean_string(localize({ type = "name_text", set = "Joker", key = i })) then
 			return i
 		end
 	end
