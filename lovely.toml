@@ -14,6 +14,17 @@ hand_space = hand_space + G.GAME.prism_extra_draw
 G.GAME.prism_extra_draw = 0
 '''
 match_indent = true
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+-- TARGET: main end_of_round evaluation
+'''
+position = "after"
+payload = '''
+G.GAME.prism_extra_draw = 0
+'''
+match_indent = true
 
 #bonus packs
 [[patches]]

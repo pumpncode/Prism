@@ -26,6 +26,7 @@ end
 
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
+		G.GAME.prism_extra_draw = 0
 		G.GAME.pool_flags.day_can_spawn = true
 		G.GAME.pool_flags.night_can_spawn = false
 
@@ -41,7 +42,6 @@ function SMODS.current_mod.reset_game_globals(run_start)
 		end
     else
 	end
-	G.GAME.prism_extra_draw = 0
 	G.GAME.prism_shop_legend = false
 	if G.GAME.prism_fortune_cookie then
 		G.GAME.prism_fortune_cookie = false
