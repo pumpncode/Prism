@@ -308,7 +308,7 @@ return {
                 },
             },
             j_prism_pizza_ruc = {
-                name = "Pizza Capricciosa",
+                name = "Pizza Rucola",
                 text = {"The next {C:attention}#2#{} played",
                     "{C:clubs}Clubs{} give {C:red}+#1#{} Mult",
                     "when scored",
