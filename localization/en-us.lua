@@ -285,28 +285,34 @@ return {
                 name = "Pizza Capricciosa",
                 text = {"The next {C:attention}#2#{} played",
                     "{C:spades}Spades{} give {C:chips}+#1#{} Chips",
-                    "when scored"
+                    "when scored",
+                    "{s:0.8}Upgrades future pizzas",
+
                 },
             },
             j_prism_pizza_mar = {
                 name = "Pizza Margerita",
                 text = {"The next {C:attention}#2#{} played",
                     "{C:hearts}Hearts{} give {X:red,C:white}X#1#{} Mult",
-                    "when scored"
+                    "when scored",
+                    "{s:0.8}Upgrades future pizzas",
                 },
             },
             j_prism_pizza_for = {
                 name = "Pizza Quattro Formaggi",
                 text = {"The next {C:attention}#2#{} played {C:diamonds}Diamonds{}",
                     "have {C:green}#3# in #4#{} chance to",
-                    "earn {C:money}$#1#{} when scored"
+                    "earn {C:money}$#1#{} when scored",
+                    "{s:0.8}Upgrades future pizzas",
+
                 },
             },
             j_prism_pizza_ruc = {
                 name = "Pizza Capricciosa",
                 text = {"The next {C:attention}#2#{} played",
                     "{C:clubs}Clubs{} give {C:red}+#1#{} Mult",
-                    "when scored"
+                    "when scored",
+                    "{s:0.8}Upgrades future pizzas",
                 },
             },
         },
