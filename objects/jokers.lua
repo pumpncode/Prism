@@ -138,6 +138,144 @@ SMODS.Joker({
 	
 })
 SMODS.Joker({
+	key = "pizza_cap",
+	atlas = "prismjokers",
+	pos = {x=3,y=0},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {chips = 30,uses = 10}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.chips,center.ability.extra.uses}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('Spades', nil, true) and card.ability.extra.uses > 0 then
+				card.ability.extra.uses = card.ability.extra.uses - 1
+                return {
+                    chips = card.ability.extra.chips,
+                    card = card
+                }
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end
+})
+SMODS.Joker({
+	key = "pizza_mar",
+	atlas = "prismjokers",
+	pos = {x=3,y=1},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {x_mult = 1.2,uses = 10}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.x_mult,center.ability.extra.uses}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('Hearts', nil, true) and card.ability.extra.uses > 0 then
+				card.ability.extra.uses = card.ability.extra.uses - 1
+                return {
+                    xmult = card.ability.extra.x_mult,
+                    card = card
+                }
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end
+})
+SMODS.Joker({
+	key = "pizza_for",
+	atlas = "prismjokers",
+	pos = {x=3,y=2},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {money = 2,odds = 3, uses = 10}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.money,center.ability.extra.uses,"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('Diamonds', nil, true) and card.ability.extra.uses > 0 then
+				card.ability.extra.uses = card.ability.extra.uses - 1
+				if pseudorandom('4cheese') < G.GAME.probabilities.normal / card.ability.extra.odds then
+					return {
+						dollars = card.ability.extra.money,
+						card = card
+					}
+				end
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end
+})
+SMODS.Joker({
+	key = "pizza_ruc",
+	atlas = "prismjokers",
+	pos = {x=3,y=3},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {mult = 6,uses = 10}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.mult,center.ability.extra.uses}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('Clubs', nil, true) and card.ability.extra.uses > 0 then
+				card.ability.extra.uses = card.ability.extra.uses - 1
+                return {
+                    mult = card.ability.extra.mult,
+                    card = card
+                }
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end
+})
+SMODS.Joker({
 	key = "sculptor",
 	atlas = "prismjokers",
 	pos = {x=1,y=3},
