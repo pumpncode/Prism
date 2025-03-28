@@ -70,6 +70,21 @@ SMODS.Sound({
 		return G.pack_cards and G.pack_cards.cards and G.pack_cards.cards[1] and G.pack_cards.cards[1].ability.set == "Myth"
 	end,
 })
+SMODS.Sound({
+	key = "pizza_music",
+	path = "pizza_theme.ogg",
+	sync = false,
+	pitch = 1,
+	select_music_track = function()
+		return
+			(next(find_joker("j_prism_pizza_cap")) 
+			or next(find_joker("j_prism_pizza_mar"))
+			or next(find_joker("j_prism_pizza_for"))
+			or next(find_joker("j_prism_pizza_ruc")))
+			and G.PRISM.config.pizza_music
+			and 6
+	end,
+})
 SMODS.Sound({key = 'emult', path = 'tal_emult.wav'})
 
 function G.PRISM.create_booster()
@@ -175,13 +190,23 @@ SMODS.current_mod.config_tab = function()
 					ref_table = G.PRISM.config,
 					ref_value = 'blinds_enabled',
 				},
-				create_toggle {
-					label = localize('prism_legacy_green'),
-					ref_table = G.PRISM.config,
-					ref_value = 'old_green',
-				},
 			  }
 			},
+			{
+				n = G.UIT.C,
+				nodes = {
+					create_toggle {
+						label = localize('prism_legacy_green'),
+						ref_table = G.PRISM.config,
+						ref_value = 'old_green',
+					},
+					create_toggle {
+						label = localize('prism_pizza_music'),
+						ref_table = G.PRISM.config,
+						ref_value = 'pizza_music',
+					},
+				}
+			  },
 		  }
 		}
 	  }

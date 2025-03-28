@@ -146,9 +146,13 @@ SMODS.Joker({
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = true,
+	
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = {chips = 30,uses = 10}},
+	pools = {
+		Food = true
+	},
+	config = {extra = {chips = 40,uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.chips,center.ability.extra.uses}}
 	end,
@@ -172,7 +176,7 @@ SMODS.Joker({
 		end
     end,
 	add_to_deck = function(self, card, from_debuff)
-		card.ability.extra.chips = card.ability.extra.chips + (30 * G.GAME.prism_pizza_lv)
+		card.ability.extra.chips = card.ability.extra.chips + (40 * G.GAME.prism_pizza_lv)
 	end
 })
 SMODS.Joker({
@@ -186,7 +190,10 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = {x_mult = 1.2,uses = 10}},
+	pools = {
+		Food = true
+	},
+	config = {extra = {x_mult = 1.2,uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.x_mult,center.ability.extra.uses}}
 	end,
@@ -224,7 +231,10 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = {money = 2,odds = 3, uses = 10}},
+	pools = {
+		Food = true
+	},
+	config = {extra = {money = 2,odds = 2, uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.money,center.ability.extra.uses,"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
 	end,
@@ -264,7 +274,10 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = {mult = 6,uses = 10}},
+	pools = {
+		Food = true
+	},
+	config = {extra = {mult = 6,uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.mult,center.ability.extra.uses}}
 	end,

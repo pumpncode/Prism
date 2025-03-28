@@ -696,6 +696,7 @@ return {
             prism_blinds_enabled = "Enable Boss Blinds",
             prism_legacy_green = "Use Old Green Seal",
             prism_feature_enable = "Select features:",
+            prism_pizza_music = "Pizza Music",
             prism_requires_restart = "Requires restart!",
         },
         v_dictionary = {
