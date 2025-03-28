@@ -164,12 +164,16 @@ SMODS.Joker({
         end
 		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
 			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
 			return {
 				message = localize('k_eaten_ex'),
 				colour = G.C.RED,
 			}
 		end
-    end
+    end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.chips = card.ability.extra.chips + (30 * G.GAME.prism_pizza_lv)
+	end
 })
 SMODS.Joker({
 	key = "pizza_mar",
@@ -198,12 +202,16 @@ SMODS.Joker({
         end
 		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
 			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
 			return {
 				message = localize('k_eaten_ex'),
 				colour = G.C.RED,
 			}
 		end
-    end
+    end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.x_mult = card.ability.extra.x_mult + (0.2 * G.GAME.prism_pizza_lv)
+	end
 })
 SMODS.Joker({
 	key = "pizza_for",
@@ -234,12 +242,16 @@ SMODS.Joker({
         end
 		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
 			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
 			return {
 				message = localize('k_eaten_ex'),
 				colour = G.C.RED,
 			}
 		end
-    end
+    end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.money = card.ability.extra.money + (2 * G.GAME.prism_pizza_lv)
+	end
 })
 SMODS.Joker({
 	key = "pizza_ruc",
@@ -268,12 +280,16 @@ SMODS.Joker({
         end
 		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
 			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
 			return {
 				message = localize('k_eaten_ex'),
 				colour = G.C.RED,
 			}
 		end
-    end
+    end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.mult = card.ability.extra.mult + (6 * G.GAME.prism_pizza_lv)
+	end
 })
 SMODS.Joker({
 	key = "sculptor",
