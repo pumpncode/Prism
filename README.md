@@ -29,3 +29,4 @@ You can see a more detailed list of additions in the mod's [Wiki](https://balatr
 - Chinese localization by 姓氏是个毛 and VisJoker
 - Spanish localization by Frander
 - Vietnamese localization by Shinosan
+- Ideas and concept art by Gaussian
