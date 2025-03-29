@@ -112,7 +112,7 @@ function bignum(x)
 end
 function to_num(x)
 	if Talisman then
-		return x:to_number()
+		return to_number(x)
 	else 
 		return x
 	end
