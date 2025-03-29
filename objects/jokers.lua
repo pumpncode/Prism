@@ -792,7 +792,7 @@ SMODS.Joker({
 			local x_mult_gain = card.ability.extra.gain*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
 			ease_dollars(-G.GAME.dollars, true)
 			if bignum(x_mult_gain) > bignum(0) then 
-				card.ability.extra.x_mult = card.ability.extra.x_mult + to_num(x_mult_gain)
+				card.ability.extra.x_mult = card.ability.extra.x_mult + to_num(bignum(x_mult_gain))
 				return {
 					focus = card,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
