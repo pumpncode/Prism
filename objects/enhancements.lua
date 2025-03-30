@@ -172,7 +172,7 @@ SMODS.Seal({
         }
     end,
     calculate = function(self, card, context)
-        if context.destroy_card and context.cardarea == G.play then
+        if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
             if pseudorandom("green") < G.GAME.probabilities.normal / self.config.extra.odds then
                 return {
                 remove = true
