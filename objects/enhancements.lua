@@ -102,7 +102,11 @@ SMODS.Enhancement({
 local orig_highlight = Card.highlight
 function Card:highlight(highlighted)
     orig_highlight(self, highlighted)
-    if highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand then
+    if DTM and DTM.config.disable_action_buttons and highlighted and self.ability.set == 'Enhanced' and self.ability.name == 'm_prism_double' then
+        if self.children.use_button and self.config.center_key == 'm_prism_double' then
+            self.children.use_button:remove()
+        end
+    elseif highlighted and self.config.center_key == 'm_prism_double' and self.area == G.hand then
         self.children.use_button = UIBox{
             definition = G.UIDEF.use_switch_button(self),
             config = {align = 'tm', offset = {x=0, y=0.4}, parent = self, id = 'm_prism_double'}
