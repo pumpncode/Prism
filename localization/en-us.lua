@@ -405,10 +405,9 @@ return {
             },
             m_prism_echo = {
                 name = "Echo Card",
-                text = {"When scored,",
-                    "retrigger this card",
-                    "for each other {C:attention}Echo",
-                    "{C:attention}Card{} played or held"
+                text = {"retrigger this card",
+                    "for each other",
+                    "played {C:attention}Echo Card{}"
                 }
             },
         },
