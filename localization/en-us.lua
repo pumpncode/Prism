@@ -291,7 +291,7 @@ return {
                 },
             },
             j_prism_pizza_mar = {
-                name = "Pizza Margerita",
+                name = "Pizza Margherita",
                 text = {"The next {C:attention}#2#{} played",
                     "{C:hearts}Hearts{} give {X:red,C:white}X#1#{} Mult",
                     "when scored",
