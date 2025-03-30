@@ -23,6 +23,11 @@ function loc_colour(_c, _default)
     return lc(_c, _default)
 end
 
+G.PRISM.compat = {
+	sleeves = (SMODS.Mods['CardSleeves'] or {}).can_load,
+	talisman = (SMODS.Mods['Talisman'] or {}).can_load,
+	buffoonery = (SMODS.Mods['Buffoonery'] or {}).can_load,
+}
 
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
@@ -61,7 +66,7 @@ SMODS.load_file('objects/tags.lua')()
 if G.PRISM.config.blinds_enabled then SMODS.load_file('objects/blinds.lua')() end
 SMODS.load_file('objects/challenges.lua')()
 SMODS.load_file('objects/stakes.lua')()
-if CardSleeves then SMODS.load_file('objects/cardsleeves.lua')() end
+if G.PRISM.compat.sleeves then SMODS.load_file('objects/cardsleeves.lua')() end
 
 SMODS.Sound({
 	key = "myth_music",
@@ -104,20 +109,20 @@ function G.PRISM.create_booster()
 end
 --For Talisman Compatibility
 function bignum(x)
-	if Talisman then
+	if G.PRISM.compat.talisman then
 		return to_big(x)
-	else 
+	else
 		return x
 	end
 end
 function to_num(x)
-	if Talisman then
+	if G.PRISM.compat.talisman then
 		return to_number(x)
 	else 
 		return x
 	end
 end
-if not Talisman then
+if not G.PRISM.compat.talisman and not G.PRISM.compat.buffoonery then
 	if SMODS and SMODS.calculate_individual_effect then
 		local originalCalcIndiv = SMODS.calculate_individual_effect
 		function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)

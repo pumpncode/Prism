@@ -203,7 +203,7 @@ target = "functions/common_events.lua"
 pattern = "local extrafunc = nil"
 position = "after"
 payload = '''
-if not Talisman then
+if not G.PRISM.compat.talisman and not G.PRISM.compat.buffoonery then
 	if eval_type == 'e_mult' then 
 		sound = 'prism_emult'
 		amt = amt
