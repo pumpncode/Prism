@@ -160,7 +160,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
             if context.other_card:is_suit('Spades', nil, true) and card.ability.extra.uses > 0 then
-				card.ability.extra.uses = card.ability.extra.uses - 1
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
                 return {
                     chips = card.ability.extra.chips,
                     card = card
@@ -202,7 +202,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
             if context.other_card:is_suit('Hearts', nil, true) and card.ability.extra.uses > 0 then
-				card.ability.extra.uses = card.ability.extra.uses - 1
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
                 return {
                     xmult = card.ability.extra.x_mult,
                     card = card
@@ -244,7 +244,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
             if context.other_card:is_suit('Diamonds', nil, true) and card.ability.extra.uses > 0 then
-				card.ability.extra.uses = card.ability.extra.uses - 1
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
 				if pseudorandom('4cheese') < G.GAME.probabilities.normal / card.ability.extra.odds then
 					return {
 						dollars = card.ability.extra.money,
@@ -288,7 +288,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
             if context.other_card:is_suit('Clubs', nil, true) and card.ability.extra.uses > 0 then
-				card.ability.extra.uses = card.ability.extra.uses - 1
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
                 return {
                     mult = card.ability.extra.mult,
                     card = card
@@ -308,6 +308,56 @@ SMODS.Joker({
 		card.ability.extra.mult = card.ability.extra.mult + (6 * G.GAME.prism_pizza_lv)
 	end
 })
+if G.PRISM.compat.paperback then
+SMODS.Joker({
+	key = "pizza_haw",
+	atlas = "prismjokers",
+	pos = {x=3,y=4},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	pools = {
+		Food = true,
+		Pizza = true
+	},
+	paperback = {
+		requires_crowns = true
+	},
+	config = {extra = {min_money = -3, max_money = 5, uses = 15}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.min_money,center.ability.extra.max_money,center.ability.extra.uses}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('paperback_Crowns', nil, true) and card.ability.extra.uses > 0 then
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
+				local dollars = pseudorandom("hawaiian", card.ability.extra.min_money, card.ability.extra.max_money)
+        		if dollars ~= 0 then
+					return {
+						dollars = dollars
+					}
+				end
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.min_money = card.ability.extra.min_money + (-2 * G.GAME.prism_pizza_lv)
+		card.ability.extra.max_money = card.ability.extra.max_money + (5 * G.GAME.prism_pizza_lv)
+	end
+})
+end
 SMODS.Joker({
 	key = "sculptor",
 	atlas = "prismjokers",

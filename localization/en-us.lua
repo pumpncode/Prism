@@ -315,6 +315,14 @@ return {
                     "{s:0.8}Upgrades future pizzas",
                 },
             },
+            j_prism_pizza_haw = {
+                name = "Hawaiian Pizza",
+                text = {"The next {C:attention}#3#{} played",
+                    "{C:paperback_crowns}Crowns{} earn between",
+                    "{C:money}$#1#{} and {C:money}$#2#{} when scored",
+                    "{s:0.8}Upgrades future pizzas",
+                },
+            },
         },
         Back = {
             b_prism_purple = {
@@ -405,7 +413,7 @@ return {
             },
             m_prism_echo = {
                 name = "Echo Card",
-                text = {"retrigger this card",
+                text = {"Retrigger this card",
                     "for each other",
                     "played {C:attention}Echo Card{}"
                 }
