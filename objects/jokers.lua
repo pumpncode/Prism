@@ -402,6 +402,73 @@ SMODS.Joker({
 	end
 })
 end
+if G.PRISM.compat.mintys then
+	SMODS.Joker({
+		key = "pizza_con",
+		atlas = "prismjokers",
+		pos = {x=3,y=6},
+		rarity = 1,
+		cost = 5,
+		unlocked = true,
+		discovered = false,
+		blueprint_compat = true,
+		eternal_compat = false,
+		perishable_compat = true,
+		pools = {
+			Food = true,
+			Pizza = true
+		},
+		config = {extra = {x_mult = 2.5, uses = 15,again = 0,odds = 3}},
+		loc_vars = function(self, info_queue, center)
+			return { vars = { center.ability.extra.x_mult,center.ability.extra.uses,
+			"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
+		end,
+		calculate = function(self, card, context)
+			if context.cardarea == G.play and context.individual then
+				if context.other_card:is_3() and card.ability.extra.uses > 0 then
+					if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
+					local trycount = context.other_card:is_3()
+					local repcount = 0
+					for try=1,trycount do
+						if pseudorandom('cone') < G.GAME.probabilities.normal/card.ability.extra.odds then 
+							repcount = repcount + 1
+						end
+					end
+					card.ability.extra.again = repcount
+					--sendDebugMessage('Count (individual): '..card.ability.extra.again)
+					if card.ability.extra.again ~= 0 then
+						return {
+							xmult = card.ability.extra.x_mult,
+							card = card
+						}
+					end
+				end
+			end
+			if context.retrigger_joker_check and card.ability.extra.again ~= 0 and context.other_card == card then 
+				local reps = card.ability.extra.again-1
+				card.ability.extra.again = 0
+				if reps >= 1 then 
+					return {
+						message = localize('k_again_ex'),
+						message_card = card,
+						repetitions = reps
+					}
+				end
+			end
+			if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+				G.PRISM.remove_joker(card)
+				G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
+				return {
+					message = localize('k_eaten_ex'),
+					colour = G.C.RED,
+				}
+			end
+		end,
+		set_ability = function(self, card, initial,delay_sprites)
+			card.ability.extra.x_mult = card.ability.extra.x_mult + (2.5 * (G.GAME.prism_pizza_lv or 0))
+		end
+	})
+end
 SMODS.Joker({
 	key = "sculptor",
 	atlas = "prismjokers",

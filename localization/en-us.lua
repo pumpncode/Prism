@@ -331,6 +331,15 @@ return {
                     "{s:0.8}Upgrades future pizzas",
                 },
             },
+            j_prism_pizza_con = {
+                name = "Pizza Cone",
+                text = {"The next {C:attention}#2#{} played {C:minty_3s}3s{}",
+                    "have {C:green}#3# in #4#{} chance to give",
+                    "{X:red,C:white}X#1#{} Mult when scored",
+                    "{s:0.8}Upgrades future pizzas",
+
+                },
+            },
         },
         Back = {
             b_prism_purple = {
