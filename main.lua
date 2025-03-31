@@ -87,6 +87,8 @@ SMODS.Sound({
 			or next(find_joker("j_prism_pizza_mar"))
 			or next(find_joker("j_prism_pizza_for"))
 			or next(find_joker("j_prism_pizza_ruc"))
+			or next(find_joker("j_prism_pizza_haw"))
+			or next(find_joker("j_prism_pizza_det"))
 			or next(find_joker("j_crv_stoneoven")))
 			and G.PRISM.config.pizza_music
 			and 6
