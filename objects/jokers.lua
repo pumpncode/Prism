@@ -177,7 +177,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.chips = card.ability.extra.chips + (40 * G.GAME.prism_pizza_lv)
+		card.ability.extra.chips = card.ability.extra.chips + (40 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 SMODS.Joker({
@@ -219,7 +219,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.x_mult = card.ability.extra.x_mult + (0.2 * G.GAME.prism_pizza_lv)
+		card.ability.extra.x_mult = card.ability.extra.x_mult + (0.2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 SMODS.Joker({
@@ -263,7 +263,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.money = card.ability.extra.money + (2 * G.GAME.prism_pizza_lv)
+		card.ability.extra.money = card.ability.extra.money + (2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 SMODS.Joker({
@@ -305,7 +305,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.mult = card.ability.extra.mult + (6 * G.GAME.prism_pizza_lv)
+		card.ability.extra.mult = card.ability.extra.mult + (6 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 if G.PRISM.compat.paperback then
@@ -353,8 +353,8 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.min_money = card.ability.extra.min_money + (-2 * G.GAME.prism_pizza_lv)
-		card.ability.extra.max_money = card.ability.extra.max_money + (5 * G.GAME.prism_pizza_lv)
+		card.ability.extra.min_money = card.ability.extra.min_money + (-2 * (G.GAME.prism_pizza_lv or 0))
+		card.ability.extra.max_money = card.ability.extra.max_money + (5 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 SMODS.Joker({
@@ -398,7 +398,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.min_money = card.ability.extra.x_chips + (0.2 * G.GAME.prism_pizza_lv)
+		card.ability.extra.min_money = card.ability.extra.x_chips + (0.2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 end
