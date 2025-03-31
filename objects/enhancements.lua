@@ -178,6 +178,9 @@ SMODS.Seal({
     calculate = function(self, card, context)
         if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
             if pseudorandom("green") < G.GAME.probabilities.normal / self.config.extra.odds then
+                if self.config.green_on then
+                    G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1 
+                end
                 return {
                 remove = true
                 }
