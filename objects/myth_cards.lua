@@ -316,9 +316,15 @@ SMODS.Consumable({
     end,
     use = function(self, card, area, copier)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            local eligible_cards = {}
+            for k, v in ipairs(G.hand.cards) do
+                if not v.edition then
+                    table.insert(eligible_cards,v)
+                end
+            end
             play_sound('tarot1')
             card:juice_up(0.3, 0.5)
-            local random_card = pseudorandom_element(G.hand.cards, pseudoseed('mirror'))
+            local random_card = pseudorandom_element(eligible_cards, pseudoseed('mirror'))
             if random_card then random_card:set_edition({negative = true}, true) end
         return true end }))
     end

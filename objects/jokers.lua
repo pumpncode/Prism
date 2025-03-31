@@ -150,7 +150,8 @@ SMODS.Joker({
 	eternal_compat = false,
 	perishable_compat = true,
 	pools = {
-		Food = true
+		Food = true,
+		Pizza = true
 	},
 	config = {extra = {chips = 40,uses = 15}},
 	loc_vars = function(self, info_queue, center)
@@ -191,7 +192,8 @@ SMODS.Joker({
 	eternal_compat = false,
 	perishable_compat = true,
 	pools = {
-		Food = true
+		Food = true,
+		Pizza = true
 	},
 	config = {extra = {x_mult = 1.2,uses = 15}},
 	loc_vars = function(self, info_queue, center)
@@ -232,7 +234,8 @@ SMODS.Joker({
 	eternal_compat = false,
 	perishable_compat = true,
 	pools = {
-		Food = true
+		Food = true,
+		Pizza = true
 	},
 	config = {extra = {money = 2,odds = 2, uses = 15}},
 	loc_vars = function(self, info_queue, center)
@@ -275,7 +278,8 @@ SMODS.Joker({
 	eternal_compat = false,
 	perishable_compat = true,
 	pools = {
-		Food = true
+		Food = true,
+		Pizza = true
 	},
 	config = {extra = {mult = 6,uses = 15}},
 	loc_vars = function(self, info_queue, center)
