@@ -323,6 +323,14 @@ return {
                     "{s:0.8}Upgrades future pizzas",
                 },
             },
+            j_prism_pizza_det = {
+                name = "Detroit Pizza",
+                text = {"The next {C:attention}#2#{} played",
+                    "{C:paperback_stars}Stars{} give {X:chips,C:white}X#1#{} Chips",
+                    "when scored",
+                    "{s:0.8}Upgrades future pizzas",
+                },
+            },
         },
         Back = {
             b_prism_purple = {

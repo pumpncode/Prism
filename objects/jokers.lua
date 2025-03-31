@@ -357,6 +357,50 @@ SMODS.Joker({
 		card.ability.extra.max_money = card.ability.extra.max_money + (5 * G.GAME.prism_pizza_lv)
 	end
 })
+SMODS.Joker({
+	key = "pizza_det",
+	atlas = "prismjokers",
+	pos = {x=3,y=5},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	pools = {
+		Food = true,
+		Pizza = true
+	},
+	paperback = {
+		requires_stars = true
+	},
+	config = {extra = {x_chips = 1.2, uses = 15}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.x_chips,center.ability.extra.uses}}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+            if context.other_card:is_suit('paperback_Stars', nil, true) and card.ability.extra.uses > 0 then
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
+				return {
+					x_chips = card.ability.extra.x_chips
+				}
+			end
+        end
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+    end,
+	set_ability = function(self, card, initial,delay_sprites)
+		card.ability.extra.min_money = card.ability.extra.x_chips + (1.2 * G.GAME.prism_pizza_lv)
+	end
+})
 end
 SMODS.Joker({
 	key = "sculptor",
