@@ -398,7 +398,7 @@ SMODS.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.min_money = card.ability.extra.x_chips + (1.2 * G.GAME.prism_pizza_lv)
+		card.ability.extra.min_money = card.ability.extra.x_chips + (0.2 * G.GAME.prism_pizza_lv)
 	end
 })
 end
