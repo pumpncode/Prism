@@ -97,6 +97,12 @@ SMODS.Enhancement({
             }
         end
     end,
+    set_ability = function(self, card, initial,delay_sprites)
+        if not card.ability.extra.card and card.base then
+            local _card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
+            card.ability.extra.card = _card
+        end
+	end
 })
 
 local orig_highlight = Card.highlight
@@ -186,7 +192,7 @@ SMODS.Seal({
                 }
             end
         end
-    end
+    end,
 })
 else
 SMODS.Seal({

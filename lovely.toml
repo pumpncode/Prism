@@ -93,23 +93,6 @@ payload = '''
 '''
 match_indent = true
 
-#Sets double cards starting value
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = '''if self.playing_card and not initial then check_for_unlock({type = 'modify_deck'}) end'''
-position = 'after'
-payload = '''
-if self.config.center_key == 'm_prism_double' then 
-    local card_ability = self and self.ability or self.config
-    if card_ability and not card_ability.extra.card and self.base then
-        local card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
-        card_ability.extra.card = card
-    end
- end
-'''
-match_indent = true
-
 #Allows to play more than 5 cards
 [[patches]]
 [patches.pattern]
