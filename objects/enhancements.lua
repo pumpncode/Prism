@@ -131,8 +131,8 @@ function Card:highlight(highlighted)
         self.children.use_button:remove()
     end
     if self.seal == "prism_green" then
-        if not highlighted and self.ability.seal.green_on then
-            self.ability.seal.green_on = false
+        if not highlighted and self.config.green_on then
+            self.config.green_on = false
             G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1 
         end
     end
@@ -173,7 +173,7 @@ SMODS.Seal({
     pos = {x = 1, y = 0},
     discovered = false,
     badge_colour = HEX('65AE5E'),
-    config = {green_on = false, extra = {odds = 6}},
+    config = {extra = {odds = 6}},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -184,7 +184,7 @@ SMODS.Seal({
     calculate = function(self, card, context)
         if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
             if pseudorandom("green") < G.GAME.probabilities.normal / self.config.extra.odds then
-                if self.config.green_on then
+                if card.config.green_on then
                     G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1 
                 end
                 return {
@@ -205,8 +205,8 @@ SMODS.Seal({
 end
 local orig_add_to_highlighted = CardArea.add_to_highlighted
 function CardArea:add_to_highlighted(card, silent)
-    if card.seal == "prism_green" and not card.ability.seal.green_on then
-        card.ability.seal.green_on = true
+    if card.seal == "prism_green" and not card.config.green_on then
+        card.config.green_on = true
         G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + 1 
     end
     orig_add_to_highlighted(self, card, silent)
