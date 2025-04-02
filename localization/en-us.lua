@@ -266,6 +266,12 @@ return {
                     "become {C:dark_edition}Polychrome"
                 },
             },
+            j_prism_shork_dark = {
+                name = "Shark Plush",
+                text = {"All future {C:spectral}Editions{}",
+                    "become {C:dark_edition}Trans"
+                },
+            },
             j_prism_schrodinger = {
                 name = "Schrödinger's Cat",
                 text = {"Retrigger each played",

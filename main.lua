@@ -29,6 +29,7 @@ G.PRISM.compat = {
 	buffoonery = (SMODS.Mods['Buffoonery'] or {}).can_load,
 	paperback = (SMODS.Mods['paperback'] or {}).can_load,
 	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load,
+	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load,
 }
 
 function SMODS.current_mod.reset_game_globals(run_start)

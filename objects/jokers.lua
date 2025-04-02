@@ -1607,7 +1607,7 @@ SMODS.Joker({
 		end
 	end
 })
-
+if not G.PRISM.compat.darkside then 
 SMODS.Joker({
 	key = "shork",
 	atlas = "prismjokers",
@@ -1619,8 +1619,11 @@ SMODS.Joker({
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = true,
+	loc_vars = function(self, info_queue, center)
+		local edition = "e_polychrome"
+		info_queue[#info_queue + 1] = G.P_CENTERS[edition]
+	end,
 })
-
 local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
 	if next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
@@ -1628,7 +1631,32 @@ function Card.set_edition(self,edition, immediate, silent)
 	else
 		orig_set_edition(self,edition, immediate, silent)
 	end
-
+end
+else
+SMODS.Joker({
+	key = "shork_dark",
+	atlas = "prismjokers",
+	pos = {x=2,y=4},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	loc_vars = function(self, info_queue, center)
+		local edition = "e_pridark_trans"
+		info_queue[#info_queue + 1] = G.P_CENTERS[edition]
+	end,
+})
+local orig_set_edition = Card.set_edition
+function Card.set_edition(self,edition, immediate, silent)
+	if next(find_joker("j_prism_shork_dark")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= "e_pridark_trans" then
+		orig_set_edition(self,"e_pridark_trans", immediate, silent)
+	else
+		orig_set_edition(self,edition, immediate, silent)
+	end
+end
 end
 SMODS.Joker({
 	key = "hypercube",
