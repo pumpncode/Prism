@@ -5,7 +5,7 @@
 #endif
 
 
-extern PRECISION vec2 gold_foil;
+extern PRECISION vec2 goldfoil;
 extern PRECISION number dissolve;
 extern PRECISION number time;
 extern PRECISION vec4 texture_details;
@@ -113,45 +113,35 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 
     number low = min(tex.r, min(tex.g, tex.b));
     number high = max(tex.r, max(tex.g, tex.b));
-	number delta = min(high, max(0.5, 1. - low));
+	number delta = min(high, max(0.6, 1. - low));
 
-    number fac = 0.8 + 0.9*sin(11.*uv.x+4.32*uv.y + gold_foil.r*12. + cos(gold_foil.r*5.3 + uv.y*4.2 - uv.x*4.));
-    number fac2 = 0.5 + 0.5*sin(8.*uv.x+2.32*uv.y + gold_foil.r*5. - cos(gold_foil.r*2.3 + uv.x*8.2));
-    number fac3 = 0.5 + 0.5*sin(10.*uv.x+5.32*uv.y + gold_foil.r*6.111 + sin(gold_foil.r*5.3 + uv.y*3.2));
-    number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + gold_foil.r*8.111 + sin(gold_foil.r*1.3 + uv.y*11.2));
-    number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + gold_foil.r*12. + cos(gold_foil.r*5.3 + uv.y*4.2 - uv.x*4.));
+    number fac = 0.8 + 0.9*sin(11.*uv.x+4.32*uv.y + goldfoil.r*12. + cos(goldfoil.r*5.3 + uv.y*4.2 - uv.x*4.));
+    number fac2 = 0.5 + 0.5*sin(8.*uv.x+2.32*uv.y + goldfoil.r*5. - cos(goldfoil.r*2.3 + uv.x*8.2));
+    number fac3 = 0.5 + 0.5*sin(10.*uv.x+5.32*uv.y + goldfoil.r*6.111 + sin(goldfoil.r*5.3 + uv.y*3.2));
+    number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + goldfoil.r*8.111 + sin(goldfoil.r*1.3 + uv.y*11.2));
+    number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + goldfoil.r*12. + cos(goldfoil.r*5.3 + uv.y*4.2 - uv.x*4.));
 
     number maxfac = 0.7*max(max(fac, max(fac2, max(fac3,0.2))) + (fac+fac2+fac3*fac4), 0.);
-    tex.b = tex.g-delta + delta*maxfac*(0.6 - fac5*0.27) - 1.3;
-    tex.g = tex.g-delta + delta*maxfac*(0.6 - fac5*0.27) - 0.1;
+    tex.b = tex.g-delta + delta*maxfac*(0.35 - fac5*0.3) - 0.9;
+    //tex.r = tex.g-delta + delta*maxfac*(0.2 - fac5*0.1) - 0.1;
+    tex.g = tex.g-delta + delta*maxfac*(0.8 - fac5*0.1) - 0.1;
 
-    const vec3 Pink = vec3(200., 150., 0.) / 255.;
-    const vec3 Blue = vec3(231., 164., 25.) / 255.;
-
-    // Invert the colors to preserve pure white
-    vec3 anti_Pink = vec3(1.) - Pink;
-    vec3 anti_Blue = vec3(1.) - Blue;
-    vec3 anti_tex = vec3(1.) - tex.rgb;
-
-    
-
-
-    fac = max(min(2.*sin((length(90.*adjusted_uv) + gold_foil.r*2.) + 3.*(1.+0.8*cos(length(113.1121*adjusted_uv) - gold_foil.r*3.121))) - 1. - max(5.-length(90.*adjusted_uv), 0.), 1.), 0.);
-    vec2 rotater = vec2(cos(gold_foil.r*0.1221), sin(gold_foil.r*0.3512));
+    fac = max(min(2.*sin((length(90.*adjusted_uv) + goldfoil.r*2.) + 3.*(1.+0.8*cos(length(113.1121*adjusted_uv) - goldfoil.r*3.121))) - 1. - max(5.-length(90.*adjusted_uv), 0.), 1.), 0.);
+    vec2 rotater = vec2(cos(goldfoil.r*0.1221), sin(goldfoil.r*0.3512));
     number angle = dot(rotater, adjusted_uv)/(length(rotater)*length(adjusted_uv));
-    fac2 = max(min(5.*cos(gold_foil.g*0.3 + angle*3.14*(2.2+0.9*sin(gold_foil.r*1.65 + 0.2*gold_foil.g))) - 4. - max(2.-length(20.*adjusted_uv), 0.), 1.), 0.);
-    fac3 = 0.3*max(min(2.*sin(gold_foil.r*5. + uv.x*3. + 3.*(1.+0.5*cos(gold_foil.r*7.))) - 1., 1.), -1.);
-    fac4 = 0.3*max(min(2.*sin(gold_foil.r*6.66 + uv.y*3.8 + 3.*(1.+0.5*cos(gold_foil.r*3.414))) - 1., 1.), -1.);
+    fac2 = max(min(5.*cos(goldfoil.g*0.3 + angle*3.14*(2.2+0.9*sin(goldfoil.r*1.65 + 0.2*goldfoil.g))) - 4. - max(2.-length(20.*adjusted_uv), 0.), 1.), 0.);
+    fac3 = 0.3*max(min(2.*sin(goldfoil.r*5. + uv.x*3. + 3.*(1.+0.5*cos(goldfoil.r*7.))) - 1., 1.), -1.);
+    fac4 = 0.3*max(min(2.*sin(goldfoil.r*6.66 + uv.y*3.8 + 3.*(1.+0.5*cos(goldfoil.r*3.414))) - 1., 1.), -1.);
 
-    maxfac = max(max(fac, max(fac2, max(fac3, max(fac4, 0.0)))) + 2.2*(fac+fac2+fac3+fac4), 0.);
+    maxfac = max(max(fac, max(fac2, max(fac3, max(fac4, 1.5)))) + 2.2*(fac+fac2+fac3+fac4), 2.);
 
-    tex.r = tex.r-delta + delta*maxfac*1.;
-    tex.g = tex.g-delta + delta*maxfac*0.5;
+    tex.r = tex.r-delta + delta*maxfac*11.;
+    tex.g = tex.g-delta + delta*maxfac*0.45;
     tex.b = tex.b + delta*maxfac*0.3;
-    tex.a = min(tex.a, 0.3*tex.a + 0.9*min(0.5, maxfac*0.1));
+    tex.a = min(tex.a, 0.65*tex.a + 0.2*min(0.2, maxfac*0.1));
 
     if (uv.x > 2. * uv.x) {
-        uv = gold_foil;
+        uv = goldfoil;
     }
 
     return dissolve_mask(tex, texture_coords, uv);
