@@ -121,10 +121,17 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + goldfoil.r*8.111 + sin(goldfoil.r*1.3 + uv.y*11.2));
     number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + goldfoil.r*12. + cos(goldfoil.r*5.3 + uv.y*4.2 - uv.x*4.));
 
-    number maxfac = 0.7*max(max(fac, max(fac2, max(fac3,0.2))) + (fac+fac2+fac3*fac4), 0.);
-    tex.b = tex.g-delta + delta*maxfac*(0.35 - fac5*0.3) - 0.9;
-    //tex.r = tex.g-delta + delta*maxfac*(0.2 - fac5*0.1) - 0.1;
-    tex.g = tex.g-delta + delta*maxfac*(0.8 - fac5*0.1) - 0.1;
+    vec4 hsl = HSL(tex);
+    
+    hsl.y = 0.02;
+    hsl.z *= (0.5 - adjusted_uv.x*(cos(goldfoil.r*0.512)));
+    hsl.z *= (1.5 - adjusted_uv.y*(cos(goldfoil.r*0.512)));
+    tex = RGB(hsl)+gold_color*0.6;
+
+    number maxfac = 0.37*max(max(fac, max(fac2, max(fac3,0.8))) + (fac+fac2+fac3*fac4), 0.);
+    tex.b = tex.b-delta + delta*maxfac*(0.6 - fac5*0.3) - 0.3;
+    tex.r = tex.r-delta + delta*maxfac*(0.6 - fac5*0.1) - 0.1;
+    tex.g = tex.g-delta + delta*maxfac*(0.6 - fac5*0.1) - 0.1;
 
     fac = max(min(2.*sin((length(90.*adjusted_uv) + goldfoil.r*2.) + 3.*(1.+0.8*cos(length(113.1121*adjusted_uv) - goldfoil.r*3.121))) - 1. - max(5.-length(90.*adjusted_uv), 0.), 1.), 0.);
     vec2 rotater = vec2(cos(goldfoil.r*0.1221), sin(goldfoil.r*0.3512));
@@ -135,10 +142,10 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 
     maxfac = max(max(fac, max(fac2, max(fac3, max(fac4, 1.5)))) + 2.2*(fac+fac2+fac3+fac4), 2.);
 
-    tex.r = tex.r-delta + delta*maxfac*11.;
-    tex.g = tex.g-delta + delta*maxfac*0.45;
-    tex.b = tex.b + delta*maxfac*0.3;
-    tex.a = min(tex.a, 0.65*tex.a + 0.2*min(0.2, maxfac*0.1));
+    tex.r = tex.r+delta*maxfac*0.15;
+    tex.g = tex.g+delta*maxfac*0.1;
+    tex.b = tex.b+delta*maxfac*0;
+    //tex.a = 0.2*tex.a + 0.2*min(0.2, maxfac*0.1);
 
     if (uv.x > 2. * uv.x) {
         uv = goldfoil;
