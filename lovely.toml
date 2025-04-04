@@ -10,7 +10,7 @@ target = '''functions/state_events.lua'''
 pattern = "for i=1, hand_space do*"
 position = "before"
 payload = '''
-hand_space = hand_space + G.GAME.prism_extra_draw
+hand_space = hand_space + G.GAME.prism_extra_draw or 0
 G.GAME.prism_extra_draw = 0
 '''
 match_indent = true
