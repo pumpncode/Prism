@@ -98,6 +98,8 @@ SMODS.Enhancement({
         end
     end,
     set_ability = function(self, card, initial,delay_sprites)
+        card.ability.extra.card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))--Placeholder until i find a better way
+
         if not card.ability.extra.card and card.base then
             local _card = pseudorandom_element(G.P_CARDS, pseudoseed('double_card'))
             card.ability.extra.card = _card
