@@ -173,7 +173,7 @@ return {
             j_prism_elf = {
                 name = "Elf",
                 text = {"{X:mult,C:white}X#1#{} Mult if a {C:myth_light}Myth{} card",
-                    "as been used since",
+                    "has been used since",
                     "the end of {C:attention}last round",
                 },
             },
