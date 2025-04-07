@@ -38,9 +38,18 @@ SMODS.Edition {
 
 local orig_calculate_retriggers = SMODS.calculate_retriggers
 function SMODS.calculate_retriggers(card, context, _ret)
+    local old_check = context.retrigger_joker_check
+    local old_blue = context.blueprint
     context.retrigger_joker_check = true
     context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
+    for k, v in pairs(G.GAME.probabilities) do
+        G.GAME.probabilities[k] = v * 9999
+    end
     local do_ret = eval_card(card,context)
-    context.blueprint = nil
+    for k, v in pairs(G.GAME.probabilities) do
+        G.GAME.probabilities[k] = v / 9999
+    end
+    context.retrigger_joker_check = old_check
+    context.blueprint = old_blue
     return next(do_ret) and orig_calculate_retriggers(card, context, _ret) or {}
 end
