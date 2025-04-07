@@ -130,6 +130,7 @@ else
     ease_hands_played(-1)
 end
 """
+#for purple deck when talisman is off
 match_indent = true
 [[patches]]
 [patches.pattern]
@@ -138,6 +139,18 @@ pattern = """if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.h
 position = 'at'
 payload = """
 if G.GAME.chips - G.GAME.blind.chips >= 0 or 
+	(G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1 and G.GAME.current_round.discards_left < 1) or
+	(not G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1) then
+"""
+match_indent = true
+#for purple deck when talisman is on
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = """if to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips) or G.GAME.current_round.hands_left < 1 then"""
+position = 'at'
+payload = """
+if to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips) or 
 	(G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1 and G.GAME.current_round.discards_left < 1) or
 	(not G.GAME.modifiers.purple_deck and G.GAME.current_round.hands_left < 1) then
 """
