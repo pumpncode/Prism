@@ -48,16 +48,10 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.selling_card and context.card ~= card and pseudorandom('rich') < G.GAME.probabilities.normal / card.ability.odds then
-			ease_dollars(card.ability.money)
-			card_eval_status_text(
-				context.blueprint_card or card,
-				"extra",
-				nil,
-				nil,
-				nil,
-				{ message = localize("$") .. card.ability.money, colour = G.C.MONEY, delay = 0.45 }
-			)
-			return nil,true
+			return {
+				dollars = card.ability.money,
+				card = card
+			}
 		end
 	end,
 })
@@ -953,7 +947,7 @@ SMODS.Joker({
 				xmult = to_num(bignum(card.ability.extra.x_mult)),
 			}
 		end
-		if context.setting_blind and not context.blueprint_card then
+		if context.setting_blind and not context.blueprint then
 			local x_mult_gain = card.ability.extra.gain*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
 			ease_dollars(-G.GAME.dollars, true)
 			if bignum(x_mult_gain) > bignum(0) then 

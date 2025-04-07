@@ -16,9 +16,6 @@ SMODS.Edition {
     weight = 2,
     in_shop = true,
     extra_cost = 7,
-	config = {
-        extra = 1
-    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -31,8 +28,8 @@ SMODS.Edition {
         or (context.retrigger_joker_check and not context.retrigger_joker))
 		then
 			return {
-				message = localize("k_again_ex"),
-				repetitions = self.config.extra,
+				message = localize('k_again_ex'),
+				repetitions = 1,
 				card = card,
 			}
 		end
