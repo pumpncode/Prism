@@ -13,24 +13,37 @@ SMODS.Edition {
         vol = 0.4
     },
     discovered = true,
-    weight = 3,
-    in_shop = false,
-    extra_cost = 5,
+    weight = 2,
+    in_shop = true,
+    extra_cost = 7,
 	config = {
-        e_mult = 1.12
+        extra = 1
     },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                (card.edition or {}).e_mult or self.config.e_mult
+                (card.edition or {}).extra or self.config.extra
             }
         }
     end,
 	calculate = function(self, card, context)
-		if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
+		if context.other_card == card and ((context.repetition and context.cardarea == G.play)
+        or (context.retrigger_joker_check and not context.retrigger_joker))
+		then
 			return {
-				emult = card.edition.e_mult
+				message = localize("k_again_ex"),
+				repetitions = self.config.extra,
+				card = card,
 			}
 		end
-	end
+	end,
 }
+
+local orig_calculate_retriggers = SMODS.calculate_retriggers
+function SMODS.calculate_retriggers(card, context, _ret)
+    context.retrigger_joker_check = true
+    context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
+    local do_ret = eval_card(card,context)
+    context.blueprint = nil
+    return next(do_ret) and orig_calculate_retriggers(card, context, _ret) or {}
+end

@@ -23,6 +23,10 @@ function loc_colour(_c, _default)
     return lc(_c, _default)
 end
 
+SMODS.current_mod.optional_features = {
+	retrigger_joker = true,
+}
+
 G.PRISM.compat = {
 	sleeves = (SMODS.Mods['CardSleeves'] or {}).can_load,
 	talisman = (SMODS.Mods['Talisman'] or {}).can_load,
