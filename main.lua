@@ -103,6 +103,34 @@ SMODS.Sound({
 })
 SMODS.Sound({key = 'emult', path = 'tal_emult.wav'})
 
+SMODS.ObjectType({
+	key = "Food",
+	default = "j_gros_michel",
+	cards = {},
+	inject = function(self)
+		SMODS.ObjectType.inject(self)
+		-- insert base game food jokers
+		self:inject_card(G.P_CENTERS.j_gros_michel)
+		self:inject_card(G.P_CENTERS.j_egg)
+		self:inject_card(G.P_CENTERS.j_ice_cream)
+		self:inject_card(G.P_CENTERS.j_cavendish)
+		self:inject_card(G.P_CENTERS.j_turtle_bean)
+		self:inject_card(G.P_CENTERS.j_diet_cola)
+		self:inject_card(G.P_CENTERS.j_popcorn)
+		self:inject_card(G.P_CENTERS.j_ramen)
+		self:inject_card(G.P_CENTERS.j_selzer)
+	end,
+})
+SMODS.ObjectType({
+	key = "Pizza",
+	default = "j_prism_pizza_cap",
+	cards = {},
+	inject = function(self)
+		SMODS.ObjectType.inject(self)
+	end,
+})
+
+
 function G.PRISM.create_booster()
 	G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
 	if not G.GAME.current_round.used_packs[1] then
