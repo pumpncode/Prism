@@ -1718,16 +1718,13 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = { extra = { bonus = 0.1, x_mult = 1}, first_s=false,first_h=false,first_c=false,first_d=false},
+	config = { extra = { bonus = 0.1, x_mult = 1}, suits = {}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.extra.bonus,center.ability.extra.x_mult} }
 	end,
 	calculate = function(self, card, context)
-		if context.cardarea == G.jokers and context.before then
-			card.ability.first_s = false
-			card.ability.first_h = false
-			card.ability.first_c = false
-			card.ability.first_d = false
+		if context.cardarea == G.jokers and context.before and not context.blueprint then
+			card.ability.suits = {}
 		end
 		if context.joker_main then
 			return {
@@ -1736,27 +1733,15 @@ SMODS.Joker({
 		end
 		local upgrade = false
 		if context.cardarea == G.play and context.individual and not context.blueprint then
-			if context.other_card:is_suit('Spades') and card.ability.first_s == false then
-				card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.bonus
-				card.ability.first_s = true
-				upgrade = true
+			local suits = G.PRISM.get_suits({context.other_card})
+			for k,v in pairs(suits) do
+				if not card.ability.suits[k] and v > 0 then
+					card.ability.suits[k] = true
+					card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.bonus
+					upgrade = true
+				end
 			end
-			if context.other_card:is_suit('Hearts') and card.ability.first_h == false then
-				card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.bonus
-				card.ability.first_h = true
-				upgrade = true
-			end
-			if context.other_card:is_suit('Clubs') and card.ability.first_c == false then
-				card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.bonus
-				card.ability.first_c = true
-				upgrade = true
-			end
-			if context.other_card:is_suit('Diamonds') and card.ability.first_d == false then
-				card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.bonus
-				card.ability.first_d = true
-				upgrade = true
-			end
-			if upgrade == true then
+			if upgrade then
 				return {
 					focus = card,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),

@@ -36,7 +36,7 @@ SMODS.Edition {
 	end,
 }
 
-local orig_calculate_retriggers = SMODS.calculate_retriggers
+--[[ local orig_calculate_retriggers = SMODS.calculate_retriggers
 function SMODS.calculate_retriggers(card, context, _ret)
     local old_check = context.retrigger_joker_check
     local old_blue = context.blueprint
@@ -52,4 +52,4 @@ function SMODS.calculate_retriggers(card, context, _ret)
     context.retrigger_joker_check = old_check
     context.blueprint = old_blue
     return next(do_ret) and orig_calculate_retriggers(card, context, _ret) or {}
-end
+end ]]

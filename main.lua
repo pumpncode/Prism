@@ -68,6 +68,7 @@ if G.PRISM.config.jokers_enabled then  SMODS.load_file('objects/jokers.lua')() e
 if G.PRISM.config.myth_enabled then SMODS.load_file('objects/enhancements.lua')() end
 if G.PRISM.config.myth_enabled then SMODS.load_file('objects/myth_cards.lua')() end
 --SMODS.load_file('objects/editions.lua')()
+SMODS.load_file('objects/funcs.lua')()
 SMODS.load_file('objects/vouchers.lua')()
 SMODS.load_file('objects/decks.lua')()
 SMODS.load_file('objects/tags.lua')()
@@ -130,22 +131,6 @@ SMODS.ObjectType({
 	end,
 })
 
-
-function G.PRISM.create_booster()
-	G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
-	if not G.GAME.current_round.used_packs[1] then
-		G.GAME.current_round.used_packs[1] = get_pack('shop_pack').key
-	end
-
-	if G.GAME.current_round.used_packs[1] ~= 'USED' then 
-		local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
-		G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.used_packs[1]], {bypass_discovery_center = true, bypass_discovery_ui = true})
-		create_shop_card_ui(card, 'Booster', G.shop_booster)
-		card.ability.booster_pos = 1
-		card:start_materialize()
-		G.shop_booster:emplace(card)
-	end
-end
 --For Talisman Compatibility
 function bignum(x)
 	if G.PRISM.compat.talisman then
@@ -255,20 +240,4 @@ SMODS.current_mod.config_tab = function()
 		}
 	  }
 	}
-end
-
-function G.PRISM.remove_joker(card)
-    G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        delay = 0.7,
-        func = function()
-            play_sound('tarot1')
-            card.T.r = -0.2
-            card:juice_up(0.3, 0.4)
-            card.states.drag.is = true
-            card.children.center.pinch.x = true
-            card:start_dissolve()
-            card = nil
-            return true
-    end}))
 end
