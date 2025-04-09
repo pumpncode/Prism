@@ -67,7 +67,7 @@ end
 if G.PRISM.config.jokers_enabled then  SMODS.load_file('objects/jokers.lua')() end
 if G.PRISM.config.myth_enabled then SMODS.load_file('objects/enhancements.lua')() end
 if G.PRISM.config.myth_enabled then SMODS.load_file('objects/myth_cards.lua')() end
---SMODS.load_file('objects/editions.lua')()
+SMODS.load_file('objects/editions.lua')()
 SMODS.load_file('objects/funcs.lua')()
 SMODS.load_file('objects/vouchers.lua')()
 SMODS.load_file('objects/decks.lua')()

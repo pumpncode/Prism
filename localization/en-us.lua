@@ -599,6 +599,14 @@ return {
                     "{C:myth_light}Mega Legend Pack",
                 },
             },
+            tag_prism_gold_foil = {
+                name = "Gold Foil Tag",
+                text = {
+                    "Next {C:attention}compatible{} base",
+                    "edition shop Joker is free",
+                    "and becomes {C:dark_edition}Gold Foil"
+                },
+            },
         },
         Stake = {
             stake_prism_platinum = {

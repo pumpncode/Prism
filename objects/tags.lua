@@ -10,7 +10,6 @@ SMODS.Tag({
     atlas = 'prismtags',
     pos = {x = 0, y = 0},
     discovered = false,
-    config = { type = "new_blind_choice" },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.p_prism_large_myth
     end,
@@ -35,3 +34,29 @@ SMODS.Tag({
     end
 })
 end
+SMODS.Tag({
+    key = 'gold_foil',
+    atlas = 'prismtags',
+    pos = {x = 1, y = 0},
+    discovered = false,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_prism_gold_foil
+    end,
+    apply = function(self, tag, context)
+        if context.type == 'store_joker_modify' and not context.card.edition and not context.card.temp_edition then
+            if context.card.ability.set == 'Joker' and context.card.config.center.blueprint_compat  then
+                context.card.temp_edition = true
+                tag:yep('+', G.C.DARK_EDITION, function()
+                    context.card:set_edition('e_prism_gold_foil', true)
+                    context.card.ability.couponed = true
+                    context.card:set_cost()
+                    context.card.temp_edition = nil
+                    return true
+                end)
+        
+                tag.triggered = true
+                return true
+            end
+        end
+    end
+})
