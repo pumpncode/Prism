@@ -734,6 +734,7 @@ return {
         },
         labels = {
             prism_green_seal = "Green Seal",
+            prism_green_old_seal = "Green Seal",
             prism_moon_seal = "Moon Seal",
         }
     }
