@@ -442,6 +442,14 @@ return {
                 }
             },
         },
+        Edition = {
+            e_prism_gold_foil = {
+                name = "Gold Foil",
+                text = {
+                    "Activates {C:attention}twice{}"
+                }
+            }
+        },
         Myth = {
             c_prism_myth_druid = {
                 name = "Druid",
@@ -736,6 +744,7 @@ return {
             prism_green_seal = "Green Seal",
             prism_green_old_seal = "Green Seal",
             prism_moon_seal = "Moon Seal",
+            prism_gold_foil = "Gold Foil"
         }
     }
 }
