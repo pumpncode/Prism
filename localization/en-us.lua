@@ -546,6 +546,16 @@ return {
                     "the {C:attention}right{} card's {C:attention}Suit{}"
                 }
             },
+            c_prism_myth_egg = {
+                name = "Golden Egg",
+                text = {"Lose {C:money}$#3#{} and",
+                    "{C:green}#1# in #2#{} chance to",
+                    "add {C:dark_edition}Gold Foil{} edition",
+                    " to a random {C:attention}Joker",
+                    "{C:inactive}(Must be compatible)"
+                    
+                }
+            },
         },
         Spectral = {
             c_prism_spectral_djinn = {
