@@ -1330,7 +1330,6 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		if context.repetition and context.cardarea == G.play then
 			if context.other_card.config.center == G.P_CENTERS.m_prism_double then
-				print("yes")
 				card.ability.extra = card.ability.extra + 1
 				return {
 					message = localize('k_again_ex'),
