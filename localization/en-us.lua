@@ -346,6 +346,15 @@ return {
 
                 },
             },
+            j_prism_murano = {
+                name = "Murano Joker",
+                text = {"Played {C:attention}Glass Cards{} have",
+                    "a {C:green}#1# in #2#{} chance to",
+                    "gain {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}",
+                    "or {C:dark_edition}Polychrome{}",
+
+                },
+            }
         },
         Back = {
             b_prism_purple = {
@@ -728,7 +737,8 @@ return {
         dictionary = {
             k_myth = "Myth Card",
             b_myth_cards = "Myth Cards",
-            k_stone = "Stone",
+            k_stone_ex = "Stone",
+            k_edition_ex = "Edition",
             k_promoted = "Promoted!",
             k_prism_myth_pack = "Legend Pack",
             k_uno_reverse = "Reversed",

@@ -1201,6 +1201,64 @@ SMODS.Joker({
     end
 })
 SMODS.Joker({
+	key = "murano",
+	atlas = "prismjokers",
+	pos = {x=2,y=9},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {odds = 3}},
+	loc_vars = function(self, info_queue, center)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_glass
+		return { vars = {
+			"" .. (G.GAME and G.GAME.probabilities.normal or 1), 
+			center.ability.extra.odds
+		}}
+	end,
+	in_pool = function(self)
+		for k, v in pairs(G.playing_cards) do
+			if SMODS.has_enhancement(v,'m_glass') then return true end
+		end
+		return false
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.jokers and context.before then
+			local trigger = false
+            for k, v in ipairs(context.scoring_hand) do
+				if SMODS.has_enhancement(v,'m_glass') and not v.edition and not v.debuff then 
+					if pseudorandom('murano') < G.GAME.probabilities.normal/card.ability.extra.odds then
+						trigger = true
+						local edition = poll_edition('bismuth', nil, nil, true, {
+							'e_foil',
+							'e_holo',
+							'e_polychrome'
+					    })
+                        v:set_edition(edition)
+						G.E_MANAGER:add_event(Event({
+							func = function()
+								v:juice_up()
+								return true
+							end
+						}))
+					end
+				end
+			end
+			if trigger then
+				return {
+					message = localize('k_edition_ex'),
+                    colour = G.C.DARK_EDITION,
+					card = card,
+				}
+			end
+		end
+    end
+	
+})
+SMODS.Joker({
 	key = "medusa",
 	atlas = "prismjokers",
 	pos = {x=0,y=6},
@@ -1216,11 +1274,9 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
         if context.cardarea == G.jokers and context.before then
-			local faces = {}
 			local has_face = false
             for k, v in ipairs(context.scoring_hand) do
 				if v:is_face() then 
-					faces[#faces+1] = v
 					has_face = true
 					v:set_ability(G.P_CENTERS.m_stone,nil,true)
 					G.E_MANAGER:add_event(Event({
@@ -1233,7 +1289,7 @@ SMODS.Joker({
 			end
 			if has_face then
 				return {
-					message = localize('k_stone'),
+					message = localize('k_stone_ex'),
 					colour = HEX("D0D2D6"),
 					card = card,
 				}
