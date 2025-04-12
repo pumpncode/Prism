@@ -31,7 +31,7 @@ SMODS.Edition {
 
 local orig_calculate_retriggers = SMODS.calculate_retriggers
 function SMODS.calculate_retriggers(card, context, _ret)
-    local compat = card.config.center.blueprint_compat == true or not (card.edition and card.edition.key == "e_prism_gold_foil")
+    local compat = card.config and card.config.center and card.config.center.blueprint_compat == true or not (card.edition and card.edition.key == "e_prism_gold_foil")
     return compat and orig_calculate_retriggers(card, context, _ret) or {}
 end
 
