@@ -103,6 +103,7 @@ SMODS.Sound({
 	end,
 })
 SMODS.Sound({key = 'emult', path = 'tal_emult.wav'})
+SMODS.Sound({key = 'gold_foil', path = 'gold_foil.ogg'})
 
 SMODS.ObjectType({
 	key = "Food",

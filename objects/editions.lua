@@ -8,7 +8,7 @@ SMODS.Edition {
     key = 'gold_foil',
     shader = 'goldfoil',
     sound = {
-        sound = 'foil1',
+        sound = 'prism_gold_foil',
         per = 1,
         vol = 0.4
     },
@@ -16,13 +16,6 @@ SMODS.Edition {
     weight = 3,
     in_shop = true,
     extra_cost = 5,
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-                (card.edition or {}).extra or self.config.extra
-            }
-        }
-    end,
 	calculate = function(self, card, context)
 		if context.other_card == card and ((context.repetition and context.cardarea == G.play)
         or (context.retrigger_joker_check and not context.retrigger_joker))
