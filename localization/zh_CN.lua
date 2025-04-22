@@ -65,7 +65,7 @@ return {
             },
             j_prism_prism = {
                 name = "棱镜",
-                text = {"{C:attention}计分{}的牌被视为",
+                text = {"{C:attention}数字{}牌被视为",
                     "任何花色"
                 },
             },
@@ -218,34 +218,34 @@ return {
             },
             j_prism_hit_record = {
 
-                name = "命中记录", 
+                name = "惊尸专辑", 
                 text = {
 
                     "打出的牌", 
-                    "{C:attention}计分后{}返回牌堆", 
+                    "在{C:attention}计分后{}返回牌堆", 
                 },
             },
             j_prism_patch = {
                 name = "乐队贴纸", 
                 text = {
-                    "如果手牌中包含 {C:attention}3{} 张计分的 {C:attention}6{}", 
-                    "则创建一个 {C:dark_edition}负片{} 标签", 
+                    "如果打出的牌中包含{C:attention}3{}张计分的{C:attention}6{}", 
+                    "则创建一个{C:dark_edition}负片{}标签", 
                 },
             },
             j_prism_day = {
                 name = "白昼", 
                 text = {
-                    "如果打出的牌中只包含 {C:hearts}红桃{} 或 {C:diamonds}方块{}", 
+                    "如果打出的牌中只包含{C:hearts}红桃{}或{C:diamonds}方块{}", 
                     "则重新触发所有打出的牌", 
-                    "此牌变为 {C:attention}黑夜{}", 
+                    "此牌变为{C:attention}黑夜{}", 
                 },
             },
             j_prism_night = {
                 name = "黑夜", 
                 text = {
-                    "如果打出的手牌只包含 {C:clubs}梅花{} 或 {C:spades}黑桃{}", 
+                    "如果打出的手牌只包含{C:clubs}梅花{}或{C:spades}黑桃{}", 
                     "则重新触发所有打出的牌", 
-                    "此牌变为 {C:attention}白昼{}", 
+                    "此牌变为{C:attention}白昼{}", 
                 },
             },
             j_prism_metalhead = {
@@ -257,10 +257,59 @@ return {
             j_prism_shork = {
                 name = "鲨鱼玩偶",
                 text = {"所有未来的{C:spectral}版本{}",
-                    "{C:dark_edition}变为多彩版"  -- 修改后
+                    "{C:dark_edition}变为多彩"  -- 修改后
                 },
             },
-        },
+            j_prism_schrodinger = {
+                name = "薛定谔的猫",
+                text = {
+                    "重新触发你打出的{C:attention}双生牌{}一次",
+                    "连续计分的{C:attention}双生牌{}",
+                    "会使后续的效果升级"
+                },
+            },
+            j_prism_hypercube = {
+                name = "超立方",
+                text = {
+                    "如果你手中有一手{C:attention}四条{}",
+		    "{X:dark_edition,C:white}^#1#{}倍率",
+                },
+            },
+            j_prism_pizza_cap = {
+                name = "卡布里秋莎披萨",
+                text = {"你下{C:attention}#2#{}张打出的",
+                    "{C:spades}黑桃{}花色牌在计分时",
+                    "给予{C:chips}+#1#{}筹码",
+                    "{s:0.8}升级未来的披萨卡",
+
+                },
+            },
+            j_prism_pizza_mar = {
+                name = "玛格丽特披萨",
+                text = {"你下{C:attention}#2#{}张打出的",
+                    "{C:hearts}红心{}花色牌在计分时",
+                    "给予{X:red,C:white}X#1#{}倍率",
+                    "{s:0.8}升级未来的披萨卡",
+                },
+            },
+            j_prism_pizza_for = {
+                name = "四喜披萨",
+                text = {"你下{C:attention}#2#{}张打出的",
+                    "{C:diamonds}方片{}花色牌在计分时有",
+                    "{C:green}#3#/#4#{}几率获得{C:money}$#1#{}",
+                    "{s:0.8}升级未来的披萨卡",
+
+                },
+            },
+            j_prism_pizza_ruc = {
+                name = "田园披萨",
+                text = {"你下{C:attention}#2#{}张打出的",
+                    "{C:clubs}梅花{}花色牌在",
+                    "计分时给予{C:red}+#1#{}倍率",
+                    "{s:0.8}升级未来的披萨卡",
+                },
+            },
+	},
         Back = {
             b_prism_purple = {
                 name = "紫色牌组",
@@ -540,8 +589,15 @@ return {
             },
             prism_green_seal = {
                 name = "绿色蜡封",
+                text = {"{C:attention}无视{}选择上限",
+                    "有{C:green}#1#/#2#{}的几率",
+                    "摧毁此牌",
+                }, 
+            },
+            prism_green_old_seal = {
+                name = "绿色蜡封",
                 text = {"在回合开始时",
-                    "有{C:green}1/#1#{}的几率",
+                    "有{C:green}1/2{}的几率",
                     "抽取这张牌"
                 },
             },
@@ -561,6 +617,15 @@ return {
                     "难度下获胜",
                 },
             },
+            undiscovered_myth = {
+                name = '未发现神话牌',
+                text = {
+                    '在非预设局',
+                    '中购买或',
+		    '使用此牌',
+		    '以了解其效果'
+		},
+	    },
         },
         Blind = {
             bl_prism_rose_club = {
@@ -592,7 +657,8 @@ return {
             c_prism_mvp = "战场主宰",
         },
         dictionary = {
-            k_stone = "石头",
+            k_myth = "神话牌",
+	    k_stone = "石头",
             k_promoted = "晋升！",
             k_prism_myth_pack = "传说包",
             k_uno_reverse = "反转",
@@ -614,6 +680,8 @@ return {
             prism_jokers_enabled = "小丑牌",
             prism_myth_enabled = "神话牌",
             prism_blinds_enabled = "BOSS盲注",
+            prism_legacy_green = "使用旧版本绿色蜡封",
+            prism_pizza_music = "披萨音乐",
             prism_feature_enable = "选择要启用的功能：",
             prism_requires_restart = "需要重启游戏！",
         },
@@ -622,6 +690,7 @@ return {
         },
         labels = {
             prism_green_seal = "绿色蜡封",
+            prism_green_old_seal = "绿色蜡封",
             prism_moon_seal = "月球蜡封",
         }
     }
