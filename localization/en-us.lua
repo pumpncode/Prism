@@ -72,8 +72,8 @@ return {
             },
             j_prism_minstrel = {
                 name = "Minstrel",
-                text = {"Create a {C:myth_light}Myth{} card",
-                    "when {C:attention}Blind{} is selected",
+                text = {"Create a {C:myth_light}Myth{} card when",
+                    "{C:attention}Small{} or {C:attention}Big Blind{} is selected",
                     "{C:inactive}(Must have room)",
                 },
             },

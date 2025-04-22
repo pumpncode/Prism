@@ -1353,7 +1353,8 @@ SMODS.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	calculate = function(self, card, context)
-		if context.setting_blind and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+		if context.setting_blind and not context.blind.boss and not (context.blueprint_card or card).getting_sliced
+		and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
 			G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
 			play_sound("timpani")
 			local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'minst')
