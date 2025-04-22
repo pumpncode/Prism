@@ -38,6 +38,7 @@ G.PRISM.compat = {
 
 function SMODS.current_mod.reset_game_globals(run_start)
 	if run_start then
+		G.GAME.last_myth = nil
 		G.GAME.pool_flags.day_can_spawn = true
 		G.GAME.pool_flags.night_can_spawn = false
 

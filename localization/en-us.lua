@@ -72,8 +72,8 @@ return {
             },
             j_prism_minstrel = {
                 name = "Minstrel",
-                text = {"Create a {C:myth_light}Myth{} card",
-                    "when {C:attention}Blind{} is selected",
+                text = {"Create a {C:myth_light}Myth{} card when",
+                    "{C:attention}Small{} or {C:attention}Big Blind{} is selected",
                     "{C:inactive}(Must have room)",
                 },
             },
@@ -353,6 +353,14 @@ return {
                     "gain {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}",
                     "or {C:dark_edition}Polychrome{}",
 
+                },
+            },
+            j_prism_romantic = {
+                name = "Romantic Warrior",
+                text = {"Create the {C:attention}last {C:myth_light}Myth{}",
+                    "card used during this run",
+                    "if played hand contains a",
+                    "scoring {C:hearts}Hearth{} and {C:spades}Spade",
                 },
             }
         },
