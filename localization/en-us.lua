@@ -354,6 +354,14 @@ return {
                     "or {C:dark_edition}Polychrome{}",
 
                 },
+            },
+            j_prism_romantic = {
+                name = "Romantic Warrior",
+                text = {"Create the {C:attention}last {C:myth_light}Myth{}",
+                    "card used during this run",
+                    "if played hand contains a",
+                    "scoring {C:hearts}Hearth{} and {C:spades}Spade",
+                },
             }
         },
         Back = {

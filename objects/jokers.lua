@@ -1515,6 +1515,55 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	end
 	return nil
 end
+if G.PRISM.config.myth_enabled then
+SMODS.Joker({
+	key = "romantic",
+	atlas = "prismjokers",
+	pos = {x=2,y=13},
+	rarity = 3,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	loc_vars = function(self, info_queue, center)
+		local myth = G.GAME.last_myth and G.P_CENTERS[G.GAME.last_myth] or nil
+		local last_myth = myth and localize{type = 'name_text', key = myth.key, set = myth.set} or localize('k_none')
+		local colour = not myth and G.C.RED or G.C.GREEN
+		return {
+			main_end = {
+                {n=G.UIT.C, config={align = "bm", padding = 0.02}, nodes={
+                    {n=G.UIT.C, config={align = "m", colour = colour, r = 0.05, padding = 0.05}, nodes={
+                        {n=G.UIT.T, config={text = ' '..last_myth..' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.3, shadow = true}},
+                    }}
+                }}
+            }
+		}
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+			local hearts = 0
+			local spades = 0
+			for i = 1, #context.scoring_hand do
+				if context.scoring_hand[i]:is_suit("Hearts") then hearts = hearts + 1 end
+				if context.scoring_hand[i]:is_suit("Spades") then spades = spades + 1 end
+			end
+			if hearts >= 1 and spades >= 1 then
+				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+				play_sound("timpani")
+				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, G.GAME.last_myth, 'return')
+				myth:add_to_deck()
+				G.consumeables:emplace(myth)
+				G.GAME.consumeable_buffer = 0
+				myth:juice_up(0.3, 0.5)
+				card:juice_up(0.3, 0.5)
+				return nil,true
+			end
+		end
+	end
+})
+end
 SMODS.Joker({
 	key = "pie",
 	atlas = "prismjokers",

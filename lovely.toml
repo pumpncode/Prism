@@ -256,3 +256,30 @@ payload = '''
 SC = Card(G.ROOM.T.w/2 - SC_scale*G.CARD_W/2, 10. + G.ROOM.T.h/2 - SC_scale*G.CARD_H/2, SC_scale*G.CARD_W, SC_scale*G.CARD_H, G.P_CARDS.empty, G.P_CENTERS['j_prism_prism'],{bypass_discovery_center = true, bypass_discovery_ui = true})
 '''
 match_indent = true
+
+#romantic warrior
+[[patches]]
+[patches.pattern]
+target = "functions/misc_functions.lua"
+pattern = "if card.config.center.set == 'Tarot' or card.config.center.set == 'Planet' then "
+position = "before"
+payload = '''
+if card.config.center.set == 'Myth' then 
+	G.E_MANAGER:add_event(Event({
+		trigger = 'immediate',
+		func = function()
+		G.E_MANAGER:add_event(Event({
+			trigger = 'immediate',
+			func = function()
+			G.GAME.last_myth = card.config.center_key
+				return true
+			end
+		}))
+			return true
+		end
+	}))
+end
+'''
+match_indent = true
+
+
