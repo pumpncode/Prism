@@ -4,7 +4,13 @@ SMODS.Atlas {
     px = 71,
     py = 95
 }
-SMODS.Joker({
+
+function G.PRISM.Joker(table)
+	if table.dependency or table.dependency == nil then
+		SMODS.Joker(table)
+	end
+end
+G.PRISM.Joker({
 	key = "polydactyly",
 	atlas = "prismjokers",
 	pos = {x=2,y=2},
@@ -25,7 +31,7 @@ SMODS.Joker({
 		end
 	end,
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "rich_joker",
 	atlas = "prismjokers",
 	pos = {x=0,y=12},
@@ -55,7 +61,7 @@ SMODS.Joker({
 		end
 	end,
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "hit_record",
 	atlas = "prismjokers",
 	pos = {x=0,y=11},
@@ -73,7 +79,7 @@ SMODS.Joker({
 	end
 })
 
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "motherboard",
 	atlas = "prismjokers",
 	pos = {x=1,y=4},
@@ -107,7 +113,7 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "ghost",
 	atlas = "prismjokers",
 	pos = {x=0,y=13},
@@ -131,7 +137,7 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "pizza_cap",
 	atlas = "prismjokers",
 	pos = {x=3,y=0},
@@ -174,7 +180,7 @@ SMODS.Joker({
 		card.ability.extra.chips = card.ability.extra.chips + (40 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "pizza_mar",
 	atlas = "prismjokers",
 	pos = {x=3,y=1},
@@ -216,7 +222,7 @@ SMODS.Joker({
 		card.ability.extra.x_mult = card.ability.extra.x_mult + (0.2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "pizza_for",
 	atlas = "prismjokers",
 	pos = {x=3,y=2},
@@ -260,7 +266,7 @@ SMODS.Joker({
 		card.ability.extra.money = card.ability.extra.money + (2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "pizza_ruc",
 	atlas = "prismjokers",
 	pos = {x=3,y=3},
@@ -302,8 +308,9 @@ SMODS.Joker({
 		card.ability.extra.mult = card.ability.extra.mult + (6 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-if G.PRISM.compat.paperback then
-SMODS.Joker({
+
+G.PRISM.Joker({
+	dependency = G.PRISM.compat.paperback,
 	key = "pizza_haw",
 	atlas = "prismjokers",
 	pos = {x=3,y=4},
@@ -351,7 +358,8 @@ SMODS.Joker({
 		card.ability.extra.max_money = card.ability.extra.max_money + (5 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.compat.paperback,
 	key = "pizza_det",
 	atlas = "prismjokers",
 	pos = {x=3,y=5},
@@ -395,75 +403,74 @@ SMODS.Joker({
 		card.ability.extra.min_money = card.ability.extra.x_chips + (0.2 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
-end
-if G.PRISM.compat.mintys then
-	SMODS.Joker({
-		key = "pizza_con",
-		atlas = "prismjokers",
-		pos = {x=3,y=6},
-		rarity = 1,
-		cost = 5,
-		unlocked = true,
-		discovered = false,
-		blueprint_compat = true,
-		eternal_compat = false,
-		perishable_compat = true,
-		pools = {
-			Food = true,
-			Pizza = true
-		},
-		config = {extra = {x_mult = 2.5, uses = 15,again = 0,odds = 3}},
-		loc_vars = function(self, info_queue, center)
-			return { vars = { center.ability.extra.x_mult,center.ability.extra.uses,
-			"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
-		end,
-		calculate = function(self, card, context)
-			if context.cardarea == G.play and context.individual then
-				if context.other_card:is_3() and card.ability.extra.uses > 0 then
-					if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
-					local trycount = context.other_card:is_3()
-					local repcount = 0
-					for try=1,trycount do
-						if pseudorandom('cone') < G.GAME.probabilities.normal/card.ability.extra.odds then 
-							repcount = repcount + 1
-						end
-					end
-					card.ability.extra.again = repcount
-					--sendDebugMessage('Count (individual): '..card.ability.extra.again)
-					if card.ability.extra.again ~= 0 then
-						return {
-							xmult = card.ability.extra.x_mult,
-							card = card
-						}
+
+G.PRISM.Joker({
+	dependency = G.PRISM.compat.mintys,
+	key = "pizza_con",
+	atlas = "prismjokers",
+	pos = {x=3,y=6},
+	rarity = 1,
+	cost = 5,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = false,
+	perishable_compat = true,
+	pools = {
+		Food = true,
+		Pizza = true
+	},
+	config = {extra = {x_mult = 2.5, uses = 15,again = 0,odds = 3}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.x_mult,center.ability.extra.uses,
+		"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
+	end,
+	calculate = function(self, card, context)
+		if context.cardarea == G.play and context.individual then
+			if context.other_card:is_3() and card.ability.extra.uses > 0 then
+				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
+				local trycount = context.other_card:is_3()
+				local repcount = 0
+				for try=1,trycount do
+					if pseudorandom('cone') < G.GAME.probabilities.normal/card.ability.extra.odds then 
+						repcount = repcount + 1
 					end
 				end
-			end
-			if context.retrigger_joker_check and card.ability.extra.again ~= 0 and context.other_card == card then 
-				local reps = card.ability.extra.again-1
-				card.ability.extra.again = 0
-				if reps >= 1 then 
+				card.ability.extra.again = repcount
+				--sendDebugMessage('Count (individual): '..card.ability.extra.again)
+				if card.ability.extra.again ~= 0 then
 					return {
-						message = localize('k_again_ex'),
-						message_card = card,
-						repetitions = reps
+						xmult = card.ability.extra.x_mult,
+						card = card
 					}
 				end
 			end
-			if context.after and not context.blueprint and card.ability.extra.uses < 1 then
-				G.PRISM.remove_joker(card)
-				G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
+		end
+		if context.retrigger_joker_check and card.ability.extra.again ~= 0 and context.other_card == card then 
+			local reps = card.ability.extra.again-1
+			card.ability.extra.again = 0
+			if reps >= 1 then 
 				return {
-					message = localize('k_eaten_ex'),
-					colour = G.C.RED,
+					message = localize('k_again_ex'),
+					message_card = card,
+					repetitions = reps
 				}
 			end
-		end,
-		set_ability = function(self, card, initial,delay_sprites)
-			card.ability.extra.x_mult = card.ability.extra.x_mult + (2.5 * (G.GAME.prism_pizza_lv or 0))
 		end
-	})
-end
-SMODS.Joker({
+		if context.after and not context.blueprint and card.ability.extra.uses < 1 then
+			G.PRISM.remove_joker(card)
+			G.GAME.prism_pizza_lv = G.GAME.prism_pizza_lv + 1
+			return {
+				message = localize('k_eaten_ex'),
+				colour = G.C.RED,
+			}
+		end
+	end,
+	set_ability = function(self, card, initial,delay_sprites)
+		card.ability.extra.x_mult = card.ability.extra.x_mult + (2.5 * (G.GAME.prism_pizza_lv or 0))
+	end
+})
+G.PRISM.Joker({
 	key = "sculptor",
 	atlas = "prismjokers",
 	pos = {x=1,y=3},
@@ -502,8 +509,8 @@ SMODS.Joker({
     end
 	
 })
-if G.PRISM.config.myth_enabled then
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "happily",
 	atlas = "prismjokers",
 	pos = {x=1,y=12},
@@ -537,7 +544,8 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "geo_hammer",
 	atlas = "prismjokers",
 	pos = {x=0,y=3},
@@ -573,8 +581,7 @@ SMODS.Joker({
 		end
 	end
 })
-end
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "air_balloon",
 	atlas = "prismjokers",
 	pos = {x=0,y=0},
@@ -614,7 +621,7 @@ SMODS.Joker({
         end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "metalhead",
 	atlas = "prismjokers",
 	pos = {x=2,y=5},
@@ -661,7 +668,7 @@ function SMODS.get_enhancements(card, extra_only)
 	end
 	return enhancements
 end
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "exotic_card",
 	atlas = "prismjokers",
 	pos = {x=0,y=2},
@@ -690,7 +697,7 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "day",
 	atlas = "prismjokers",
 	pos = {x=2,y=7},
@@ -747,7 +754,7 @@ SMODS.Joker({
 		G.GAME.pool_flags.night_can_spawn = true
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "night",
 	atlas = "prismjokers",
 	pos = {x=2,y=8},
@@ -804,7 +811,7 @@ SMODS.Joker({
 		G.GAME.pool_flags.day_can_spawn = true
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "whiskey",
 	atlas = "prismjokers",
 	pos = {x=2,y=3},
@@ -844,7 +851,7 @@ SMODS.Joker({
         end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "solo_joker",
 	atlas = "prismjokers",
 	pos = {x=1,y=14},
@@ -872,7 +879,7 @@ SMODS.Joker({
         end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "cookie",
 	atlas = "prismjokers",
 	pos = {x=2,y=0},
@@ -926,7 +933,7 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "economics",
 	atlas = "prismjokers",
 	pos = {x=1,y=8},
@@ -961,7 +968,7 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "patch",
 	atlas = "prismjokers",
 	pos = {x=2,y=6},
@@ -999,8 +1006,8 @@ SMODS.Joker({
 		end
 	end
 })
-if G.PRISM.config.myth_enabled then
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "elf",
 	atlas = "prismjokers",
 	pos = {x=1,y=13},
@@ -1066,8 +1073,8 @@ SMODS.Joker({
 		end
     end
 })
-end
-SMODS.Joker({
+
+G.PRISM.Joker({
 	key = "vaquero",
 	atlas = "prismjokers",
 	pos = {x=1,y=2},
@@ -1102,7 +1109,7 @@ SMODS.Joker({
         end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "hopscotch",
 	atlas = "prismjokers",
 	pos = {x=1,y=10},
@@ -1145,7 +1152,7 @@ SMODS.Joker({
         end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "aces_high",
 	atlas = "prismjokers",
 	pos = {x=1,y=11},
@@ -1200,7 +1207,7 @@ SMODS.Joker({
 		end
     end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "murano",
 	atlas = "prismjokers",
 	pos = {x=2,y=9},
@@ -1258,7 +1265,7 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "medusa",
 	atlas = "prismjokers",
 	pos = {x=0,y=6},
@@ -1298,8 +1305,8 @@ SMODS.Joker({
     end
 	
 })
-if G.PRISM.config.myth_enabled then
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "amethyst",
 	atlas = "prismjokers",
 	pos = {x=1,y=7},
@@ -1341,7 +1348,8 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "minstrel",
 	atlas = "prismjokers",
 	pos = {x=1,y=0},
@@ -1366,7 +1374,8 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",
 	atlas = "prismjokers",
 	pos = {x=2,y=12},
@@ -1402,8 +1411,7 @@ SMODS.Joker({
 		end
 	end
 })
-end
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "promotion",
 	atlas = "prismjokers",
 	pos = {x=0,y=9},
@@ -1439,7 +1447,7 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "reverse_card",
 	atlas = "prismjokers",
 	pos = {x=1,y=5},
@@ -1464,7 +1472,7 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "vip_pass",
 	atlas = "prismjokers",
 	pos = {x=1,y=6},
@@ -1516,8 +1524,8 @@ function SMODS.poll_rarity(_pool_key, _rand_key)
 	end
 	return nil
 end
-if G.PRISM.config.myth_enabled then
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "romantic",
 	atlas = "prismjokers",
 	pos = {x=2,y=13},
@@ -1564,8 +1572,7 @@ SMODS.Joker({
 		end
 	end
 })
-end
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "pie",
 	atlas = "prismjokers",
 	pos = {x=2,y=1},
@@ -1600,7 +1607,7 @@ SMODS.Joker({
     end
 	
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "plasma_lamp",
 	atlas = "prismjokers",
 	pos = {x=1,y=9},
@@ -1660,7 +1667,7 @@ SMODS.Joker({
 		end
 	end
 })
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "razor_blade",
 	atlas = "prismjokers",
 	pos = {x=0,y=10},
@@ -1706,8 +1713,8 @@ SMODS.Joker({
 		end
 	end
 })
-if not G.PRISM.compat.darkside then 
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = not G.PRISM.compat.darkside,
 	key = "shork",
 	atlas = "prismjokers",
 	pos = {x=2,y=4},
@@ -1731,8 +1738,8 @@ function Card.set_edition(self,edition, immediate, silent)
 		orig_set_edition(self,edition, immediate, silent)
 	end
 end
-else
-SMODS.Joker({
+G.PRISM.Joker({
+	dependency = G.PRISM.compat.darkside,
 	key = "shork_dark",
 	atlas = "prismjokers",
 	pos = {x=2,y=4},
@@ -1756,8 +1763,7 @@ function Card.set_edition(self,edition, immediate, silent)
 		orig_set_edition(self,edition, immediate, silent)
 	end
 end
-end
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "hypercube",
 	atlas = "prismjokers",
 	pos = {x=2,y=10},
@@ -1786,7 +1792,7 @@ SMODS.Joker({
 	end
 }) 
 
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "prism",
 	atlas = "prismjokers",
 	pos = {x=0,y=14},
@@ -1810,7 +1816,7 @@ function Card.is_suit(self, suit, bypass_debuff, flush_calc)
     return orig_is_suit(self, suit, bypass_debuff, flush_calc)
 end
 
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "harlequin",
 	atlas = "prismjokers",
 	pos = { x = 0, y = 4 },
@@ -1858,7 +1864,7 @@ SMODS.Joker({
 	
 })
 
-SMODS.Joker({
+G.PRISM.Joker({
 	key = "rigoletto",
 	atlas = "prismjokers",
 	pos = { x = 0, y = 7 },
