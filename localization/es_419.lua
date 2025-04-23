@@ -73,7 +73,7 @@ return {
             j_prism_minstrel = {
                 name = "Trovador",
                 text = {"Genera una carta de {C:myth_light}Mito{}",
-                    "cuando se selecciona la {C:attention}ciega{}",
+                    "cuando se selecciona la {C:attention}ciega pequeña o grande{}",
                     "{C:inactive}(Debe haber espacio)",
                 },
             },
@@ -240,7 +240,7 @@ return {
              j_prism_day = {
                 name = "Día",
                 text = {"Si la mano jugada contiene",
-                    "solo {C:hearts}Corazones{} oo {C:diamonds}Diamantes{},",
+                    "solo {C:hearts}Corazones{} o {C:diamonds}Diamantes{},",
                     "reactiva todas las cartas jugadas",
                     "y este comodín se transforma en {C:attention}Noche"
                 },
@@ -340,6 +340,23 @@ return {
 
                 },
             },
+            j_prism_murano = {
+                name = "Comodín Murano",
+                text = {"Las {C:attention}cartas de vidrio{} jugadas tienen",
+                    "{C:green}#1# en #2#{} probabilidades de",
+                    "obtener {C:dark_edition}Laminado{}, {C:dark_edition}Holográfica{}",
+                    "o {C:dark_edition}Polícroma{}",
+
+                },
+            },
+            j_prism_romantic = {
+                name = "Guerrero romántico",
+                text = {"Crea la {C:attention}última {C:myth_light}carta de mito{}",
+                    "usada en esta partida",
+                    "si la mano jugada contiene un",
+                    "{C:hearts}Corazón{} y {C:spades}Espada{} que puntuén",
+                },
+            }
         },
         Back = {
              b_prism_purple = {
@@ -432,9 +449,17 @@ return {
                 name = "Carta eco",
                 text = {"{C:attention}Reactiva{} esta carta",
                     "por cada otra {C:attention}Carta",
-                    "{C:attention}Eco{} jugada o en tu mano"
+                    "{C:attention}Eco{} jugada"
                 }
             },
+        },
+         Edition = {
+            e_prism_gold_foil = {
+                name = "Laminado dorado",
+                text = {
+                    "Se activa {C:attention}2 veces{}"
+                }
+            }
         },
         Myth = {
             c_prism_myth_druid = {
@@ -529,6 +554,16 @@ return {
                     "{C:attention}palo{} de la carta {C:attention}derecha{}"
                 }
             },
+             c_prism_myth_egg = {
+                name = "Huevo dorado",
+                text = {"Pierde {C:money}$#3#{}",
+                    "{C:green}#1# en #2#{} probabilidades de",
+                    "agregar la edición {C:dark_edition}Laminado dorado{}",
+                    " a un {C:attention}comodín al azar",
+                    "{C:inactive}(Debe ser compatible)"
+                    
+                }
+            },
         },
         Spectral = {
             c_prism_spectral_djinn = {
@@ -582,6 +617,14 @@ return {
                     "{C:myth_light}Paquete mítico mega",
                 },
             },
+              tag_prism_gold_foil = {
+                name = "Etiqueta de laminado dorado",
+                text = {
+                    "El próximo comodín {C:attention}compatible{} de la tienda base",
+                    "de la edición base es gratis y",
+                    "se vuelve {C:dark_edition}laminado dorado"
+                },
+            },
         },
          Stake = {
             stake_prism_platinum = {
@@ -622,6 +665,13 @@ return {
                 },
             },
             prism_green_seal = {
+                name = "Sello verde",
+                text = {"{C:attention}Ignora{} el límite de selección de cartas",
+                    "{C:green}#1# en #2#{} probabilidades de",
+                    "destruir esta carta",
+                },
+            },
+            prism_green_old_seal = {
                 name = "Sello verde",
                 text = {"{C:green}1 en #1#{} probabilidades",
                     "de aparecer en tu mano",
@@ -712,7 +762,9 @@ return {
         },
         labels = {
             prism_green_seal = "Sello verde",
+            prism_green_old_seal = "Sello verde",
             prism_moon_seal = "Sello lunar",
+            prism_gold_foil = "Laminado dorado"
         }
     }
 }
