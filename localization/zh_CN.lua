@@ -9,9 +9,9 @@ return {
             },
             j_prism_razor_blade = {
                 name = "剃须刀片",
-                text = {"每个不在",
-                    "你牌组中的{C:attention}点数{}",
-                    "提供{X:mult,C:white} X#1#{}倍率",
+                text = {"每有一个从完整牌组",
+                    "完全移除的{C:attention}点数{}",
+                    "这张牌获得{X:mult,C:white} X#1#{}倍率",
                     "{C:inactive}(当前为{X:mult,C:white}X#2# {C:inactive}倍率)"
                 },
             },
@@ -309,6 +309,22 @@ return {
                     "{s:0.8}升级未来的披萨卡",
                 },
             },
+            j_prism_romantic = {
+                name = "浪漫战士",
+                text = {"如果打出的牌中包含",
+                    "计分的{C:hearts}红心{}{C:spades}黑桃{}牌",
+		    " 创建你使用过的{C:attention}上一张{C:myth_light}神话牌{}",
+                },
+            },
+            j_prism_murano = {
+                name = "穆拉诺小丑",
+                text = {"打出的{C:attention}玻璃牌{}有",
+                    "{C:green}#1#/#2#{}的几率获得",
+                    "{C:dark_edition}闪箔{}, {C:dark_edition}镭射{}",
+                    "or {C:dark_edition}多彩{}",
+
+                },
+            },
 	},
         Back = {
             b_prism_purple = {
@@ -403,6 +419,14 @@ return {
                     "{C:attention}重新触发{}这张牌"
                 }
             },
+        },
+        Edition = {
+            e_prism_gold_foil = {
+                name = "Gold Foil",
+                text = {
+                    "触发{C:attention}两次{}"
+                }
+            }
         },
         Myth = {
             c_prism_myth_druid = {
@@ -499,6 +523,15 @@ return {
                     "{C:attention}右侧{}牌的{C:attention}花色{}"
                 }
             },
+            c_prism_myth_egg = {
+                name = "金蛋",
+                text = {"失去{C:money}$#3#{}",
+                    "有{C:green}#1#/#2#{}的几率为",
+                    "一张随机的小丑牌添加{C:dark_edition}金箔{}",
+                    "{C:inactive}(必须兼容)"
+                    
+                }
+            },
         },
         Spectral = {
             c_prism_spectral_djinn = {
@@ -547,6 +580,14 @@ return {
                 text = {
                     "获得一个免费的",
                     "{C:myth_light}超级传说包",
+                },
+            },
+            tag_prism_gold_foil = {
+                name = "Gold Foil Tag",
+                text = {
+                    "商店里的下一张{C:attention}兼容{}的",
+                    "基础版本小丑牌将会免费",
+                    "且变为{C:dark_edition}金箔"
                 },
             },
         },
@@ -658,7 +699,9 @@ return {
         },
         dictionary = {
             k_myth = "神话牌",
-	    k_stone = "石头",
+            b_myth_cards = "神话牌",
+            k_stone_ex = "石头",
+            k_edition_ex = "版本",
             k_promoted = "晋升！",
             k_prism_myth_pack = "传说包",
             k_uno_reverse = "反转",
@@ -692,6 +735,7 @@ return {
             prism_green_seal = "绿色蜡封",
             prism_green_old_seal = "绿色蜡封",
             prism_moon_seal = "月球蜡封",
+            prism_gold_foil = "金箔",
         }
     }
 }
