@@ -367,7 +367,7 @@ return {
                 name = "Swiss Army Knife",
                 text = {"{C:green}#4# in #5#{} chance for played",
                 "cards to permanently gain",
-                "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult, or {X:red,C:white}X#3#{} Mult",
+                "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult or {X:red,C:white}X#3#{} Mult",
                 "at {C:attention}random{} when scored"
             },
             }

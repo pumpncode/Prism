@@ -1784,19 +1784,23 @@ G.PRISM.Joker({
         if context.cardarea == G.play and context.individual then
 			if pseudorandom('swiss') < G.GAME.probabilities.normal / card.ability.extra.odds then
 				local poll = pseudorandom('swiss_poll')
+				local color = nil
 				if poll < 1/3 then
-					context.other_card.ability.bonus_chips = context.other_card.ability.bonus_chips or 0
-					context.other_card.ability.bonus_chips = context.other_card.ability.bonus_chips + card.ability.extra.chips
+					context.other_card.ability.perma_bonus = context.other_card.ability.perma_bonus or 0
+					context.other_card.ability.perma_bonus = context.other_card.ability.perma_bonus + card.ability.extra.chips
+					color = G.C.CHIPS
 				elseif poll < 2/3 then
 					context.other_card.ability.perma_mult = context.other_card.ability.perma_mult or 0
 					context.other_card.ability.perma_mult = context.other_card.ability.perma_mult + card.ability.extra.mult
+					color = G.C.MULT
 				else
 					context.other_card.ability.perma_x_mult = context.other_card.ability.perma_x_mult or 0
 					context.other_card.ability.perma_x_mult = context.other_card.ability.perma_x_mult + card.ability.extra.x_mult
+					color = G.C.MULT
 				end
                 return {
                     message = localize('k_upgrade_ex'),
-                    
+					colour = color,
                     card = card
                 }
 			end
