@@ -1764,6 +1764,47 @@ function Card.set_edition(self,edition, immediate, silent)
 	end
 end
 G.PRISM.Joker({
+	key = "swiss",
+	atlas = "prismjokers",
+	pos = {x=2,y=14},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {chips = 15, mult = 3, x_mult = 0.1,odds = 2}},
+	loc_vars = function(self, info_queue, center)
+		return {
+		vars = {center.ability.extra.chips,center.ability.extra.mult,center.ability.extra.x_mult,G.GAME.probabilities.normal,center.ability.extra.odds}
+		}
+	end,
+	calculate = function(self, card, context)
+        if context.cardarea == G.play and context.individual then
+			if pseudorandom('swiss') < G.GAME.probabilities.normal / card.ability.extra.odds then
+				local poll = pseudorandom('swiss_poll')
+				if poll < 1/3 then
+					context.other_card.ability.bonus_chips = context.other_card.ability.bonus_chips or 0
+					context.other_card.ability.bonus_chips = context.other_card.ability.bonus_chips + card.ability.extra.chips
+				elseif poll < 2/3 then
+					context.other_card.ability.perma_mult = context.other_card.ability.perma_mult or 0
+					context.other_card.ability.perma_mult = context.other_card.ability.perma_mult + card.ability.extra.mult
+				else
+					context.other_card.ability.perma_x_mult = context.other_card.ability.perma_x_mult or 0
+					context.other_card.ability.perma_x_mult = context.other_card.ability.perma_x_mult + card.ability.extra.x_mult
+				end
+                return {
+                    message = localize('k_upgrade_ex'),
+                    
+                    card = card
+                }
+			end
+        end
+    end
+	
+})
+G.PRISM.Joker({
 	key = "hypercube",
 	atlas = "prismjokers",
 	pos = {x=2,y=10},
