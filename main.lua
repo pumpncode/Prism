@@ -28,12 +28,12 @@ SMODS.current_mod.optional_features = {
 }
 
 G.PRISM.compat = {
-	sleeves = (SMODS.Mods['CardSleeves'] or {}).can_load,
-	talisman = (SMODS.Mods['Talisman'] or {}).can_load,
-	buffoonery = (SMODS.Mods['Buffoonery'] or {}).can_load,
-	paperback = (SMODS.Mods['paperback'] or {}).can_load,
-	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load,
-	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load,
+	sleeves = (SMODS.Mods['CardSleeves'] or {}).can_load or false,
+	talisman = (SMODS.Mods['Talisman'] or {}).can_load or false,
+	buffoonery = (SMODS.Mods['Buffoonery'] or {}).can_load or false,
+	paperback = (SMODS.Mods['paperback'] or {}).can_load or false,
+	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load or false,
+	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load or false,
 }
 
 function SMODS.current_mod.reset_game_globals(run_start)
