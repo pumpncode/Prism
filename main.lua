@@ -92,13 +92,13 @@ SMODS.Sound({
 	pitch = 1,
 	select_music_track = function()
 		return
-			(next(find_joker("j_prism_pizza_cap"))
-			or next(find_joker("j_prism_pizza_mar"))
-			or next(find_joker("j_prism_pizza_for"))
-			or next(find_joker("j_prism_pizza_ruc"))
-			or next(find_joker("j_prism_pizza_haw"))
-			or next(find_joker("j_prism_pizza_det"))
-			or next(find_joker("j_crv_stoneoven")))
+			(next(find_joker("j_prism_pizza_cap",true))
+			or next(find_joker("j_prism_pizza_mar",true))
+			or next(find_joker("j_prism_pizza_for",true))
+			or next(find_joker("j_prism_pizza_ruc",true))
+			or next(find_joker("j_prism_pizza_haw",true))
+			or next(find_joker("j_prism_pizza_det",true))
+			or next(find_joker("j_crv_stoneoven",true)))
 			and G.PRISM.config.pizza_music
 			and 6
 	end,

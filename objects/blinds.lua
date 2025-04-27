@@ -17,7 +17,7 @@ SMODS.Blind({
     boss_colour = HEX('a6c4a0'),
     recalc_debuff = function(self, card, from_blind)
         if card.area ~= G.jokers and not G.GAME.blind.disabled then
-			if card:get_id() == 2 or card:get_id() == 4 or card:get_id() == 6 or card:get_id() == 8 or card:get_id() == 10
+			if G.PRISM.is_even(card)
 			then
 				return true
 			end
@@ -35,7 +35,7 @@ SMODS.Blind({
     boss_colour = HEX('66916b'),
     recalc_debuff = function(self, card, from_blind)
         if card.area ~= G.jokers and not G.GAME.blind.disabled then
-			if card:get_id() == 14 or card:get_id() == 3 or card:get_id() == 5 or card:get_id() == 7 or card:get_id() == 9
+			if G.PRISM.is_odd(card)
 			then
 				return true
 			end
