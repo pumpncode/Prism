@@ -1852,11 +1852,10 @@ G.PRISM.Joker({
 
 local orig_is_suit = Card.is_suit
 function Card.is_suit(self, suit, bypass_debuff, flush_calc)
-    local is_numbered = type(self:get_id()) == 'number' and (self:get_id() >= 2 and self:get_id() <= 10) or false
-	if not (self.debuff and not bypass_debuff) and (next(SMODS.find_card('j_prism_prism'))) and is_numbered then
-        if SMODS.find_card('j_prism_prism') then
+	if next(find_joker('j_prism_prism')) then
+		if not (self.debuff and not bypass_debuff) and G.PRISM.is_numbered(self) then
             return true
-        end
+		end
 	end
     return orig_is_suit(self, suit, bypass_debuff, flush_calc)
 end
