@@ -391,7 +391,7 @@ SMODS.Consumable({
     pos = {x=3, y=0},
     discovered = false,
     loc_vars = function(self, info_queue)
-		info_queue[#info_queue+1] = {key = 'tag_investment', set = 'Tag',specific_vars = {25}}
+		info_queue[#info_queue+1] = {key = 'tag_prism_gnome', set = 'Tag',specific_vars = {17}}
 	end,
     can_use = function(self, card)
 		return true
@@ -401,7 +401,7 @@ SMODS.Consumable({
             play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
 			play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
             card:juice_up(0.3, 0.5)
-            add_tag(Tag('tag_investment'))
+            add_tag(Tag('tag_prism_gnome'))
         return true end }))
     end
 
