@@ -523,7 +523,7 @@ return {
             },
             c_prism_myth_gnome = {
                 name = "Gnome",
-                text = {"Create an {C:attention}Investment Tag"
+                text = {"Create a {C:attention}Savings Tag"
                 }
             },
             c_prism_myth_mirror = {
@@ -640,6 +640,14 @@ return {
                     "Next {C:attention}compatible{} base",
                     "edition shop Joker is free",
                     "and becomes {C:dark_edition}Gold Foil"
+                },
+            },
+            tag_prism_gnome = {
+                name = "Savings Tag",
+                text={
+                    "After defeating",
+                    "the Boss Blind,",
+                    "gain {C:money}$#1#",
                 },
             },
         },

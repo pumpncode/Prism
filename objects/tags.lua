@@ -60,3 +60,31 @@ SMODS.Tag({
         end
     end
 })
+
+SMODS.Tag({
+    key = 'gnome',
+    atlas = 'prismtags',
+    pos = {x = 2, y = 0},
+    discovered = false,
+    config = {dollars = 17},
+    loc_vars = function(self, info_queue, card)
+        return {vars = {self.config.dollars}}
+    end,
+    in_pool = function(self)
+        return false
+    end,
+    apply = function(self, tag, context)
+        if context.type == 'eval' then
+            if G.GAME.last_blind and G.GAME.last_blind.boss then
+                tag:yep('+', G.C.GOLD,function() 
+                    return true
+                end)
+                tag.triggered = true
+                return {
+                    dollars = tag.config.dollars,
+                    condition = localize('ph_defeat_the_boss'),
+                }
+            end
+        end
+    end
+})
