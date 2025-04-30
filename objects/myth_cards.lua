@@ -117,7 +117,7 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=8, y=0},
     discovered = false,
-    config = {odds = 3,money = 15},
+    config = {odds = 4,money = 15},
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue + 1] = {key = 'e_prism_gold_foil', set = 'Edition', config = {extra = 1}}
         return { vars = {G.GAME.probabilities.normal,self.config.odds, self.config.money} }
