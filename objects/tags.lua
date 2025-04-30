@@ -4,8 +4,14 @@ SMODS.Atlas({
     px = '34',
     py = '34'
 })
-if G.PRISM.config.myth_enabled then
-SMODS.Tag({
+function G.PRISM.Tag(table)
+	if table.dependency or table.dependency == nil then
+		SMODS.Tag(table)
+	end
+end
+
+G.PRISM.Tag({
+    dependency = G.PRISM.config.myth_enabled,
     key = 'myth',
     atlas = 'prismtags',
     pos = {x = 0, y = 0},
@@ -33,8 +39,8 @@ SMODS.Tag({
 		end
     end
 })
-end
-SMODS.Tag({
+
+G.PRISM.Tag({
     key = 'gold_foil',
     atlas = 'prismtags',
     pos = {x = 1, y = 0},
@@ -61,7 +67,8 @@ SMODS.Tag({
     end
 })
 
-SMODS.Tag({
+G.PRISM.Tag({
+    dependency = G.PRISM.config.myth_enabled,
     key = 'gnome',
     atlas = 'prismtags',
     pos = {x = 2, y = 0},

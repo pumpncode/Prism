@@ -38,7 +38,7 @@ end
 local orig_create_card = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
     local card = orig_create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if not card.config.center.blueprint_compat and card.edition and card.edition.key == "e_prism_gold_foil" then
+    if card.config.center.set == "Joker" and not card.config.center.blueprint_compat and card.edition and card.edition.key == "e_prism_gold_foil" then
         local edition
         while edition == "e_prism_gold_foil" do 
             edition = poll_edition('edi'..(key_append or '')..G.GAME.round_resets.ante)

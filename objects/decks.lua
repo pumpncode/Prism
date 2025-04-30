@@ -4,7 +4,14 @@ SMODS.Atlas {
     px = 71,
     py = 95
 }
-SMODS.Back({
+
+function G.PRISM.Back(table)
+	if table.dependency or table.dependency == nil then
+		SMODS.Back(table)
+	end
+end
+
+G.PRISM.Back({
 	key = "purple", 
 	atlas = "prismdecks",
 	pos = {x = 2, y = 0},
@@ -27,8 +34,8 @@ G.FUNCS.can_discard = function(e)
         e.config.button = nil
 	end
 end
-if G.PRISM.config.myth_enabled then
-SMODS.Back({
+G.PRISM.Back({
+	dependency = G.PRISM.config.myth_enabled,
 	key = "ancient", 
 	atlas = "prismdecks",
 	pos = {x = 0, y = 0},
@@ -36,8 +43,7 @@ SMODS.Back({
     unlocked = false,
     unlock_condition = {type = 'win_stake', stake=6}
 })
-end
-SMODS.Back({
+G.PRISM.Back({
 	key = "market", 
 	atlas = "prismdecks",
 	pos = {x = 1, y = 0},

@@ -1,4 +1,10 @@
-SMODS.Challenge({
+function G.PRISM.Challenge(table)
+	if table.dependency or table.dependency == nil then
+		SMODS.Challenge(table)
+	end
+end
+G.PRISM.Challenge({
+	dependency = G.PRISM.config.jokers_enabled,
     key = "aerial_warfare",
 	rules = {
 		custom = {
@@ -34,7 +40,7 @@ SMODS.Challenge({
 		type = "Challenge Deck",
 	},
 })
-SMODS.Challenge({
+G.PRISM.Challenge({
 	key = "mvp",
 	rules = {
 		custom = {
