@@ -692,9 +692,9 @@ return {
             },
             prism_green_seal = {
                 name = "Green Seal",
-                text = {"{C:attention}Ignores{} selection limit",
-                    "{C:green}#1# in #2#{} chance to",
-                    "destroy card",
+                text = {"{C:attention}Return{} to hand after",
+                    "being played for the {C:attention}first",
+                    "{C:attention}time{} each round"
                 }, 
             },
             prism_green_old_seal = {

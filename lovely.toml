@@ -23,6 +23,9 @@ pattern = '''
 position = "after"
 payload = '''
 G.GAME.prism_extra_draw = 0
+for k,v in pairs(G.playing_cards) do
+	if v.ability.greened then v.ability.greened = nil end
+end
 '''
 match_indent = true
 
@@ -167,14 +170,17 @@ if G.GAME.modifiers.price_scaling then self.extra_cost = self.extra_cost + G.GAM
 """
 match_indent = true
 
-#hit record
+#hit record and green seal
 [[patches]]
 [patches.pattern]
 target = "functions/state_events.lua"
 pattern = "draw_card(G.play,G.discard, it*100/play_count,'down', false, v)"
 position = "before"
 payload = '''
-if v.config.cycling then
+if v.seal == "prism_green" and not v.ability.greened then
+    v.ability.greened = true
+	draw_card(G.play,G.hand, it*100/play_count,'up', true, v)
+elseif v.config.cycling then
     v.config.cycling = false
 	draw_card(G.play,G.deck, it*100/play_count,'down', false, v)
 	G.deck:shuffle('hitr'..G.GAME.round_resets.ante)
