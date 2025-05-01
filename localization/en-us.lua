@@ -192,6 +192,7 @@ return {
                     "required rank changes",
                     "to next digit of {C:attention}Pi",
                     "{C:inactive}(Next 5 digits are: #3#)",
+                    "{C:inactive}(1 = A, 0 = 10)",
                 },
             },
             j_prism_polydactyly = {

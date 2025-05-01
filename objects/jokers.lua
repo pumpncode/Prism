@@ -1587,6 +1587,7 @@ G.PRISM.Joker({
 	loc_vars = function(self, info_queue, center)
 		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
 		if rank == "1" then rank = "Ace" end
+		if rank == "0" then rank = "10" end
 		return{ vars = {localize(rank,'ranks'),
 		center.ability.extra.x_mult,
 		string.sub(G.PRISM.PI,center.ability.extra.index + 1,center.ability.extra.index + 5)}}
@@ -1595,6 +1596,7 @@ G.PRISM.Joker({
         if context.cardarea == G.play and context.individual then
 			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
 			if rank == "1" then rank = "Ace" end
+			if rank == "0" then rank = "10" end
 			if context.other_card.config.card.value == rank then
 				card.ability.extra.index = card.ability.extra.index + 1
 				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
