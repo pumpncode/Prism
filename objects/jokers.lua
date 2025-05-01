@@ -1583,7 +1583,7 @@ G.PRISM.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {extra = {index = 1,x_mult = 2.5}},
+	config = {extra = {index = 1,x_mult = 3.14}},
 	loc_vars = function(self, info_queue, center)
 		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
 		if rank == "1" then rank = "Ace" end
