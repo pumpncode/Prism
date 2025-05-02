@@ -222,7 +222,8 @@ return {
                 text = {"Create a {C:attention}Double Tag",
                     "after {C:attention}#1#{} Jacks",
                     "have been scored",
-                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+                    "{C:inactive}(Only once per round)"
                 },
             },
             j_prism_hit_record = {
@@ -235,8 +236,8 @@ return {
             j_prism_patch = {
                 name = "Band Patch",
                 text = {"Create a {C:dark_edition}Negative",
-                    "{C:dark_edition}Tag{} if played hand",
-                    "contains {C:attention}3{} scoring {C:attention}6s",
+                    "{C:dark_edition}Tag{} if played hand contains",
+                    "exactly {C:attention}3{} scoring {C:attention}6s",
                 },
             },
             j_prism_day = {
@@ -361,7 +362,7 @@ return {
                 text = {"Create the {C:attention}last {C:myth_light}Myth{}",
                     "card used during this run",
                     "if played hand contains a",
-                    "scoring {C:hearts}Hearth{} and {C:spades}Spade",
+                    "scoring {C:hearts}Heart{} and {C:spades}Spade",
                 },
             },
             j_prism_swiss = {
@@ -728,7 +729,13 @@ return {
                     'Find this card in an unseeded',
                     'run to find out what it does'
                 }
-            }
+            },
+            remove_negative={
+                name="n",
+                text={
+                    "{C:inactive,s:0.9}(Removes {C:dark_edition,s:0.9}Negative{C:inactive,s:0.9} and {C:dark_edition,s:0.9}Gold Foil{C:inactive,s:0.9} from copy)",
+                },
+            },
         },
         Blind = {
             bl_prism_rose_club = {

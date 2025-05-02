@@ -289,3 +289,24 @@ end
 match_indent = true
 
 
+
+#gold foil copy reminder
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if (v.edition and v.edition.negative) and (G.localization.descriptions.Other.remove_negative)then "
+position = "at"
+payload = '''if (v.edition and (v.edition.negative or v.edition.key == "e_prism_gold_foil")) and (G.localization.descriptions.Other.remove_negative) then
+'''
+match_indent = true
+
+#gold foil strip
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''local card = copy_card(chosen_joker, nil, nil, nil, chosen_joker.edition and chosen_joker.edition.negative)'''
+position = 'at'
+payload = '''
+local card = copy_card(chosen_joker, nil, nil, nil, chosen_joker.edition and (chosen_joker.edition.negative or chosen_joker.edition.key == "e_prism_gold_foil"))
+'''
+match_indent = true

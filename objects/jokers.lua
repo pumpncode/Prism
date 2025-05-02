@@ -819,20 +819,21 @@ G.PRISM.Joker({
 	cost = 7,
 	unlocked = true,
 	discovered = false,
-	blueprint_compat = true,
+	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {required = 4,current = 0},
+	config = {required = 4,current = 0,done = false},
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue+1] = {key = 'tag_double', set = 'Tag'}
 		return { vars = {center.ability.required,center.ability.current} }
 	end,
 	calculate = function(self, card, context)
-        if context.cardarea == G.play and context.individual then
+        if context.cardarea == G.play and context.individual and not context.blueprint then
             if context.other_card:get_id() == 11 then
                 card.ability.current = card.ability.current + 1
-				if card.ability.current >= card.ability.required then
+				if card.ability.current >= card.ability.required and not card.ability.done then
 					card.ability.current = 0
+					card.ability.done = true
 					G.E_MANAGER:add_event(Event({
 						func = (function()
 							add_tag(Tag('tag_double'))
@@ -841,14 +842,21 @@ G.PRISM.Joker({
 						   return true
 					   end)
 					}))
+				elseif card.ability.current > card.ability.required and card.ability.done then
+					card.ability.current = card.ability.required
+					return nil 
 				end
 				return {
 					message = (card.ability.current == 0) and localize('k_plus_double') or (card.ability.current..'/'..card.ability.required),
 					colour = G.C.FILTER,
+					focus = card,
 					card = card
 				}
             end
         end
+		if context.setting_blind and not context.blueprint then
+			card.ability.done = false
+		end
     end
 })
 G.PRISM.Joker({
@@ -922,7 +930,7 @@ G.PRISM.Joker({
 		}
 	end,
 	calculate = function(self, card, context)
-		if context.selling_self then
+		if context.selling_self and not context.blueprint then
 			if G.STATE == G.STATES.SELECTING_HAND then
 				G.GAME.prism_fortune_cookie = true
 				for k, v in pairs(G.GAME.probabilities) do
@@ -1215,7 +1223,7 @@ G.PRISM.Joker({
 	cost = 6,
 	unlocked = true,
 	discovered = false,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
 	config = {extra = {odds = 3}},
@@ -1280,7 +1288,7 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
 	end,
 	calculate = function(self, card, context)
-        if context.cardarea == G.jokers and context.before then
+        if context.cardarea == G.jokers and context.before and not context.blueprint then
 			local has_face = false
             for k, v in ipairs(context.scoring_hand) do
 				if v:is_face() then 
@@ -1423,11 +1431,11 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	calculate = function(self, card, context)
-		if context.first_hand_drawn then
+		if context.first_hand_drawn and not context.blueprint then
 			local eval = function() return G.GAME.current_round.hands_played == 0 end
 			juice_card_until(card, eval, true)
 		end
-		if context.cardarea == G.jokers and context.before then
+		if context.cardarea == G.jokers and context.before and not context.blueprint  then
 			if #context.full_hand == 1 and G.GAME.current_round.hands_played == 0 then
 				local _card = context.full_hand[1]
 				local suit = string.sub(_card.base.suit, 1, 1)..'_'
@@ -1558,7 +1566,7 @@ G.PRISM.Joker({
 				if context.scoring_hand[i]:is_suit("Hearts") then hearts = hearts + 1 end
 				if context.scoring_hand[i]:is_suit("Spades") then spades = spades + 1 end
 			end
-			if hearts >= 1 and spades >= 1 then
+			if hearts >= 1 and spades >= 1 and G.GAME.last_myth then
 				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
 				play_sound("timpani")
 				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, G.GAME.last_myth, 'return')
@@ -1598,8 +1606,10 @@ G.PRISM.Joker({
 			if rank == "1" then rank = "Ace" end
 			if rank == "0" then rank = "10" end
 			if context.other_card.config.card.value == rank then
-				card.ability.extra.index = card.ability.extra.index + 1
-				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				if not context.blueprint then
+					card.ability.extra.index = card.ability.extra.index + 1
+					if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				end
 				return {
 					xmult = card.ability.extra.x_mult,
 					card = card
@@ -1931,7 +1941,7 @@ G.PRISM.Joker({
 		G.hand:change_size(-card.ability.hand_size)
 	end,
 	calculate = function(self, card, context)
-		if (context.cardarea == G.jokers and context.before) or context.discard and context.other_card == context.full_hand[1] then
+		if (context.cardarea == G.jokers and context.before) or context.discard and context.other_card == context.full_hand[1] and not context.blueprint  then
 			card.ability.hand_size = card.ability.hand_size + card.ability.extra
 			G.hand:change_size(card.ability.extra)
 			return {
@@ -1939,7 +1949,7 @@ G.PRISM.Joker({
 				card = card,
 			}
 		end
-		if context.cardarea == G.jokers and context.end_of_round then
+		if context.cardarea == G.jokers and context.end_of_round and not context.blueprint  then
 			G.hand:change_size(-card.ability.hand_size)
 			card.ability.hand_size = 0
 			return {
