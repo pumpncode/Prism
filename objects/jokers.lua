@@ -1634,7 +1634,7 @@ G.PRISM.Joker({
 	loc_vars = function(self, info_queue, center)
 		return {vars = {localize(center.ability.poker_hand_1, 'poker_hands'),localize(center.ability.poker_hand_2, 'poker_hands')}}
 	end,
-	add_to_deck = function(self, card, from_debuff)
+	set_ability = function(self, card, initial,delay_sprites)
 		card.ability.reset = false
 		local _poker_hands = {}
 		for k, v in pairs(G.GAME.hands) do
