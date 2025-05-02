@@ -361,7 +361,7 @@ return {
                 text = {"Create the {C:attention}last {C:myth_light}Myth{}",
                     "card used during this run",
                     "if played hand contains a",
-                    "scoring {C:hearts}Hearth{} and {C:spades}Spade",
+                    "scoring {C:hearts}Heart{} and {C:spades}Spade",
                 },
             },
             j_prism_swiss = {
