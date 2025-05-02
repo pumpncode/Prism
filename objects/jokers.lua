@@ -1558,7 +1558,7 @@ G.PRISM.Joker({
 				if context.scoring_hand[i]:is_suit("Hearts") then hearts = hearts + 1 end
 				if context.scoring_hand[i]:is_suit("Spades") then spades = spades + 1 end
 			end
-			if hearts >= 1 and spades >= 1 then
+			if hearts >= 1 and spades >= 1 and G.GAME.last_myth then
 				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
 				play_sound("timpani")
 				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, G.GAME.last_myth, 'return')
