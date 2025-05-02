@@ -819,20 +819,21 @@ G.PRISM.Joker({
 	cost = 7,
 	unlocked = true,
 	discovered = false,
-	blueprint_compat = true,
+	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {required = 4,current = 0},
+	config = {required = 4,current = 0,done = false},
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue+1] = {key = 'tag_double', set = 'Tag'}
 		return { vars = {center.ability.required,center.ability.current} }
 	end,
 	calculate = function(self, card, context)
-        if context.cardarea == G.play and context.individual then
+        if context.cardarea == G.play and context.individual and not context.blueprint then
             if context.other_card:get_id() == 11 then
                 card.ability.current = card.ability.current + 1
-				if card.ability.current >= card.ability.required then
+				if card.ability.current >= card.ability.required and not card.ability.done then
 					card.ability.current = 0
+					card.ability.done = true
 					G.E_MANAGER:add_event(Event({
 						func = (function()
 							add_tag(Tag('tag_double'))
@@ -841,14 +842,21 @@ G.PRISM.Joker({
 						   return true
 					   end)
 					}))
+				elseif card.ability.current > card.ability.required and card.ability.done then
+					card.ability.current = card.ability.required
+					return nil 
 				end
 				return {
 					message = (card.ability.current == 0) and localize('k_plus_double') or (card.ability.current..'/'..card.ability.required),
 					colour = G.C.FILTER,
+					focus = card,
 					card = card
 				}
             end
         end
+		if context.setting_blind and not context.blueprint then
+			card.ability.done = false
+		end
     end
 })
 G.PRISM.Joker({

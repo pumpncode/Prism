@@ -222,7 +222,8 @@ return {
                 text = {"Create a {C:attention}Double Tag",
                     "after {C:attention}#1#{} Jacks",
                     "have been scored",
-                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+                    "{C:inactive}(Only once per round)"
                 },
             },
             j_prism_hit_record = {
