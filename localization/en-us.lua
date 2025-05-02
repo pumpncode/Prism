@@ -729,7 +729,13 @@ return {
                     'Find this card in an unseeded',
                     'run to find out what it does'
                 }
-            }
+            },
+            remove_negative={
+                name="n",
+                text={
+                    "{C:inactive,s:0.9}(Removes {C:dark_edition,s:0.9}Negative{C:inactive,s:0.9} and {C:dark_edition,s:0.9}Gold Foil{C:inactive,s:0.9} from copy)",
+                },
+            },
         },
         Blind = {
             bl_prism_rose_club = {
