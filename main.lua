@@ -45,6 +45,7 @@ function SMODS.current_mod.reset_game_globals(run_start)
 
 		G.GAME.prism_extra_draw = 0
 		G.GAME.prism_pizza_lv = 0
+		G.GAME.prism_eggs_used = 0
 		G.GAME.price_scaling = 0
 		G.GAME.modifiers.extra_boosters = 0
 		G.GAME.prism_start_deck_ranks = {}
