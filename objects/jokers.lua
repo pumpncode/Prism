@@ -106,7 +106,15 @@ G.PRISM.Joker({
 				return {
 					focus = card,
 					colour = G.C.CHIPS,
-					message = localize('k_upgrade_ex'),
+					message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra}},
+					card = card,
+				}
+			else
+				card.ability.chips = math.max(card.ability.chips - card.ability.extra,0)
+				return {
+					focus = card,
+					colour = G.C.CHIPS,
+					message = localize{type = 'variable', key = 'a_chips_minus', vars = {card.ability.extra}},
 					card = card,
 				}
 			end
