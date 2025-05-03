@@ -106,7 +106,7 @@ G.PRISM.Joker({
 				return {
 					focus = card,
 					colour = G.C.CHIPS,
-					message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra}},
+					message = localize{type = 'variable', key = 'a_prism_chips', vars = {card.ability.extra}},
 					card = card,
 				}
 			else
@@ -114,7 +114,7 @@ G.PRISM.Joker({
 				return {
 					focus = card,
 					colour = G.C.CHIPS,
-					message = localize{type = 'variable', key = 'a_chips_minus', vars = {card.ability.extra}},
+					message = localize{type = 'variable', key = 'a_prism_chips_minus', vars = {card.ability.extra}},
 					card = card,
 				}
 			end
