@@ -116,10 +116,10 @@ return {
             },
             j_prism_motherboard = {
                 name = "Motherboard",
-                text = {"This Joker gains {C:chips}+#1#{} Chips",
-                    "when each played card",
-                    "with no {C:attention}Enhancement{},",
-                    "{C:attention}Seal{} or {C:dark_edition}Edition{} is scored",
+                text = {"When a card is scored,",
+                    "this Joker gains {C:chips}+#1#{} Chips if",
+                    "it has no {C:attention}Enhancement{}, {C:attention}Seal{}",
+                    "or {C:dark_edition}Edition{}, {C:chips}-#1#{} Chips otherwise",
                     "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
                 },
             },
@@ -799,6 +799,8 @@ return {
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
+            a_chips="+#1# Chips",
+            a_chips_minus="-#1# Chips",
         },
         labels = {
             prism_green_seal = "Green Seal",

@@ -4,12 +4,17 @@ SMODS.Atlas {
     px = 73,
     py = 95
 }
-CardSleeves.Sleeve({
+function G.PRISM.Sleeve(table)
+	if table.dependency or table.dependency == nil then
+		CardSleeves.Sleeve(table)
+	end
+end
+G.PRISM.Sleeve({
     key = "purplesleeve",
 	atlas = "prismsleeves",
 	pos = {x = 2, y = 0},
     unlocked = false,
-    unlock_condition = {deck = "b_prism_purple", stake = 3},
+    unlock_condition = {deck = "b_prism_purple", stake = "stake_green"},
     loc_vars = function(self)
         local key
         if self.get_current_deck_key() ~= "b_prism_purple" then
@@ -28,13 +33,13 @@ CardSleeves.Sleeve({
         end
     end,
 })
-if G.PRISM.config.myth_enabled then
-CardSleeves.Sleeve({
+G.PRISM.Sleeve({
+    dependency = G.PRISM.config.myth_enabled,
     key = "ancientsleeve",
 	atlas = "prismsleeves",
 	pos = {x = 0, y = 0},
     unlocked = false,
-    unlock_condition = {deck = "b_prism_ancient", stake = 5},
+    unlock_condition = {deck = "b_prism_ancient", stake = "stake_blue"},
     loc_vars = function(self)
         local key
         if self.get_current_deck_key() ~= "b_prism_ancient" then
@@ -62,7 +67,6 @@ CardSleeves.Sleeve({
         end
     end,
 })
-end
 local orig_get_pack = get_pack
 function get_pack(_key, _type)
     if G.GAME.modifiers.myth_always_in_shop and not G.GAME.prism_shop_legend and G.GAME.first_shop_buffoon and not(
@@ -96,12 +100,12 @@ function get_pack(_key, _type)
     return orig_get_pack(_key, _type)
 end
 
-CardSleeves.Sleeve({
+G.PRISM.Sleeve({
     key = "marketsleeve", 
 	atlas = "prismsleeves",
 	pos = {x = 1, y = 0},
     unlocked = false,
-    unlock_condition = {deck = "b_prism_market", stake = 6},
+    unlock_condition = {deck = "b_prism_market", stake = "stake_purple"},
     loc_vars = function(self)
         local key
         if self.get_current_deck_key() ~= "b_prism_market" then
