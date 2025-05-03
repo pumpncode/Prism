@@ -4,8 +4,14 @@ SMODS.Atlas({
     px = '71',
     py = '95'
 })
-if G.PRISM.config.myth_enabled then
-SMODS.Voucher({
+function G.PRISM.Voucher(table)
+	if table.dependency or table.dependency == nil then
+		SMODS.Voucher(table)
+	end
+end
+
+G.PRISM.Voucher({
+	dependency = G.PRISM.config.myth_enabled,
     key = "myth_merchant",
 	atlas = "prismvouchers",
 	pos = { x = 0, y = 0},
@@ -27,7 +33,8 @@ SMODS.Voucher({
 	    }))
 	end
 })
-SMODS.Voucher({
+G.PRISM.Voucher({
+	dependency = G.PRISM.config.myth_enabled,
     key = "myth_tycoon",
 	atlas = "prismvouchers",
 	pos = { x = 0, y = 1},
@@ -50,8 +57,7 @@ SMODS.Voucher({
 	    }))
 	end
 })
-end
-SMODS.Voucher({
+G.PRISM.Voucher({
     key = "booster_box",
 	atlas = "prismvouchers",
 	pos = { x = 1, y = 0},
@@ -64,7 +70,7 @@ SMODS.Voucher({
         G.GAME.modifiers.extra_boosters = G.GAME.modifiers.extra_boosters - 1
 	end
 })
-SMODS.Voucher({
+G.PRISM.Voucher({
     key = "bonus_packs",
 	atlas = "prismvouchers",
 	pos = { x = 1, y = 1},
