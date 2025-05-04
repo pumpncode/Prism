@@ -336,7 +336,7 @@ G.PRISM.Joker({
 	paperback = {
 		requires_crowns = true
 	},
-	config = {extra = {min_money = -3, max_money = 5, uses = 15}},
+	config = {extra = {min_money = -2, max_money = 5, uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.min_money,center.ability.extra.max_money,center.ability.extra.uses}}
 	end,
@@ -385,7 +385,7 @@ G.PRISM.Joker({
 	paperback = {
 		requires_stars = true
 	},
-	config = {extra = {x_chips = 1.2, uses = 15}},
+	config = {extra = {x_chips = 1.3, uses = 15}},
 	loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.x_chips,center.ability.extra.uses}}
 	end,
@@ -408,7 +408,7 @@ G.PRISM.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.min_money = card.ability.extra.x_chips + (0.2 * (G.GAME.prism_pizza_lv or 0))
+		card.ability.extra.min_money = card.ability.extra.x_chips + (0.3 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 
