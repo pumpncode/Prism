@@ -799,8 +799,8 @@ return {
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
-            a_chips="+#1# Chips",
-            a_chips_minus="-#1# Chips",
+            a_prism_chips="+#1# Chips",
+            a_prism_chips_minus="-#1# Chips",
         },
         labels = {
             prism_green_seal = "Green Seal",
