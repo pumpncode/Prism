@@ -62,6 +62,41 @@ G.PRISM.Joker({
 	end,
 })
 G.PRISM.Joker({
+	key = "racecar",
+	atlas = "prismjokers",
+	pos = {x=3,y=7},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = false,
+	config = {extra = {chips = 0, mult = 0,chips_gain = 3, mult_gain = 1}},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.extra.chips_gain, center.ability.extra.mult_gain, center.ability.extra.chips, center.ability.extra.mult} }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return{
+				chips = card.ability.extra.chips,
+				mult = card.ability.extra.chips
+			}
+		end
+		if context.cardarea == G.jokers and context.end_of_round and not context.blueprint then
+			local mod = G.GAME.current_round.hands_left
+			card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_gain * mod
+			card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain * mod
+			return {
+				message = localize('k_upgrade_ex'),
+				colour = G.C.FILTER,
+				card = card
+			}
+		end
+	end
+
+})
+G.PRISM.Joker({
 	key = "hit_record",
 	atlas = "prismjokers",
 	pos = {x=0,y=11},

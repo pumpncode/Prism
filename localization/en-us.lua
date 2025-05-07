@@ -371,7 +371,15 @@ return {
                 "cards to permanently gain",
                 "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult or {X:red,C:white}X#3#{} Mult",
                 "at {C:attention}random{} when scored"
+                },
             },
+            j_prism_racecar = {
+                name = "Racecar",
+                text = {"This Joker gains {C:chips}+#1#{} Chips",
+                "and {C:red}+#2#{} Mult per unused",
+                "{C:attention}hand{} at end of round",
+                "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips and {C:red}+#4#{C:inactive} Mult)"
+                },
             }
         },
         Back = {
