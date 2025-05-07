@@ -182,6 +182,36 @@ if not G.PRISM.compat.talisman and not G.PRISM.compat.buffoonery then
 	end
 end
 
+--------menu stuff-------
+G.FUNCS.prism_link_1 = function(e)
+    love.system.openURL("https://github.com/blazingulag/Unjankify")
+end
+G.FUNCS.prism_link_2 = function(e)
+    love.system.openURL("https://github.com/blazingulag/Prism-Darkside")
+end
+G.FUNCS.prism_link_3 = function(e)
+    love.system.openURL("https://github.com/Mil0Meg4/Aneyh-Vampirica")
+end
+
+SMODS.current_mod.description_loc_vars = function()
+	return { background_colour = G.C.CLEAR, text_colour = G.C.WHITE, scale = 1.2 }
+end
+
+SMODS.current_mod.custom_ui = function(nodes)
+    local title, description = unpack(nodes)
+	local links = {"Unjankify","Prism Darkside","Aneyh Vampirica"}
+	local links_finds = {}
+
+	for i,v in ipairs(links) do
+		links_finds[i] = SMODS.deepfind(description, v, true)[1]
+		if links_finds[i] then 
+			local twitch_link_table = links_finds[i].objtree[#links_finds[i].objtree-2]
+			twitch_link_table.config.button = "prism_link_"..i
+			twitch_link_table.config.tooltip = {text = {localize('b_open_link')}}
+		end
+	end
+end
+
 local function should_restart()
 	for k, v in pairs(old_config) do
 		if v ~= G.PRISM.config[k] then

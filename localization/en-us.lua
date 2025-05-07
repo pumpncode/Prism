@@ -768,6 +768,23 @@ return {
                 },
             }
         },
+        Mod = {
+            Prism = {
+                name = "Prism",
+                text = {
+                    "Vanilla oriented content mod. Includes new",
+                    "Jokers, Consumables, Decks and more!",
+                    " ",
+                    "{s:1.5,C:attention,E:2}Credits",
+                    "{C:dark_edition,E:2}SuperMao{} and {C:dark_edition,E:2}VisJoker{} - Chinese localization",
+                    "{C:dark_edition,E:2}Frander{} - Spanish localization",
+                    "{C:dark_edition,E:2}Shinosan{} - Vietnamese localization",
+                    " ",
+                    "{s:1.5,C:attention,E:2}My Other Mods",
+                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Aneyh Vampirica{}" ,
+                }
+            }
+        },
     },
     misc = {
         challenge_names={
@@ -804,6 +821,7 @@ return {
             prism_feature_enable = "Select features:",
             prism_pizza_music = "Pizza Music",
             prism_requires_restart = "Requires restart!",
+            b_open_link = "Opens in browser",
         },
         v_dictionary = {
             a_handsize_plus="+#1# Hand Size",
@@ -815,7 +833,7 @@ return {
             prism_green_old_seal = "Green Seal",
             prism_moon_seal = "Moon Seal",
             prism_gold_foil = "Gold Foil"
-        }
-    }
+        },
+    },
 }
 
