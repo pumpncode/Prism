@@ -1272,6 +1272,9 @@ G.PRISM.Joker({
 	config = {extra = {odds = 3}},
 	loc_vars = function(self, info_queue, center)
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_glass
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_foil
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_holo
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
 		return { vars = {
 			"" .. (G.GAME and G.GAME.probabilities.normal or 1), 
 			center.ability.extra.odds
