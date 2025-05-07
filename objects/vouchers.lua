@@ -63,11 +63,11 @@ G.PRISM.Voucher({
 	pos = { x = 1, y = 0},
     unloked = true,
     redeem = function(self)
-		G.GAME.modifiers.extra_boosters = G.GAME.modifiers.extra_boosters + 1
+		G.GAME.modifiers.extra_boosters = (G.GAME.modifiers.extra_boosters or 0) + 1
 		if G.shop then G.PRISM.create_booster() end
 	end,
 	unredeem = function(self)
-        G.GAME.modifiers.extra_boosters = G.GAME.modifiers.extra_boosters - 1
+        G.GAME.modifiers.extra_boosters = (G.GAME.modifiers.extra_boosters or 0) - 1
 	end
 })
 G.PRISM.Voucher({
