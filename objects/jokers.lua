@@ -443,7 +443,7 @@ G.PRISM.Joker({
 		end
     end,
 	set_ability = function(self, card, initial,delay_sprites)
-		card.ability.extra.min_money = card.ability.extra.x_chips + (0.3 * (G.GAME.prism_pizza_lv or 0))
+		card.ability.extra.x_chips = card.ability.extra.x_chips + (0.3 * (G.GAME.prism_pizza_lv or 0))
 	end
 })
 
