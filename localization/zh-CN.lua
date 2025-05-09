@@ -746,6 +746,26 @@ return {
                 },
             }
         },
+               --!!!DO NOT TRANSLATE THIS PART!!!--
+        Mod = {
+            Prism = {
+                name = "棱镜",
+                text = {
+                    "以原版为核心的内容模组，包含全新的",
+                    "小丑卡、消耗品、牌组等内容！",
+                    " ",
+                    "欢迎加入 {C:dark_edition}Discord Server{}",
+                    " ",
+                    "{s:1.5,C:attention,E:2}致谢",
+                    "{C:dark_edition,E:2}SuperMao{} 与 {C:dark_edition,E:2}VisJoker{} - 中文本地化",
+                    "{C:dark_edition,E:2}Franderman123{} - 西班牙语本地化",
+                    "{C:dark_edition,E:2}Shinosan{} - 越南语本地化",
+                    " ",
+                    "{s:1.5,C:attention,E:2}我的其他模组",
+                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{}, {C:dark_edition}Aneyh Vampirica{}" ,
+                }
+            }
+        },
     },
     misc = {
         challenge_names={
