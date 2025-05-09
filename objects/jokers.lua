@@ -1002,14 +1002,14 @@ G.PRISM.Joker({
 	calculate = function(self, card, context)
 		if context.joker_main then
 			return {
-				xmult = to_num(bignum(card.ability.extra.x_mult)),
+				xmult = to_number(to_big(card.ability.extra.x_mult)),
 			}
 		end
 		if context.setting_blind and not context.blueprint then
 			local x_mult_gain = card.ability.extra.gain*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
 			ease_dollars(-G.GAME.dollars, true)
-			if bignum(x_mult_gain) > bignum(0) then 
-				card.ability.extra.x_mult = card.ability.extra.x_mult + to_num(bignum(x_mult_gain))
+			if to_big(x_mult_gain) > to_big(0) then 
+				card.ability.extra.x_mult = card.ability.extra.x_mult + to_number(to_big(x_mult_gain))
 				return {
 					focus = card,
 					message = localize({ type = "variable", key = "a_xmult", vars = { card.ability.extra.x_mult } }),
@@ -1788,14 +1788,6 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS[edition]
 	end,
 })
-local orig_set_edition = Card.set_edition
-function Card.set_edition(self,edition, immediate, silent)
-	if next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
-		orig_set_edition(self,{polychrome = true}, immediate, silent)
-	else
-		orig_set_edition(self,edition, immediate, silent)
-	end
-end
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.darkside,
 	key = "shork_dark",
@@ -1817,6 +1809,8 @@ local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
 	if next(find_joker("j_prism_shork_dark")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= "e_pridark_trans" then
 		orig_set_edition(self,"e_pridark_trans", immediate, silent)
+	elseif next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
+		orig_set_edition(self,{polychrome = true}, immediate, silent)
 	else
 		orig_set_edition(self,edition, immediate, silent)
 	end
