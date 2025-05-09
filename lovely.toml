@@ -310,3 +310,13 @@ payload = '''
 local card = copy_card(chosen_joker, nil, nil, nil, chosen_joker.edition and (chosen_joker.edition.negative or chosen_joker.edition.key == "e_prism_gold_foil"))
 '''
 match_indent = true
+
+#savings tag sprite in cashout screen
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "local blind_sprite = Sprite(0, 0, 0.7,0.7, G.ASSET_ATLAS['tags'], copy_table(config.pos))"
+position = "at"
+payload = '''local blind_sprite = Sprite(0, 0, 0.7,0.7, G.ASSET_ATLAS[config.tag.atlas or 'tags'], copy_table(config.pos))
+'''
+match_indent = true

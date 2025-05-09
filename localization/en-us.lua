@@ -777,7 +777,7 @@ return {
                     " ",
                     "{s:1.5,C:attention,E:2}Credits",
                     "{C:dark_edition,E:2}SuperMao{} and {C:dark_edition,E:2}VisJoker{} - Chinese localization",
-                    "{C:dark_edition,E:2}Frander{} - Spanish localization",
+                    "{C:dark_edition,E:2}Franderman123{} - Spanish localization",
                     "{C:dark_edition,E:2}Shinosan{} - Vietnamese localization",
                     " ",
                     "{s:1.5,C:attention,E:2}My Other Mods",

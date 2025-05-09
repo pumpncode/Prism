@@ -135,20 +135,13 @@ SMODS.ObjectType({
 })
 
 --For Talisman Compatibility
-function bignum(x)
-	if G.PRISM.compat.talisman then
-		return to_big(x)
-	else
-		return x
-	end
+to_big = to_big or function(num)
+    return num
 end
-function to_num(x)
-	if G.PRISM.compat.talisman then
-		return to_number(x)
-	else 
-		return x
-	end
+to_number = to_number or function(num)
+    return num
 end
+
 if not G.PRISM.compat.talisman and not G.PRISM.compat.buffoonery then
 	if SMODS and SMODS.calculate_individual_effect then
 		local originalCalcIndiv = SMODS.calculate_individual_effect

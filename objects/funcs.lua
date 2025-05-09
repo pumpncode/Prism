@@ -4,7 +4,7 @@ function G.PRISM.get_suits(scoring_hand, bypass_debuff)
         suits[k] = 0
     end
     for _, card in ipairs(scoring_hand) do
-        if not SMODS.has_any_suit(card) then
+        if card and not SMODS.has_any_suit(card) then
             for suit, count in pairs(suits) do
                 if card:is_suit(suit, bypass_debuff) and count == 0 then
                     suits[suit] = count + 1
@@ -14,7 +14,7 @@ function G.PRISM.get_suits(scoring_hand, bypass_debuff)
         end
     end
     for _, card in ipairs(scoring_hand) do
-        if SMODS.has_any_suit(card) then
+        if card and SMODS.has_any_suit(card) then
             for suit, count in pairs(suits) do
                 if card:is_suit(suit, bypass_debuff) and count == 0 then
                     suits[suit] = count + 1
