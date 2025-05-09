@@ -1,6 +1,7 @@
 ![Prism Logo](https://github.com/user-attachments/assets/11ab82a9-2720-4476-bd74-4ee80071d285)
 
 Prism is a content mod that aims to enrich the Balatro experience while maintaining the vanilla feel
+
 Discord Server: https://discord.gg/8nF9bfDS
 
 # Content
