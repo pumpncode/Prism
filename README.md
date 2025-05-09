@@ -2,6 +2,8 @@
 
 Prism is a content mod that aims to enrich the Balatro experience while maintaining the vanilla feel
 
+Discord Server: https://discord.gg/8nF9bfDS
+
 # Content
 
 The mod currently adds:
