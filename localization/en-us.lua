@@ -768,12 +768,15 @@ return {
                 },
             }
         },
+        --!!!DO NOT TRANSLATE THIS PART!!!--
         Mod = {
             Prism = {
                 name = "Prism",
                 text = {
                     "Vanilla oriented content mod. Includes new",
                     "Jokers, Consumables, Decks and more!",
+                    " ",
+                    "Consider joining the {C:dark_edition}Discord Server{}",
                     " ",
                     "{s:1.5,C:attention,E:2}Credits",
                     "{C:dark_edition,E:2}SuperMao{} and {C:dark_edition,E:2}VisJoker{} - Chinese localization",
