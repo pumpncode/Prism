@@ -185,6 +185,9 @@ end
 G.FUNCS.prism_link_3 = function(e)
     love.system.openURL("https://github.com/Mil0Meg4/Aneyh-Vampirica")
 end
+G.FUNCS.prism_link_4 = function(e)
+    love.system.openURL("https://discord.gg/8nF9bfDS")
+end
 
 SMODS.current_mod.description_loc_vars = function()
 	return { background_colour = G.C.CLEAR, text_colour = G.C.WHITE, scale = 1.2 }
@@ -192,7 +195,7 @@ end
 
 SMODS.current_mod.custom_ui = function(nodes)
     local title, description = unpack(nodes)
-	local links = {"Unjankify","Prism Darkside","Aneyh Vampirica"}
+	local links = {"Unjankify","Prism Darkside","Aneyh Vampirica","Discord Server"}
 	local links_finds = {}
 
 	for i,v in ipairs(links) do
