@@ -1795,13 +1795,15 @@ G.PRISM.Joker({
 })
 local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
-	if next(find_joker("j_prism_shork_dark")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= "e_pridark_trans" then
-		orig_set_edition(self,"e_pridark_trans", immediate, silent)
-	elseif next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
-		orig_set_edition(self,{polychrome = true}, immediate, silent)
-	else
-		orig_set_edition(self,edition, immediate, silent)
+	local new_edition = edition
+	if not G.GAME.prism_shork_copy and edition and not (type(edition) == "table" and next(edition) == nil) then
+		if next(find_joker("j_prism_shork_dark")) and edition ~= "e_pridark_trans" then
+			new_edition = "e_pridark_trans"
+		elseif next(find_joker("j_prism_shork")) and edition ~= {polychrome = true} then
+			new_edition = {polychrome = true}
+		end
 	end
+	orig_set_edition(self,new_edition, immediate, silent)
 end
 G.PRISM.Joker({
 	key = "swiss",

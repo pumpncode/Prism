@@ -320,3 +320,22 @@ position = "at"
 payload = '''local blind_sprite = Sprite(0, 0, 0.7,0.7, G.ASSET_ATLAS[config.tag.atlas or 'tags'], copy_table(config.pos))
 '''
 match_indent = true
+
+# copy_card edition shork compat
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+position = 'before'
+pattern = 'new_card:set_edition(other.edition or {}, nil, true)'
+payload = '''G.GAME.prism_shork_copy = true
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+position = 'after'
+pattern = 'new_card:set_edition(other.edition or {}, nil, true)'
+payload = '''G.GAME.prism_shork_copy = nil
+'''
+match_indent = true
