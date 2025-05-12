@@ -565,7 +565,7 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	calculate = function(self, card, context)
-		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+		if context.joker_main and not context.before and not context.after and not (context.blueprint_card or card).getting_sliced then
 			local kings = 0
 			local queens = 0
 			for i = 1, #context.scoring_hand do
@@ -573,15 +573,11 @@ G.PRISM.Joker({
 				if context.scoring_hand[i]:get_id() == 13 then kings = kings + 1 end
 			end
 			if kings >= 1 and queens >= 1 then
-				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-				play_sound("timpani")
-				play_sound("polychrome1",2,0.5)
-				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'happily')
-				myth:add_to_deck()
-				G.consumeables:emplace(myth)
-				G.GAME.consumeable_buffer = 0
-				myth:juice_up(0.3, 0.5)
-				card:juice_up(0.3, 0.5)
+				G.PRISM.create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'happily', function(new_card)
+					play_sound("timpani")
+					play_sound("polychrome1",2,0.5)
+					card:juice_up(0.3, 0.5)
+				end)
 				return nil,true
 			end
 		end
@@ -1415,15 +1411,11 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	calculate = function(self, card, context)
-		if context.setting_blind and not context.blind.boss and not (context.blueprint_card or card).getting_sliced
-		and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-			G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-			play_sound("timpani")
-			local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'minst')
-			myth:add_to_deck()
-			G.consumeables:emplace(myth)
-			G.GAME.consumeable_buffer = 0
-			myth:juice_up(0.3, 0.5)
+		if context.setting_blind and not context.blind.boss and not (context.blueprint_card or card).getting_sliced then
+			G.PRISM.create_card('Myth',G.consumeables, nil, nil, nil, nil, nil, 'minst', function(new_card)
+				play_sound("timpani")
+				card:juice_up(0.3, 0.5)
+			end)
 			return nil,true
 		end
 	end
@@ -1613,14 +1605,10 @@ G.PRISM.Joker({
 				if context.scoring_hand[i]:is_suit("Spades") then spades = spades + 1 end
 			end
 			if hearts >= 1 and spades >= 1 and G.GAME.last_myth then
-				G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-				play_sound("timpani")
-				local myth = create_card('Myth',G.consumeables, nil, nil, nil, nil, G.GAME.last_myth, 'return')
-				myth:add_to_deck()
-				G.consumeables:emplace(myth)
-				G.GAME.consumeable_buffer = 0
-				myth:juice_up(0.3, 0.5)
-				card:juice_up(0.3, 0.5)
+				G.PRISM.create_card('Myth',G.consumeables, nil, nil, nil, nil, G.GAME.last_myth, 'return', function(new_card)
+					play_sound("timpani")
+					card:juice_up(0.3, 0.5)
+				end)
 				return nil,true
 			end
 		end
@@ -1807,13 +1795,15 @@ G.PRISM.Joker({
 })
 local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
-	if next(find_joker("j_prism_shork_dark")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= "e_pridark_trans" then
-		orig_set_edition(self,"e_pridark_trans", immediate, silent)
-	elseif next(find_joker("j_prism_shork")) and edition and not (type(edition) == "table" and next(edition) == nil) and edition ~= {polychrome = true} then
-		orig_set_edition(self,{polychrome = true}, immediate, silent)
-	else
-		orig_set_edition(self,edition, immediate, silent)
+	local new_edition = edition
+	if not G.GAME.prism_shork_copy and edition and not (type(edition) == "table" and next(edition) == nil) then
+		if next(find_joker("j_prism_shork_dark")) and edition ~= "e_pridark_trans" then
+			new_edition = "e_pridark_trans"
+		elseif next(find_joker("j_prism_shork")) and edition ~= {polychrome = true} then
+			new_edition = {polychrome = true}
+		end
 	end
+	orig_set_edition(self,new_edition, immediate, silent)
 end
 G.PRISM.Joker({
 	key = "swiss",

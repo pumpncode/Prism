@@ -66,6 +66,24 @@ function G.PRISM.remove_joker(card)
             return true
     end}))
 end
+function G.PRISM.create_card(_type,area,legendary,_rarity,skip_materialize,soulable,forced_key,key_append,func)
+    local buffer_type = area == G.jokers and 'joker_buffer' or 'consumeable_buffer'
+
+    if #area.cards + G.GAME[buffer_type] < area.config.card_limit then
+        G.GAME[buffer_type] = G.GAME[buffer_type] + 1
+        G.E_MANAGER:add_event(Event {
+            func = function()
+            local card = create_card(_type,area,legendary,_rarity,skip_materialize,soulable,forced_key,key_append)
+            card:add_to_deck()
+            area:emplace(card)
+            func(card)
+            G.GAME[buffer_type] = 0
+            return true
+            end
+        })
+        return true
+    end
+end
 
 function G.PRISM.is_numbered(card)
     return card.base and card.base.value and not SMODS.Ranks[card.base.value].face and card:get_id() ~= 14
