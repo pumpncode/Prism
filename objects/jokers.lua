@@ -578,7 +578,7 @@ G.PRISM.Joker({
 					play_sound("polychrome1",2,0.5)
 					card:juice_up(0.3, 0.5)
 				end)
-				return nil,true
+				return {}
 			end
 		end
 	end
@@ -617,6 +617,7 @@ G.PRISM.Joker({
 					card:juice_up(0.3, 0.5)
 				end
 			return true end }))
+			return {}
 		end
 	end
 })
@@ -1416,7 +1417,7 @@ G.PRISM.Joker({
 				play_sound("timpani")
 				card:juice_up(0.3, 0.5)
 			end)
-			return nil,true
+			return {}
 		end
 	end
 })
@@ -1609,7 +1610,7 @@ G.PRISM.Joker({
 					play_sound("timpani")
 					card:juice_up(0.3, 0.5)
 				end)
-				return nil,true
+				return {}
 			end
 		end
 	end
