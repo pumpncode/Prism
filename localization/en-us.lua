@@ -784,7 +784,7 @@ return {
                     "{C:dark_edition,E:2}Shinosan{} - Vietnamese localization",
                     " ",
                     "{s:1.5,C:attention,E:2}My Other Mods",
-                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Aneyh Vampirica{}" ,
+                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Resurgence{}" ,
                 }
             }
         },

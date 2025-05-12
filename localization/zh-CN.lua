@@ -762,7 +762,7 @@ return {
                     "{C:dark_edition,E:2}Shinosan{} - 越南语本地化",
                     " ",
                     "{s:1.5,C:attention,E:2}我的其他模组",
-                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{}, {C:dark_edition}Aneyh Vampirica{}" ,
+                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{}, {C:dark_edition}Resurgence{}" ,
                 }
             }
         },
