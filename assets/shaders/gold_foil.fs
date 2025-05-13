@@ -5,7 +5,7 @@
 #endif
 
 
-extern PRECISION vec2 goldfoil;
+extern PRECISION vec2 gold_foil;
 extern PRECISION number dissolve;
 extern PRECISION number time;
 extern PRECISION vec4 texture_details;
@@ -115,17 +115,17 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     number high = max(tex.r, max(tex.g, tex.b));
 	number delta = min(high, max(0.6, 1. - low));
 
-    number fac = 0.8 + 0.9*sin(11.*uv.x+4.32*uv.y + goldfoil.r*12. + cos(goldfoil.r*5.3 + uv.y*4.2 - uv.x*4.));
-    number fac2 = 0.5 + 0.5*sin(8.*uv.x+2.32*uv.y + goldfoil.r*5. - cos(goldfoil.r*2.3 + uv.x*8.2));
-    number fac3 = 0.5 + 0.5*sin(10.*uv.x+5.32*uv.y + goldfoil.r*6.111 + sin(goldfoil.r*5.3 + uv.y*3.2));
-    number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + goldfoil.r*8.111 + sin(goldfoil.r*1.3 + uv.y*11.2));
-    number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + goldfoil.r*12. + cos(goldfoil.r*5.3 + uv.y*4.2 - uv.x*4.));
+    number fac = 0.8 + 0.9*sin(11.*uv.x+4.32*uv.y + gold_foil.r*12. + cos(gold_foil.r*5.3 + uv.y*4.2 - uv.x*4.));
+    number fac2 = 0.5 + 0.5*sin(8.*uv.x+2.32*uv.y + gold_foil.r*5. - cos(gold_foil.r*2.3 + uv.x*8.2));
+    number fac3 = 0.5 + 0.5*sin(10.*uv.x+5.32*uv.y + gold_foil.r*6.111 + sin(gold_foil.r*5.3 + uv.y*3.2));
+    number fac4 = 0.5 + 0.5*sin(3.*uv.x+2.32*uv.y + gold_foil.r*8.111 + sin(gold_foil.r*1.3 + uv.y*11.2));
+    number fac5 = sin(0.9*16.*uv.x+5.32*uv.y + gold_foil.r*12. + cos(gold_foil.r*5.3 + uv.y*4.2 - uv.x*4.));
 
     vec4 hsl = HSL(tex);
     
     hsl.y = 0.02;
-    hsl.z *= (0.5 - adjusted_uv.x*(cos(goldfoil.r*0.512)));
-    hsl.z *= (1.5 - adjusted_uv.y*(cos(goldfoil.r*0.512)));
+    hsl.z *= (0.5 - adjusted_uv.x*(cos(gold_foil.r*0.512)));
+    hsl.z *= (1.5 - adjusted_uv.y*(cos(gold_foil.r*0.512)));
     tex = RGB(hsl)+gold_color*0.6;
 
     number maxfac = 0.37*max(max(fac, max(fac2, max(fac3,0.8))) + (fac+fac2+fac3*fac4), 0.);
@@ -133,12 +133,12 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     tex.r = tex.r-delta + delta*maxfac*(0.6 - fac5*0.1) - 0.1;
     tex.g = tex.g-delta + delta*maxfac*(0.6 - fac5*0.1) - 0.1;
 
-    fac = max(min(2.*sin((length(90.*adjusted_uv) + goldfoil.r*2.) + 3.*(1.+0.8*cos(length(113.1121*adjusted_uv) - goldfoil.r*3.121))) - 1. - max(5.-length(90.*adjusted_uv), 0.), 1.), 0.);
-    vec2 rotater = vec2(cos(goldfoil.r*0.1221), sin(goldfoil.r*0.3512));
+    fac = max(min(2.*sin((length(90.*adjusted_uv) + gold_foil.r*2.) + 3.*(1.+0.8*cos(length(113.1121*adjusted_uv) - gold_foil.r*3.121))) - 1. - max(5.-length(90.*adjusted_uv), 0.), 1.), 0.);
+    vec2 rotater = vec2(cos(gold_foil.r*0.1221), sin(gold_foil.r*0.3512));
     number angle = dot(rotater, adjusted_uv)/(length(rotater)*length(adjusted_uv));
-    fac2 = max(min(5.*cos(goldfoil.g*0.3 + angle*3.14*(2.2+0.9*sin(goldfoil.r*1.65 + 0.2*goldfoil.g))) - 4. - max(2.-length(20.*adjusted_uv), 0.), 1.), 0.);
-    fac3 = 0.3*max(min(2.*sin(goldfoil.r*5. + uv.x*3. + 3.*(1.+0.5*cos(goldfoil.r*7.))) - 1., 1.), -1.);
-    fac4 = 0.3*max(min(2.*sin(goldfoil.r*6.66 + uv.y*3.8 + 3.*(1.+0.5*cos(goldfoil.r*3.414))) - 1., 1.), -1.);
+    fac2 = max(min(5.*cos(gold_foil.g*0.3 + angle*3.14*(2.2+0.9*sin(gold_foil.r*1.65 + 0.2*gold_foil.g))) - 4. - max(2.-length(20.*adjusted_uv), 0.), 1.), 0.);
+    fac3 = 0.3*max(min(2.*sin(gold_foil.r*5. + uv.x*3. + 3.*(1.+0.5*cos(gold_foil.r*7.))) - 1., 1.), -1.);
+    fac4 = 0.3*max(min(2.*sin(gold_foil.r*6.66 + uv.y*3.8 + 3.*(1.+0.5*cos(gold_foil.r*3.414))) - 1., 1.), -1.);
 
     maxfac = max(max(fac, max(fac2, max(fac3, max(fac4, 1.5)))) + 2.2*(fac+fac2+fac3+fac4), 2.);
 
@@ -148,7 +148,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     //tex.a = 0.2*tex.a + 0.2*min(0.2, maxfac*0.1);
 
     if (uv.x > 2. * uv.x) {
-        uv = goldfoil;
+        uv = gold_foil;
     }
 
     return dissolve_mask(tex, texture_coords, uv);
