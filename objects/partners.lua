@@ -32,7 +32,6 @@ Partner_API.Partner{
                     play_sound('polychrome1', 1.2 + math.random()*0.1, 0.4)
                 return true
             end)}))
-            card_eval_status_text(card, "extra", nil, nil, nil, {message = localize("k_blahaj"), colour = G.C.DARK_EDITION})
             return {
                 message = localize("k_blahaj"),
                 colour = G.C.DARK_EDITION,
