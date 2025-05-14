@@ -679,6 +679,18 @@ return {
                     "{C:attention}Stake{} difficulty",
                 },
             },
+            pnr_prism_scopa={
+                name = "Scopa",
+                text = {"Played {C:attention}Enhanced{}",
+                    "cards give {C:red}+#1#{} Mult",
+                    "when scored"
+                },
+                unlock={
+                    "Used {C:attention}Exotic Card",
+                    "to win on {C:attention}Gold",
+                    "{C:attention}Stake{} difficulty",
+                },
+            },
         },
         Other = {
             p_prism_small_myth_1 = {

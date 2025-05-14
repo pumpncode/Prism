@@ -51,3 +51,44 @@ Partner_API.Partner{
         end
     end,
 }
+Partner_API.Partner{
+    key = "scopa",
+    unlocked = false,
+    discovered = true,
+    pos = {x = 1, y = 0},
+    loc_txt = {},
+    atlas = "prismpartner",
+    config = {extra = {related_card = "j_prism_exotic_card",mult = 3}},
+    loc_vars = function(self, info_queue, card)
+        local benefits = 1
+        if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
+        return { vars = {card.ability.extra.mult*benefits} }
+    end,
+    calculate = function(self, card, context)
+		if context.individual and context.other_card and context.scoring_hand then
+            if next(SMODS.get_enhancements(context.other_card)) then
+                for i = 1, #context.scoring_hand do
+                    if context.scoring_hand[i] == context.other_card then
+                        local benefits = 1
+                        if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
+                        return {
+                            mult = card.ability.extra.mult*benefits,
+                            colour = G.C.RED,
+                            card = card
+                        }
+                    end
+                end
+            end
+        end
+	end,
+    check_for_unlock = function(self, args)
+        for _, v in pairs(G.P_CENTER_POOLS["Joker"]) do
+            if v.key == "j_prism_exotic_card" then
+                if get_joker_win_sticker(v, true) >= 8 then
+                    return true
+                end
+                break
+            end
+        end
+    end,
+}
