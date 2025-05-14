@@ -532,7 +532,7 @@ G.PRISM.Joker({
 		}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_stone') then return true end
 		end
 		return false
@@ -673,7 +673,7 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_stone') then return true end
 		end
 		return false
@@ -683,7 +683,7 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_steel
 	end,
 	add_to_deck = function(self, card, from_debuff)
-        for _, deck_card in pairs(G.playing_cards) do
+        for _, deck_card in pairs(G.playing_cards or {}) do
             if SMODS.has_enhancement(deck_card,"m_stone") then
                 deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
             end
@@ -691,7 +691,7 @@ G.PRISM.Joker({
         G.P_CENTERS.m_stone.config.h_x_mult = (G.P_CENTERS.m_stone.config.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
     end,
     remove_from_deck = function(self, card, from_debuff)
-        for _, deck_card in pairs(G.playing_cards) do
+        for _, deck_card in pairs(G.playing_cards or {}) do
             if SMODS.has_enhancement(deck_card,"m_stone") then
                 deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or G.P_CENTERS.m_steel.config.h_x_mult) - G.P_CENTERS.m_steel.config.h_x_mult
             end
@@ -1141,7 +1141,7 @@ G.PRISM.Joker({
 		}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_wild') then return true end
 		end
 		return false
@@ -1222,35 +1222,31 @@ G.PRISM.Joker({
 				if context.scoring_hand[i]:get_id() == 14 then aces = aces + 1 end
 			end
 			if aces >= 1 and next(context.poker_hands["Straight"]) then
+				local tag 
+				local message
+				local color
 				if pseudorandom('aces high') < 1 / 3 then
-					G.E_MANAGER:add_event(Event({
-						trigger = 'before',
-						func = (function()
-							add_tag(Tag('tag_rare'))
-							play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-							play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
-						return true
-					end)}))
-					return {
-						message = localize('k_plus_rare'),
-						colour = G.C.RED,
-						card = card,
-					}
+					tag = 'tag_rare'
+					message = 'k_plus_rare'
+					color = G.C.RED
 				else
-					G.E_MANAGER:add_event(Event({
-						trigger = 'before',
-						func = (function()
-							add_tag(Tag('tag_uncommon'))
-							play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-							play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
-						return true
-					end)}))
-					return {
-						message = localize('k_plus_uncommon'),
-						colour = G.C.GREEN,
-						card = card,
-					}
+					tag = 'tag_uncommon'
+					message = 'k_plus_uncommon'
+					color = G.C.GREEN
 				end
+				G.E_MANAGER:add_event(Event({
+					trigger = 'before',
+					func = (function()
+						add_tag(Tag(tag))
+						play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+						play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+					return true
+				end)}))
+				return {
+					message = localize(message),
+					colour = color,
+					card = card,
+				}
 			end
 		end
     end
@@ -1278,7 +1274,7 @@ G.PRISM.Joker({
 		}}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_glass') then return true end
 		end
 		return false
@@ -1374,7 +1370,7 @@ G.PRISM.Joker({
 		return {vars = {center.ability.x_mult,center.ability.extra}}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_prism_crystal') then return true end
 		end
 		return false
@@ -1435,7 +1431,7 @@ G.PRISM.Joker({
 	perishable_compat = true,
 	config = {extra = 0},
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_prism_double') then return true end
 		end
 		return false
@@ -1732,7 +1728,7 @@ G.PRISM.Joker({
 		if G.GAME.prism_start_deck_ranks then
 			for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 				local is_present = false
-				for _k, _v in pairs(G.playing_cards) do
+				for _k, _v in pairs(G.playing_cards or {}) do
 					if not is_present and _v:get_id() == v then is_present = true end
 				end
 				if not is_present then
@@ -1746,7 +1742,7 @@ G.PRISM.Joker({
 		local x_mult = 1
 		for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 			local is_present = false
-			for _k, _v in pairs(G.playing_cards) do
+			for _k, _v in pairs(G.playing_cards or {}) do
 				if not is_present and _v:get_id() == v then is_present = true end
 			end
 			if not is_present then
@@ -1761,7 +1757,6 @@ G.PRISM.Joker({
 	end
 })
 G.PRISM.Joker({
-	dependency = not G.PRISM.compat.darkside,
 	key = "shork",
 	atlas = "prismjokers",
 	pos = {x=2,y=4},
@@ -1777,28 +1772,12 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS[edition]
 	end,
 })
-G.PRISM.Joker({
-	dependency = G.PRISM.compat.darkside,
-	key = "shork_dark",
-	atlas = "prismjokers",
-	pos = {x=2,y=4},
-	rarity = 3,
-	cost = 7,
-	unlocked = true,
-	discovered = false,
-	blueprint_compat = false,
-	eternal_compat = true,
-	perishable_compat = true,
-	loc_vars = function(self, info_queue, center)
-		local edition = "e_pridark_trans"
-		info_queue[#info_queue + 1] = G.P_CENTERS[edition]
-	end,
-})
+
 local orig_set_edition = Card.set_edition
 function Card.set_edition(self,edition, immediate, silent)
 	local new_edition = edition
 	if not G.GAME.prism_shork_copy and edition and not (type(edition) == "table" and next(edition) == nil) then
-		if next(find_joker("j_prism_shork_dark")) and edition ~= "e_pridark_trans" then
+		if next(find_joker("j_prism_shork")) and G.PRISM.compat.darkside and edition ~= "e_pridark_trans" then
 			new_edition = "e_pridark_trans"
 		elseif next(find_joker("j_prism_shork")) and edition ~= {polychrome = true} then
 			new_edition = {polychrome = true}
