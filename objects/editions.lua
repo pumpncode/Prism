@@ -1,12 +1,12 @@
 ----Not Implemented---
 SMODS.Shader {
-    key = 'goldfoil',
-    path = 'goldfoil.fs'
+    key = 'gold_foil',
+    path = 'gold_foil.fs'
 }
 
 SMODS.Edition {
     key = 'gold_foil',
-    shader = 'goldfoil',
+    shader = 'gold_foil',
     sound = {
         sound = 'prism_gold_foil',
         per = 1,
