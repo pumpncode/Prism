@@ -268,12 +268,6 @@ return {
                     "become {C:dark_edition}Polychrome"
                 },
             },
-            j_prism_shork_dark = {
-                name = "Shark Plush",
-                text = {"All future {C:spectral}Editions{}",
-                    "become {C:dark_edition}Trans"
-                },
-            },
             j_prism_schrodinger = {
                 name = "Schrödinger's Cat",
                 text = {"Retrigger each played",
@@ -671,6 +665,21 @@ return {
                 }
             }
         },
+        Partner={
+            pnr_prism_blahaj={
+                name = "Blåhaj",
+                text = {"Create a {C:dark_edition,T:tag_foil}Foil Tag",
+                    "{C:dark_edition,T:tag_holo}Holographic Tag{} or",
+                    "{C:dark_edition,T:tag_polychrome}Polychrome Tag{} after",
+                    "defeating {C:attention}#1#",
+                },
+                unlock={
+                    "Used {C:attention}Shark Plush",
+                    "to win on {C:attention}Gold",
+                    "{C:attention}Stake{} difficulty",
+                },
+            },
+        },
         Other = {
             p_prism_small_myth_1 = {
                 name = "Legend Pack",
@@ -812,6 +821,7 @@ return {
             k_of = "of",
             k_sunset = "Sunset",
             k_sunrise = "Sunrise",
+            k_blahaj = "Tag :3",
             prism_create = "Make Wish",
             prism_cancel = "Cancel",
             prism_enter_card = "Enter Card",
@@ -824,6 +834,8 @@ return {
             prism_feature_enable = "Select features:",
             prism_pizza_music = "Pizza Music",
             prism_requires_restart = "Requires restart!",
+            prism_blind = "Blind",
+            prism_boss = "Boss Blind",
             b_open_link = "Opens in browser",
         },
         v_dictionary = {

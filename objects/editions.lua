@@ -16,6 +16,9 @@ SMODS.Edition {
     weight = 3,
     in_shop = true,
     extra_cost = 5,
+    get_weight = function(self)
+        return self.weight
+    end,
 	calculate = function(self, card, context)
 		if context.other_card == card and ((context.repetition and context.cardarea == G.play)
         or (context.retrigger_joker_check and not context.retrigger_joker))

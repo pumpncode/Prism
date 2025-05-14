@@ -34,6 +34,7 @@ G.PRISM.compat = {
 	buffoonery = (SMODS.Mods['Buffoonery'] or {}).can_load or false,
 	paperback = (SMODS.Mods['paperback'] or {}).can_load or false,
 	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load or false,
+	partner = (SMODS.Mods['partner'] or {}).can_load or false,
 	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load or false,
 }
 
@@ -78,6 +79,7 @@ if G.PRISM.config.blinds_enabled then SMODS.load_file('objects/blinds.lua')() en
 SMODS.load_file('objects/challenges.lua')()
 SMODS.load_file('objects/stakes.lua')()
 if G.PRISM.compat.sleeves then SMODS.load_file('objects/cardsleeves.lua')() end
+if G.PRISM.compat.partner then SMODS.load_file('objects/partners.lua')() end
 
 SMODS.Sound({
 	key = "myth_music",
