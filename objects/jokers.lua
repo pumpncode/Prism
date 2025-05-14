@@ -532,7 +532,7 @@ G.PRISM.Joker({
 		}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_stone') then return true end
 		end
 		return false
@@ -673,7 +673,7 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_stone') then return true end
 		end
 		return false
@@ -683,7 +683,7 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS.m_steel
 	end,
 	add_to_deck = function(self, card, from_debuff)
-        for _, deck_card in pairs(G.playing_cards) do
+        for _, deck_card in pairs(G.playing_cards or {}) do
             if SMODS.has_enhancement(deck_card,"m_stone") then
                 deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
             end
@@ -691,7 +691,7 @@ G.PRISM.Joker({
         G.P_CENTERS.m_stone.config.h_x_mult = (G.P_CENTERS.m_stone.config.h_x_mult or 0) + G.P_CENTERS.m_steel.config.h_x_mult
     end,
     remove_from_deck = function(self, card, from_debuff)
-        for _, deck_card in pairs(G.playing_cards) do
+        for _, deck_card in pairs(G.playing_cards or {}) do
             if SMODS.has_enhancement(deck_card,"m_stone") then
                 deck_card.ability.h_x_mult = (deck_card.ability.h_x_mult or G.P_CENTERS.m_steel.config.h_x_mult) - G.P_CENTERS.m_steel.config.h_x_mult
             end
@@ -1141,7 +1141,7 @@ G.PRISM.Joker({
 		}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_wild') then return true end
 		end
 		return false
@@ -1278,7 +1278,7 @@ G.PRISM.Joker({
 		}}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_glass') then return true end
 		end
 		return false
@@ -1374,7 +1374,7 @@ G.PRISM.Joker({
 		return {vars = {center.ability.x_mult,center.ability.extra}}
 	end,
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_prism_crystal') then return true end
 		end
 		return false
@@ -1435,7 +1435,7 @@ G.PRISM.Joker({
 	perishable_compat = true,
 	config = {extra = 0},
 	in_pool = function(self)
-		for k, v in pairs(G.playing_cards) do
+		for k, v in pairs(G.playing_cards or {}) do
 			if SMODS.has_enhancement(v,'m_prism_double') then return true end
 		end
 		return false
@@ -1732,7 +1732,7 @@ G.PRISM.Joker({
 		if G.GAME.prism_start_deck_ranks then
 			for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 				local is_present = false
-				for _k, _v in pairs(G.playing_cards) do
+				for _k, _v in pairs(G.playing_cards or {}) do
 					if not is_present and _v:get_id() == v then is_present = true end
 				end
 				if not is_present then
@@ -1746,7 +1746,7 @@ G.PRISM.Joker({
 		local x_mult = 1
 		for k, v in pairs(G.GAME.prism_start_deck_ranks) do
 			local is_present = false
-			for _k, _v in pairs(G.playing_cards) do
+			for _k, _v in pairs(G.playing_cards or {}) do
 				if not is_present and _v:get_id() == v then is_present = true end
 			end
 			if not is_present then

@@ -23,7 +23,7 @@ pattern = '''
 position = "after"
 payload = '''
 G.GAME.prism_extra_draw = 0
-for k,v in pairs(G.playing_cards) do
+for k,v in pairs(G.playing_cards or {}) do
 	if v.ability.greened then v.ability.greened = nil end
 end
 '''
