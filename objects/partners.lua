@@ -64,19 +64,15 @@ Partner_API.Partner{
         return { vars = {card.ability.extra.mult*benefits} }
     end,
     calculate = function(self, card, context)
-		if context.individual and context.other_card and context.scoring_hand then
+		if context.individual and context.other_card and context.scoring_hand and context.cardarea == G.play then
             if next(SMODS.get_enhancements(context.other_card)) then
-                for i = 1, #context.scoring_hand do
-                    if context.scoring_hand[i] == context.other_card then
-                        local benefits = 1
-                        if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
-                        return {
-                            mult = card.ability.extra.mult*benefits,
-                            colour = G.C.RED,
-                            card = card
-                        }
-                    end
-                end
+                local benefits = 1
+                if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
+                return {
+                    mult = card.ability.extra.mult*benefits,
+                    colour = G.C.RED,
+                    card = card
+                }
             end
         end
 	end,
