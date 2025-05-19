@@ -861,6 +861,40 @@ return {
             prism_moon_seal = "Moon Seal",
             prism_gold_foil = "Gold Foil"
         },
+        quips = {
+            --blahaj
+            pnr_prism_blahaj_1={
+                "We can do",
+                "this fren :3"
+            },
+            pnr_prism_blahaj_2={
+                "fdghhjhjhg this blind",
+                "is so big!! But we can",
+                "do it together :3"
+            },
+            pnr_prism_blahaj_3={
+                ">33: good luck"
+            },
+
+            --scopa
+            pnr_prism_scopa_1={
+                "Ce compare, che",
+                "so' ste carte?!"
+            },
+            pnr_prism_scopa_2={
+                "Briscola a mazze",
+                "per sta partita"
+            },
+            pnr_prism_scopa_3={
+                "Ce l'hai un",
+                "carico? Se no",
+                "va di liscio qui!"
+            },
+            pnr_prism_scopa_4={
+                "Questa e vinta,",
+                "ch'abbiamo il settoro"
+            },
+        }
     },
 }
 
