@@ -910,7 +910,7 @@ G.PRISM.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {extra = 4, trigger = false},
+	config = {extra = 3, trigger = false},
 	loc_vars = function(self, info_queue, center)
 		return { vars = {center.ability.extra} }
 	end,
