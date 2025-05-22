@@ -77,6 +77,26 @@ SMODS.Enhancement({
 })
 
 --[[ SMODS.Enhancement({
+    key = "ice",
+    atlas = "prismenhanced",
+    pos = {x = 0, y = 2},
+    discovered = false,
+    config = {extra = {chips = 8}},
+    loc_vars = function(self, info_queue, card)
+        local card_ability = card and card.ability or self.config
+        return {
+            vars = { card_ability.extra.chips, card_ability.extra.chips*(G.GAME.prism_cards_played or 0)}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring then
+            return {
+                chips = card.ability.extra.chips*(G.GAME.prism_cards_played or 0)
+            }
+        end
+    end
+}) ]]
+--[[ SMODS.Enhancement({
     key = "double",
     atlas = "prismenhanced",
     pos = {x = 0, y = 2},

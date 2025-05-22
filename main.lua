@@ -50,6 +50,7 @@ function SMODS.current_mod.reset_game_globals(run_start)
 		G.GAME.prism_eggs_used = 0
 		G.GAME.price_scaling = 0
 		G.GAME.prism_start_deck_ranks = {}
+		G.GAME.prism_cards_played = 0
 		for i, v in pairs(G.playing_cards or {}) do
 			local already_added = false
 			for _, k in pairs(G.GAME.prism_start_deck_ranks) do

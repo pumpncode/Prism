@@ -29,6 +29,28 @@ end
 '''
 match_indent = true
 
+#ice cards card count
+[[patches]]
+[patches.pattern]
+target = '''functions/state_events.lua'''
+pattern = "G.GAME.round_scores.cards_played.amt = G.GAME.round_scores.cards_played.amt + 1"
+position = "before"
+payload = '''
+G.GAME.prism_cards_played = (G.GAME.prism_cards_played or 0) + 1
+'''
+match_indent = true
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+-- TARGET: main end_of_round evaluation
+'''
+position = "after"
+payload = '''
+G.GAME.prism_cards_played = 0
+'''
+match_indent = true
+
 #bonus packs
 [[patches]]
 [patches.pattern]
