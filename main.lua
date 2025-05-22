@@ -190,7 +190,7 @@ G.FUNCS.prism_link_3 = function(e)
     love.system.openURL("https://github.com/Mil0Meg4/Resurgence")
 end
 G.FUNCS.prism_link_4 = function(e)
-    love.system.openURL("https://discord.gg/8nF9bfDS")
+    love.system.openURL("https://discord.gg/wy2HTYmn5y")
 end
 
 SMODS.current_mod.description_loc_vars = function()
