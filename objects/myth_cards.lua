@@ -76,17 +76,34 @@ SMODS.Consumable({
     atlas = 'prismmyth',
     pos = {x=2, y=1},
     discovered = false,
-    config = {mod_conv = "m_prism_double"},
+    config = {max_highlighted = 1},
     loc_vars = function(self, info_queue)
-		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
+		--info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
 
-		return { vars = {2} }
+		return { vars = {self.config.max_highlighted} }
 	end,
     can_use = function(self, card)
-		return #G.hand.highlighted == 2
+		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 1
 	end,
     use = function(self, card, area, copier)
-        local _card_1 = G.hand.highlighted[1]
+        G.E_MANAGER:add_event(Event {
+            func = function()
+                for i=1, #G.hand.highlighted do
+                    G.playing_card = (G.playing_card or 0) + 1
+                    local new_card = copy_card(G.hand.highlighted[i], nil, nil, G.playing_card)
+                    local suit = pseudorandom_element(G.P_CARDS, pseudoseed('pri_twin')..G.GAME.round_resets.ante).suit
+                    SMODS.change_base(new_card,suit,nil)
+                    new_card:add_to_deck()
+                    G.deck.config.card_limit = G.deck.config.card_limit + 1
+                    table.insert(G.playing_cards, new_card)
+                    G.hand:emplace(new_card)
+                    new_card:start_materialize(nil, _first_dissolve)
+                    playing_card_joker_effects { new_card }
+                end
+                return true
+            end
+        })
+        --[[ local _card_1 = G.hand.highlighted[1]
         local _card_2 = G.hand.highlighted[2]
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('tarot1')
@@ -107,7 +124,7 @@ SMODS.Consumable({
             local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
         end
-        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end}))
+        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end})) ]]
     end
 
 })

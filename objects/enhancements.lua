@@ -76,7 +76,7 @@ SMODS.Enhancement({
     end
 })
 
-SMODS.Enhancement({
+--[[ SMODS.Enhancement({
     key = "double",
     atlas = "prismenhanced",
     pos = {x = 0, y = 2},
@@ -102,9 +102,9 @@ SMODS.Enhancement({
             card.ability.extra.card = _card
         end
 	end
-})
+}) ]]
 
-local orig_highlight = Card.highlight
+--[[ local orig_highlight = Card.highlight
 function Card:highlight(highlighted)
     orig_highlight(self, highlighted)
     if DTM and DTM.config.disable_action_buttons and highlighted and self.ability.set == 'Enhanced' and self.ability.name == 'm_prism_double' then
@@ -129,7 +129,7 @@ function Card:highlight(highlighted)
     if highlighted and self.children.use_button and self.children.use_button.config.id == 'm_prism_double' and self.config.center_key ~= 'm_prism_double' then
         self.children.use_button:remove()
     end
-end
+end ]]
 
 function G.UIDEF.use_switch_button(card)
     local button = nil

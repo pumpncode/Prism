@@ -512,11 +512,11 @@ return {
             },
             c_prism_myth_twin = {
                 name = "Twin",
-                text = {"Enhances {C:attention}#1#{}",
-                    "selected cards to",
-                    "{C:attention}Double Cards",
-                    "{C:inactive}(Doubling each other)"
-                }
+                text={
+                    "Create a copy with",
+                    "a random {C:attention}suit{} of",
+                    "{C:attention}#1#{} selected card",
+                },
             },
             c_prism_myth_wizard = {
                 name = "Wizard",
