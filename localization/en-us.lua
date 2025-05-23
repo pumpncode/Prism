@@ -510,6 +510,13 @@ return {
                     "{C:attention}Echo Cards"
                 }
             },
+            c_prism_myth_yeti = {
+                name = "Yeti",
+                text = {"Enhances {C:attention}#1#{}",
+                    "selected cards to",
+                    "{C:attention}Ice Cards"
+                }
+            },
             c_prism_myth_dragon = {
                 name = "Dragon",
                 text = {"Enhances {C:attention}#1#{}",

@@ -76,11 +76,12 @@ SMODS.Enhancement({
     end
 })
 
---[[ SMODS.Enhancement({
+SMODS.Enhancement({
     key = "ice",
     atlas = "prismenhanced",
     pos = {x = 0, y = 2},
     discovered = false,
+    effect = "Glass Card",
     config = {extra = {chips = 8}},
     loc_vars = function(self, info_queue, card)
         local card_ability = card and card.ability or self.config
@@ -95,7 +96,7 @@ SMODS.Enhancement({
             }
         end
     end
-}) ]]
+})
 --[[ SMODS.Enhancement({
     key = "double",
     atlas = "prismenhanced",
