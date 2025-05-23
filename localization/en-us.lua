@@ -379,7 +379,8 @@ return {
                 name = "Floppy Disk",
                 text = {"Sell this card to add",
                     "a copy of the cards in",
-                    "last {C:attention}played hand{} to {C:attention}hand",
+                    "{C:attention}last hand{} played while",
+                    "holding this to to {C:attention}hand"
                 },
             }
         },
