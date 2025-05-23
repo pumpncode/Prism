@@ -927,6 +927,50 @@ G.PRISM.Joker({
         end
     end
 })
+--[[ G.PRISM.Joker({
+	key = "floppy",
+	atlas = "prismjokers",
+	pos = {x=3,y=8},
+	rarity = 2,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {cards = {}}},
+	loc_vars = function(self, info_queue, center)
+	end,
+	calculate = function(self, card, context)
+		if context.cardarea == G.jokers and context.before and not context.blueprint then
+			card.ability.extra.cards = {}
+			for i,v in ipairs(context.full_hand) do
+				card.ability.extra.cards[i] = {
+					config = {
+						center = v.config.center,
+						card = v.config.card
+					},
+					ability = v.ability,
+					edition = v.edition,
+					seal = v.seal,
+					params = v.params
+				}
+			end
+		end
+		if context.selling_self and not context.blueprint and #G.hand.cards ~= 0 then
+			for _,v in ipairs(card.ability.extra.cards) do
+				v.T = copy_table(G.hand.cards[1].T)
+				local new_card = copy_card(v, nil, nil, G.playing_card)
+				new_card:add_to_deck()
+				G.deck.config.card_limit = G.deck.config.card_limit + 1
+				table.insert(G.playing_cards, new_card)
+				G.hand:emplace(new_card)
+				--new_card:start_materialize(nil, _first_dissolve)
+				playing_card_joker_effects({new_card})
+			end
+		end
+    end
+}) ]]
 G.PRISM.Joker({
 	key = "cookie",
 	atlas = "prismjokers",
@@ -938,7 +982,7 @@ G.PRISM.Joker({
 	blueprint_compat = false,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = 100},
+	--config = {extra = 100},
 	loc_vars = function(self, info_queue, center)
 		local active = G.STATE == G.STATES.SELECTING_HAND
 		return {
