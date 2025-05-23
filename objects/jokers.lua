@@ -927,7 +927,7 @@ G.PRISM.Joker({
         end
     end
 })
---[[ G.PRISM.Joker({
+G.PRISM.Joker({
 	key = "floppy",
 	atlas = "prismjokers",
 	pos = {x=3,y=8},
@@ -953,13 +953,14 @@ G.PRISM.Joker({
 					ability = v.ability,
 					edition = v.edition,
 					seal = v.seal,
-					params = v.params
+					params = v.params,
+					T = v.T
 				}
 			end
 		end
 		if context.selling_self and not context.blueprint and #G.hand.cards ~= 0 then
 			for _,v in ipairs(card.ability.extra.cards) do
-				v.T = copy_table(G.hand.cards[1].T)
+				--v.T = copy_table(G.hand.cards[1].T)
 				local new_card = copy_card(v, nil, nil, G.playing_card)
 				new_card:add_to_deck()
 				G.deck.config.card_limit = G.deck.config.card_limit + 1
@@ -969,8 +970,67 @@ G.PRISM.Joker({
 				playing_card_joker_effects({new_card})
 			end
 		end
-    end
-}) ]]
+    end,
+	generate_ui = function(self, info_queue, cardd, desc_nodes, specific_vars, full_UI_table)
+        if #cardd.ability.extra.cards > 0 and cardd.area == G.jokers then
+			local stored_cards = cardd.ability.extra.cards
+            local cards = {}
+            for i = 1, #stored_cards do
+				local card = copy_card(stored_cards[i], nil, nil, G.playing_card)
+				table.insert(cards,card)
+            end
+            SMODS.Joker.super.generate_ui(self, info_queue, cardd, desc_nodes, specific_vars, full_UI_table)
+            G.PRISM.card_preview(nil,desc_nodes,{
+                override = true,
+                cards = cards,
+                w = 2.9,
+                h = 0.75,
+                ml = 0,
+                scale = 0.4,
+				p_plus = -0.45;
+            })
+        else
+            if not cardd then
+                cardd = self:create_fake_card()
+            end
+            local target = {
+                type = 'descriptions',
+                key = self.key,
+                set = self.set,
+                nodes = desc_nodes,
+                vars =
+                    specific_vars or {}
+            }
+            local res = {}
+            if self.loc_vars and type(self.loc_vars) == 'function' then
+                res = self:loc_vars(info_queue, cardd) or {}
+                target.vars = res.vars or target.vars
+                target.key = res.key or target.key
+                target.set = res.set or target.set
+                target.scale = res.scale
+                target.text_colour = res.text_colour
+            end
+            if desc_nodes == full_UI_table.main and not full_UI_table.name then
+                full_UI_table.name = self.set == 'Enhanced' and 'temp_value' or localize { type = 'name', set = target.set, key = res.name_key or target.key, nodes = full_UI_table.name, vars = res.name_vars or target.vars or {} }
+            elseif desc_nodes ~= full_UI_table.main and not desc_nodes.name and self.set ~= 'Enhanced' then
+                desc_nodes.name = localize{type = 'name_text', key = res.name_key or target.key, set = target.set }
+            end
+            if specific_vars and specific_vars.debuffed and not res.replace_debuff then
+                target = { type = 'other', key = 'debuffed_' ..
+                (specific_vars.playing_card and 'playing_card' or 'default'), nodes = desc_nodes }
+            end
+            if res.main_start then
+                desc_nodes[#desc_nodes + 1] = res.main_start
+            end
+            localize(target)
+            if res.main_end then
+                desc_nodes[#desc_nodes + 1] = res.main_end
+            end
+            desc_nodes.background_colour = res.background_colour
+        end
+    end,
+})
+
 G.PRISM.Joker({
 	key = "cookie",
 	atlas = "prismjokers",
@@ -982,7 +1042,6 @@ G.PRISM.Joker({
 	blueprint_compat = false,
 	eternal_compat = false,
 	perishable_compat = true,
-	--config = {extra = 100},
 	loc_vars = function(self, info_queue, center)
 		local active = G.STATE == G.STATES.SELECTING_HAND
 		return {

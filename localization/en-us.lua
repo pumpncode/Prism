@@ -374,6 +374,13 @@ return {
                 "{C:attention}hand{} at end of round",
                 "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips and {C:red}+#4#{C:inactive} Mult)"
                 },
+            },
+            j_prism_floppy = {
+                name = "Floppy Disk",
+                text = {"Sell this card to add",
+                    "a copy of the cards in",
+                    "last {C:attention}played hand{} to {C:attention}hand",
+                },
             }
         },
         Back = {
