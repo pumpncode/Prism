@@ -931,6 +931,7 @@ G.PRISM.Joker({
 	key = "floppy",
 	atlas = "prismjokers",
 	pos = {x=3,y=8},
+	pixel_size = { w = 71, h = 74},
 	rarity = 2,
 	cost = 8,
 	unlocked = true,
