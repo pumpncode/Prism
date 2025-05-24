@@ -1521,7 +1521,7 @@ G.PRISM.Joker({
 		end
 	end
 })
-G.PRISM.Joker({
+--[[ G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",
 	atlas = "prismjokers",
@@ -1557,7 +1557,7 @@ G.PRISM.Joker({
 		  	card.ability.extra = 0
 		end
 	end
-})
+}) ]]
 G.PRISM.Joker({
 	key = "promotion",
 	atlas = "prismjokers",
