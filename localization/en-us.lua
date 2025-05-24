@@ -380,7 +380,7 @@ return {
                 text = {"Sell this card to add",
                     "a copy of the cards in",
                     "{C:attention}last hand{} played while",
-                    "holding this to to {C:attention}hand"
+                    "holding this to {C:attention}hand"
                 },
             }
         },
