@@ -532,12 +532,13 @@ return {
                     "{C:attention}Burnt Cards"
                 }
             },
-            c_prism_myth_twin = {
-                name = "Twin",
+            c_prism_myth_ghoul = {
+                name = "Ghoul",
                 text={
-                    "Create a copy with",
-                    "a random {C:attention}suit{} of",
-                    "{C:attention}#1#{} selected card",
+                    "Destroy {C:attention}#1#{} selected",
+                    "card and add {C:attention}#2# times",
+                    "its rank to the {C:chips}Chips",
+                    "of adjacent cards"
                 },
             },
             c_prism_myth_wizard = {

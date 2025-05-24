@@ -425,34 +425,41 @@ SMODS.Consumable({
     end
 })
 SMODS.Consumable({
-    key = 'myth_twin',
+    key = 'myth_ghoul',
     set = 'Myth',
     atlas = 'prismmyth',
     pos = {x=2, y=1},
     discovered = false,
-    config = {max_highlighted = 1},
+    config = {max_highlighted = 1,chips_mult = 3},
     loc_vars = function(self, info_queue)
-		--info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
-
-		return { vars = {self.config.max_highlighted} }
+		return { vars = {self.config.max_highlighted,self.config.chips_mult} }
 	end,
     can_use = function(self, card)
 		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 1
 	end,
     use = function(self, card, area, copier)
-        G.E_MANAGER:add_event(Event {
+        G.E_MANAGER:add_event(Event {trigger = 'after',delay = 0.4,
             func = function()
+                play_sound('tarot1')
+                card:juice_up(0.3, 0.5)
                 for i=1, #G.hand.highlighted do
-                    G.playing_card = (G.playing_card or 0) + 1
-                    local new_card = copy_card(G.hand.highlighted[i], nil, nil, G.playing_card)
-                    local suit = pseudorandom_element(G.P_CARDS, pseudoseed('pri_twin')..G.GAME.round_resets.ante).suit
-                    SMODS.change_base(new_card,suit,nil)
-                    new_card:add_to_deck()
-                    G.deck.config.card_limit = G.deck.config.card_limit + 1
-                    table.insert(G.playing_cards, new_card)
-                    G.hand:emplace(new_card)
-                    new_card:start_materialize(nil, _first_dissolve)
-                    playing_card_joker_effects { new_card }
+                    local target = G.hand.highlighted[i]
+                    local hand_i = nil
+                    for j=1, #G.hand.cards do
+                        if G.hand.cards[j] == target then hand_i = j end
+                    end
+                    local left_card = hand_i and G.hand.cards[hand_i-1]
+                    local right_card = hand_i and G.hand.cards[hand_i+1]
+                    local chips = target.base.nominal * card.ability.chips_mult
+                    G.PRISM.destroy_cards({target})
+                    if left_card then
+                        left_card.ability.perma_bonus = (left_card.ability.perma_bonus or 0) + chips
+                        left_card:juice_up(0.3, 0.5)
+                    end
+                    if right_card then
+                        right_card.ability.perma_bonus = (right_card.ability.perma_bonus or 0) + chips
+                        right_card:juice_up(0.3, 0.5)
+                    end
                 end
                 return true
             end
