@@ -91,7 +91,7 @@ G.PRISM.Tag({
                     dollars = tag.config.dollars,
                     condition = localize('ph_defeat_the_boss'),
                     pos = tag.pos,
-                    tag = tag
+                    tag = self,
                 }
             end
         end
