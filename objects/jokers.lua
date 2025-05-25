@@ -1522,6 +1522,21 @@ G.PRISM.Joker({
 	end
 })
 --[[ G.PRISM.Joker({
+	key = "whale",
+	atlas = "prismjokers",
+	pos = {x=3,y=9},
+	soul_pos = {x=3,y=10},
+	rarity = 2,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	calculate = function(self, card, context)
+	end
+}) ]]
+--[[ G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",
 	atlas = "prismjokers",
