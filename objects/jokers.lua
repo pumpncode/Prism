@@ -86,7 +86,7 @@ G.PRISM.Joker({
 		if context.joker_main then
 			return{
 				chips = card.ability.extra.chips,
-				mult = card.ability.extra.chips
+				mult = card.ability.extra.mult
 			}
 		end
 		if context.cardarea == G.jokers and context.end_of_round and not context.blueprint then
