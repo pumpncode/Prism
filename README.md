@@ -14,7 +14,7 @@ The mod currently adds:
 - 1 Edition
 - 3 Decks
 - 3 Card Sleeves (Requires [CardSlevees](https://github.com/larswijn/CardSleeves))
-- 2 Partners (Requires [CardSlevees](https://github.com/Icecanno/Partner-API))
+- 2 Partners (Requires [Partner API](https://github.com/Icecanno/Partner-API))
 - 4 Vouchers
 - 3 Boss Blinds
 - 1 Stake
