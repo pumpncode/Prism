@@ -59,7 +59,6 @@ G.PRISM.Tag({
                     context.card.temp_edition = nil
                     return true
                 end)
-        
                 tag.triggered = true
                 return true
             end

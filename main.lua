@@ -37,6 +37,7 @@ G.PRISM.compat = {
 	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load or false,
 	partner = (SMODS.Mods['partner'] or {}).can_load or false,
 	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load or false,
+	finity = (SMODS.Mods['finity'] or {}).can_load or false,
 }
 
 function SMODS.current_mod.reset_game_globals(run_start)

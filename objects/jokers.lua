@@ -1,6 +1,12 @@
 SMODS.Atlas {
-    key = 'prismjokers',
+    key = 'jokers',
     path = "jokers.png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas {
+    key = 'crossmodjokers',
+    path = "compat/jokers.png",
     px = 71,
     py = 95
 }
@@ -12,7 +18,7 @@ function G.PRISM.Joker(table)
 end
 G.PRISM.Joker({
 	key = "polydactyly",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=2},
 	rarity = 1,
 	cost = 6,
@@ -33,7 +39,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "rich_joker",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=12},
 	rarity = 1,
 	cost = 5,
@@ -63,7 +69,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "racecar",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=7},
 	rarity = 1,
 	cost = 6,
@@ -98,7 +104,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hit_record",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=11},
 	rarity = 1,
 	cost = 3,
@@ -116,7 +122,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "motherboard",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=4},
 	rarity = 1,
 	cost = 6,
@@ -158,7 +164,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "ghost",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=13},
 	rarity = 1,
 	cost = 5,
@@ -182,7 +188,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_cap",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=0},
 	rarity = 1,
 	cost = 5,
@@ -225,7 +231,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_mar",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=1},
 	rarity = 1,
 	cost = 5,
@@ -267,7 +273,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_for",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=2},
 	rarity = 1,
 	cost = 5,
@@ -311,7 +317,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_ruc",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=3},
 	rarity = 1,
 	cost = 5,
@@ -355,8 +361,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.paperback,
 	key = "pizza_haw",
-	atlas = "prismjokers",
-	pos = {x=3,y=4},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=0},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -404,8 +410,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.paperback,
 	key = "pizza_det",
-	atlas = "prismjokers",
-	pos = {x=3,y=5},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=1},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -450,8 +456,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.mintys,
 	key = "pizza_con",
-	atlas = "prismjokers",
-	pos = {x=3,y=6},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=2},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -515,7 +521,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "sculptor",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=3},
 	rarity = 1,
 	cost = 6,
@@ -555,7 +561,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "happily",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=12},
 	rarity = 1,
 	cost = 5,
@@ -586,7 +592,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "geo_hammer",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=3},
 	rarity = 1,
 	cost = 6,
@@ -623,7 +629,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "air_balloon",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=0},
 	rarity = 1,
 	cost = 5,
@@ -663,7 +669,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "metalhead",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=5},
 	rarity = 1,
 	cost = 6,
@@ -710,7 +716,7 @@ function SMODS.get_enhancements(card, extra_only)
 end
 G.PRISM.Joker({
 	key = "exotic_card",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=2},
 	rarity = 2,
 	cost = 6,
@@ -739,7 +745,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "day",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=7},
 	rarity = 2,
 	cost = 6,
@@ -796,7 +802,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "night",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=8},
 	rarity = 2,
 	cost = 6,
@@ -853,7 +859,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "whiskey",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=3},
 	rarity = 2,
 	cost = 7,
@@ -901,7 +907,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "solo_joker",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=14},
 	rarity = 2,
 	cost = 5,
@@ -929,7 +935,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "floppy",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=8},
 	pixel_size = { w = 71, h = 74},
 	rarity = 2,
@@ -1034,7 +1040,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "cookie",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=0},
 	rarity = 2,
 	cost = 6,
@@ -1087,7 +1093,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "economics",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=8},
 	rarity = 2,
 	cost = 8,
@@ -1122,7 +1128,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "patch",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=6},
 	rarity = 2,
 	cost = 6,
@@ -1161,7 +1167,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "elf",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=13},
 	rarity = 2,
 	cost = 6,
@@ -1228,7 +1234,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "vaquero",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=2},
 	rarity = 2,
 	cost = 5,
@@ -1263,7 +1269,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hopscotch",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=10},
 	rarity = 2,
 	cost = 7,
@@ -1306,7 +1312,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "aces_high",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=11},
 	rarity = 2,
 	cost = 6,
@@ -1357,7 +1363,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "murano",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=9},
 	rarity = 2,
 	cost = 6,
@@ -1418,7 +1424,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "medusa",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=6},
 	rarity = 2,
 	cost = 5,
@@ -1459,7 +1465,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "amethyst",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=7},
 	rarity = 2,
 	cost = 7,
@@ -1502,7 +1508,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "minstrel",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=0},
 	rarity = 2,
 	cost = 7,
@@ -1523,7 +1529,7 @@ G.PRISM.Joker({
 })
 --[[ G.PRISM.Joker({
 	key = "whale",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=9},
 	soul_pos = {x=3,y=10},
 	rarity = 2,
@@ -1539,7 +1545,7 @@ G.PRISM.Joker({
 --[[ G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=12},
 	rarity = 2,
 	cost = 6,
@@ -1575,7 +1581,7 @@ G.PRISM.Joker({
 }) ]]
 G.PRISM.Joker({
 	key = "promotion",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=9},
 	rarity = 2,
 	cost = 7,
@@ -1611,7 +1617,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "reverse_card",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=5},
 	rarity = 2,
 	cost = 6,
@@ -1636,7 +1642,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "vip_pass",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=6},
 	rarity = 3,
 	cost = 7,
@@ -1689,7 +1695,7 @@ end
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "romantic",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=13},
 	rarity = 3,
 	cost = 8,
@@ -1732,7 +1738,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pie",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=1},
 	rarity = 3,
 	cost = 7,
@@ -1771,7 +1777,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "plasma_lamp",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=9},
 	rarity = 3,
 	cost = 8,
@@ -1831,7 +1837,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "razor_blade",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=10},
 	rarity = 3,
 	cost = 6,
@@ -1877,7 +1883,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "shork",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=4},
 	rarity = 3,
 	cost = 7,
@@ -1906,7 +1912,7 @@ function Card.set_edition(self,edition, immediate, silent)
 end
 G.PRISM.Joker({
 	key = "swiss",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=14},
 	rarity = 3,
 	cost = 7,
@@ -1951,7 +1957,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hypercube",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=10},
 	soul_pos = {x=2,y=11},
 	rarity = 3,
@@ -1980,7 +1986,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "prism",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=14},
 	rarity = 3,
 	cost = 8,
@@ -2003,7 +2009,7 @@ end
 
 G.PRISM.Joker({
 	key = "harlequin",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = { x = 0, y = 4 },
 	soul_pos = { x = 0, y = 5 },
 	rarity = 4,
@@ -2051,7 +2057,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "rigoletto",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = { x = 0, y = 7 },
 	soul_pos = { x = 0, y = 8 },
 	rarity = 4,
@@ -2088,3 +2094,20 @@ G.PRISM.Joker({
 		end
 	end,
 })
+
+--[[ SMODS.Joker {
+	dependency = G.PRISM.compat.finity,
+    key = "roseclub",
+    atlas = 'crossmodjokers',
+    unlocked = true,
+    discovered = false,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    rarity = "finity_showdown",
+    pos = { x = 1, y = 0 },
+    cost = 10,
+	soul_pos = { x = 1, y = 1 },
+	calculate = function(self, card, context)
+	end
+} ]]

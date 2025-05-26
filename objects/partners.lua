@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'prismpartner',
-    path = "partners.png",
+    path = "compat/partners.png",
     px = 46,
     py = 58
 }

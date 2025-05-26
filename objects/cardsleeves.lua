@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'prismsleeves',
-    path = "cardsleeves.png",
+    path = "compat/cardsleeves.png",
     px = 73,
     py = 95
 }
