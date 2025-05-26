@@ -973,7 +973,11 @@ G.PRISM.Joker({
 				G.deck.config.card_limit = G.deck.config.card_limit + 1
 				table.insert(G.playing_cards, new_card)
 				G.hand:emplace(new_card)
-				--new_card:start_materialize(nil, _first_dissolve)
+				new_card.states.visible = nil
+				G.E_MANAGER:add_event(Event({func = function()
+					new_card:start_materialize()
+					return true
+				end}))
 				playing_card_joker_effects({new_card})
 			end
 		end
