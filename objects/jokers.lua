@@ -1527,21 +1527,53 @@ G.PRISM.Joker({
 		end
 	end
 })
---[[ G.PRISM.Joker({
+G.PRISM.Joker({
 	key = "whale",
 	atlas = "jokers",
 	pos = {x=3,y=9},
 	soul_pos = {x=3,y=10},
 	rarity = 2,
-	cost = 7,
+	cost = 6,
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+	config = {extra = {planets = {},levels = 0}},
+	loc_vars = function(self, info_queue, center)
+		return {vars = {center.ability.extra.levels}}
+	end,
 	calculate = function(self, card, context)
+		if context.using_consumeable and context.consumeable.ability.set == 'Planet' and not card.ability.extra.planets[context.consumeable.config.center_key] then
+			card.ability.extra.planets[context.consumeable.config.center_key] = true
+			card.ability.extra.levels = card.ability.extra.levels + 1
+			return {
+				card = card,
+				message = localize('k_upgrade_ex')
+			}
+		end
+		if context.cardarea == G.jokers and context.end_of_round and G.GAME.blind.boss then
+			local _hand, _tally = nil, 0
+			for _, v in ipairs(G.handlist) do
+				if G.GAME.hands[v].visible and G.GAME.hands[v].played > _tally then
+					_hand = v
+					_tally = G.GAME.hands[v].played
+				end
+			end
+			local levels = card.ability.extra.levels
+			card.ability.extra.planets = {}
+			card.ability.extra.levels = 0
+			if levels > 0 then
+				return {
+					level_up = levels,
+					level_up_hand = _hand,
+					card = card
+				}
+			end
+			return {}
+		end
 	end
-}) ]]
+})
 --[[ G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",

@@ -382,6 +382,15 @@ return {
                     "{C:attention}last hand{} played while",
                     "holding this to {C:attention}hand"
                 },
+            },
+            j_prism_whale = {
+                name = "Interplanetary Travel",
+                text = {"When {C:attention}Boss Blind{} is defeated",
+                    "upgrade level of most played",
+                    "{C:attention}poker hand{} per {C:attention}unique ",
+                    "{C:planet}Planet{} used this ante",
+                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} Planets played)"
+                },
             }
         },
         Back = {
