@@ -59,7 +59,6 @@ G.PRISM.Tag({
                     context.card.temp_edition = nil
                     return true
                 end)
-        
                 tag.triggered = true
                 return true
             end
@@ -91,7 +90,7 @@ G.PRISM.Tag({
                     dollars = tag.config.dollars,
                     condition = localize('ph_defeat_the_boss'),
                     pos = tag.pos,
-                    tag = tag
+                    tag = self,
                 }
             end
         end

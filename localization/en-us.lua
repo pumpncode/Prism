@@ -374,6 +374,23 @@ return {
                 "{C:attention}hand{} at end of round",
                 "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips and {C:red}+#4#{C:inactive} Mult)"
                 },
+            },
+            j_prism_floppy = {
+                name = "Floppy Disk",
+                text = {"Sell this card to add",
+                    "a copy of the cards in",
+                    "{C:attention}last hand{} played while",
+                    "holding this to {C:attention}hand"
+                },
+            },
+            j_prism_whale = {
+                name = "Interplanetary Travel",
+                text = {"When {C:attention}Boss Blind{} is defeated",
+                    "upgrade level of most played",
+                    "{C:attention}poker hand{} per {C:attention}unique ",
+                    "{C:planet}Planet{} used this ante",
+                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} Planets played)"
+                },
             }
         },
         Back = {
@@ -457,6 +474,13 @@ return {
                     "card is {C:attention}discarded"
                 }
             },
+            m_prism_ice = {
+                name = "Ice Card",
+                text = {"{C:chips}+#1#{} Chips per card",
+                    "played this round",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive})"
+                }
+            },
             m_prism_double = {
                 name = "Double Card",
                 text = {"Can turn into",
@@ -503,6 +527,13 @@ return {
                     "{C:attention}Echo Cards"
                 }
             },
+            c_prism_myth_yeti = {
+                name = "Yeti",
+                text = {"Enhances {C:attention}#1#{}",
+                    "selected cards to",
+                    "{C:attention}Ice Cards"
+                }
+            },
             c_prism_myth_dragon = {
                 name = "Dragon",
                 text = {"Enhances {C:attention}#1#{}",
@@ -510,13 +541,14 @@ return {
                     "{C:attention}Burnt Cards"
                 }
             },
-            c_prism_myth_twin = {
-                name = "Twin",
-                text = {"Enhances {C:attention}#1#{}",
-                    "selected cards to",
-                    "{C:attention}Double Cards",
-                    "{C:inactive}(Doubling each other)"
-                }
+            c_prism_myth_ghoul = {
+                name = "Ghoul",
+                text={
+                    "Destroy {C:attention}#1#{} selected",
+                    "card and add {C:attention}#2# times",
+                    "its rank to the {C:chips}Chips",
+                    "of adjacent cards"
+                },
             },
             c_prism_myth_wizard = {
                 name = "Wizard",

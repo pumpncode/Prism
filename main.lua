@@ -37,6 +37,7 @@ G.PRISM.compat = {
 	mintys = (SMODS.Mods['MintysSillyMod'] or {}).can_load or false,
 	partner = (SMODS.Mods['partner'] or {}).can_load or false,
 	darkside = (SMODS.Mods['PrismDarkside'] or {}).can_load or false,
+	finity = (SMODS.Mods['finity'] or {}).can_load or false,
 }
 
 function SMODS.current_mod.reset_game_globals(run_start)
@@ -45,7 +46,6 @@ function SMODS.current_mod.reset_game_globals(run_start)
 		G.GAME.pool_flags.day_can_spawn = true
 		G.GAME.pool_flags.night_can_spawn = false
 
-		G.GAME.prism_extra_draw = 0
 		G.GAME.prism_pizza_lv = 0
 		G.GAME.prism_eggs_used = 0
 		G.GAME.price_scaling = 0
@@ -65,6 +65,11 @@ function SMODS.current_mod.reset_game_globals(run_start)
 		for k, v in pairs(G.GAME.probabilities) do
 			G.GAME.probabilities[k] = v / 9999
 		end
+	end
+	G.GAME.prism_cards_played = 0
+	G.GAME.prism_extra_draw = 0
+	for k,v in pairs(G.playing_cards or {}) do
+		if v.ability.greened then v.ability.greened = nil end
 	end
 end
 
@@ -189,7 +194,7 @@ G.FUNCS.prism_link_3 = function(e)
     love.system.openURL("https://github.com/Mil0Meg4/Resurgence")
 end
 G.FUNCS.prism_link_4 = function(e)
-    love.system.openURL("https://discord.gg/8nF9bfDS")
+    love.system.openURL("https://discord.gg/wy2HTYmn5y")
 end
 
 SMODS.current_mod.description_loc_vars = function()

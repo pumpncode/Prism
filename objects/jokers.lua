@@ -1,6 +1,12 @@
 SMODS.Atlas {
-    key = 'prismjokers',
+    key = 'jokers',
     path = "jokers.png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas {
+    key = 'crossmodjokers',
+    path = "compat/jokers.png",
     px = 71,
     py = 95
 }
@@ -12,7 +18,7 @@ function G.PRISM.Joker(table)
 end
 G.PRISM.Joker({
 	key = "polydactyly",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=2},
 	rarity = 1,
 	cost = 6,
@@ -33,7 +39,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "rich_joker",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=12},
 	rarity = 1,
 	cost = 5,
@@ -63,7 +69,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "racecar",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=7},
 	rarity = 1,
 	cost = 6,
@@ -80,7 +86,7 @@ G.PRISM.Joker({
 		if context.joker_main then
 			return{
 				chips = card.ability.extra.chips,
-				mult = card.ability.extra.chips
+				mult = card.ability.extra.mult
 			}
 		end
 		if context.cardarea == G.jokers and context.end_of_round and not context.blueprint then
@@ -98,7 +104,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hit_record",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=11},
 	rarity = 1,
 	cost = 3,
@@ -116,7 +122,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "motherboard",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=4},
 	rarity = 1,
 	cost = 6,
@@ -158,7 +164,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "ghost",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=13},
 	rarity = 1,
 	cost = 5,
@@ -182,7 +188,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_cap",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=0},
 	rarity = 1,
 	cost = 5,
@@ -225,7 +231,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_mar",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=1},
 	rarity = 1,
 	cost = 5,
@@ -267,7 +273,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_for",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=2},
 	rarity = 1,
 	cost = 5,
@@ -311,7 +317,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pizza_ruc",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=3,y=3},
 	rarity = 1,
 	cost = 5,
@@ -355,8 +361,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.paperback,
 	key = "pizza_haw",
-	atlas = "prismjokers",
-	pos = {x=3,y=4},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=0},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -404,8 +410,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.paperback,
 	key = "pizza_det",
-	atlas = "prismjokers",
-	pos = {x=3,y=5},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=1},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -450,8 +456,8 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.compat.mintys,
 	key = "pizza_con",
-	atlas = "prismjokers",
-	pos = {x=3,y=6},
+	atlas = "crossmodjokers",
+	pos = {x=0,y=2},
 	rarity = 1,
 	cost = 5,
 	unlocked = true,
@@ -515,7 +521,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "sculptor",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=3},
 	rarity = 1,
 	cost = 6,
@@ -555,7 +561,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "happily",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=12},
 	rarity = 1,
 	cost = 5,
@@ -586,7 +592,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "geo_hammer",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=3},
 	rarity = 1,
 	cost = 6,
@@ -623,7 +629,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "air_balloon",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=0},
 	rarity = 1,
 	cost = 5,
@@ -663,7 +669,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "metalhead",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=5},
 	rarity = 1,
 	cost = 6,
@@ -710,7 +716,7 @@ function SMODS.get_enhancements(card, extra_only)
 end
 G.PRISM.Joker({
 	key = "exotic_card",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=2},
 	rarity = 2,
 	cost = 6,
@@ -739,7 +745,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "day",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=7},
 	rarity = 2,
 	cost = 6,
@@ -796,7 +802,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "night",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=8},
 	rarity = 2,
 	cost = 6,
@@ -853,7 +859,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "whiskey",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=3},
 	rarity = 2,
 	cost = 7,
@@ -901,7 +907,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "solo_joker",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=14},
 	rarity = 2,
 	cost = 5,
@@ -928,8 +934,117 @@ G.PRISM.Joker({
     end
 })
 G.PRISM.Joker({
+	key = "floppy",
+	atlas = "jokers",
+	pos = {x=3,y=8},
+	pixel_size = { w = 71, h = 74},
+	rarity = 2,
+	cost = 8,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = false,
+	eternal_compat = false,
+	perishable_compat = true,
+	config = {extra = {cards = {}}},
+	loc_vars = function(self, info_queue, center)
+	end,
+	calculate = function(self, card, context)
+		if context.cardarea == G.jokers and context.before and not context.blueprint then
+			card.ability.extra.cards = {}
+			for i,v in ipairs(context.full_hand) do
+				card.ability.extra.cards[i] = {
+					config = {
+						center = v.config.center,
+						card = v.config.card
+					},
+					ability = v.ability,
+					edition = v.edition,
+					seal = v.seal,
+					params = v.params,
+					T = v.T
+				}
+			end
+		end
+		if context.selling_self and not context.blueprint and #G.hand.cards ~= 0 then
+			for _,v in ipairs(card.ability.extra.cards) do
+				--v.T = copy_table(G.hand.cards[1].T)
+				local new_card = copy_card(v, nil, nil, G.playing_card)
+				new_card:add_to_deck()
+				G.deck.config.card_limit = G.deck.config.card_limit + 1
+				table.insert(G.playing_cards, new_card)
+				G.hand:emplace(new_card)
+				new_card.states.visible = nil
+				G.E_MANAGER:add_event(Event({func = function()
+					new_card:start_materialize()
+					return true
+				end}))
+				playing_card_joker_effects({new_card})
+			end
+		end
+    end,
+	generate_ui = function(self, info_queue, cardd, desc_nodes, specific_vars, full_UI_table)
+        if #cardd.ability.extra.cards > 0 and cardd.area == G.jokers then
+			local stored_cards = cardd.ability.extra.cards
+            local cards = {}
+            for i = 1, #stored_cards do
+				local card = copy_card(stored_cards[i], nil, nil, G.playing_card)
+				table.insert(cards,card)
+            end
+            SMODS.Joker.super.generate_ui(self, info_queue, cardd, desc_nodes, specific_vars, full_UI_table)
+            G.PRISM.card_preview(nil,desc_nodes,{
+                override = true,
+                cards = cards,
+                w = 2.9,
+                h = 0.75,
+                ml = 0,
+                scale = 0.4,
+				p_plus = -0.45;
+            })
+        else
+            if not cardd then
+                cardd = self:create_fake_card()
+            end
+            local target = {
+                type = 'descriptions',
+                key = self.key,
+                set = self.set,
+                nodes = desc_nodes,
+                vars =
+                    specific_vars or {}
+            }
+            local res = {}
+            if self.loc_vars and type(self.loc_vars) == 'function' then
+                res = self:loc_vars(info_queue, cardd) or {}
+                target.vars = res.vars or target.vars
+                target.key = res.key or target.key
+                target.set = res.set or target.set
+                target.scale = res.scale
+                target.text_colour = res.text_colour
+            end
+            if desc_nodes == full_UI_table.main and not full_UI_table.name then
+                full_UI_table.name = self.set == 'Enhanced' and 'temp_value' or localize { type = 'name', set = target.set, key = res.name_key or target.key, nodes = full_UI_table.name, vars = res.name_vars or target.vars or {} }
+            elseif desc_nodes ~= full_UI_table.main and not desc_nodes.name and self.set ~= 'Enhanced' then
+                desc_nodes.name = localize{type = 'name_text', key = res.name_key or target.key, set = target.set }
+            end
+            if specific_vars and specific_vars.debuffed and not res.replace_debuff then
+                target = { type = 'other', key = 'debuffed_' ..
+                (specific_vars.playing_card and 'playing_card' or 'default'), nodes = desc_nodes }
+            end
+            if res.main_start then
+                desc_nodes[#desc_nodes + 1] = res.main_start
+            end
+            localize(target)
+            if res.main_end then
+                desc_nodes[#desc_nodes + 1] = res.main_end
+            end
+            desc_nodes.background_colour = res.background_colour
+        end
+    end,
+})
+
+G.PRISM.Joker({
 	key = "cookie",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=0},
 	rarity = 2,
 	cost = 6,
@@ -938,7 +1053,6 @@ G.PRISM.Joker({
 	blueprint_compat = false,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = 100},
 	loc_vars = function(self, info_queue, center)
 		local active = G.STATE == G.STATES.SELECTING_HAND
 		return {
@@ -983,7 +1097,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "economics",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=8},
 	rarity = 2,
 	cost = 8,
@@ -1018,7 +1132,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "patch",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=6},
 	rarity = 2,
 	cost = 6,
@@ -1057,7 +1171,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "elf",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=13},
 	rarity = 2,
 	cost = 6,
@@ -1124,7 +1238,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "vaquero",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=2},
 	rarity = 2,
 	cost = 5,
@@ -1159,7 +1273,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hopscotch",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=10},
 	rarity = 2,
 	cost = 7,
@@ -1202,7 +1316,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "aces_high",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=11},
 	rarity = 2,
 	cost = 6,
@@ -1253,7 +1367,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "murano",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=9},
 	rarity = 2,
 	cost = 6,
@@ -1314,7 +1428,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "medusa",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=6},
 	rarity = 2,
 	cost = 5,
@@ -1355,7 +1469,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "amethyst",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=7},
 	rarity = 2,
 	cost = 7,
@@ -1398,7 +1512,7 @@ G.PRISM.Joker({
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "minstrel",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=0},
 	rarity = 2,
 	cost = 7,
@@ -1418,9 +1532,56 @@ G.PRISM.Joker({
 	end
 })
 G.PRISM.Joker({
+	key = "whale",
+	atlas = "jokers",
+	pos = {x=3,y=9},
+	soul_pos = {x=3,y=10},
+	rarity = 2,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {planets = {},levels = 0}},
+	loc_vars = function(self, info_queue, center)
+		return {vars = {center.ability.extra.levels}}
+	end,
+	calculate = function(self, card, context)
+		if context.using_consumeable and context.consumeable.ability.set == 'Planet' and not card.ability.extra.planets[context.consumeable.config.center_key] then
+			card.ability.extra.planets[context.consumeable.config.center_key] = true
+			card.ability.extra.levels = card.ability.extra.levels + 1
+			return {
+				card = card,
+				message = localize('k_upgrade_ex')
+			}
+		end
+		if context.cardarea == G.jokers and context.end_of_round and G.GAME.blind.boss then
+			local _hand, _tally = nil, 0
+			for _, v in ipairs(G.handlist) do
+				if G.GAME.hands[v].visible and G.GAME.hands[v].played > _tally then
+					_hand = v
+					_tally = G.GAME.hands[v].played
+				end
+			end
+			local levels = card.ability.extra.levels
+			card.ability.extra.planets = {}
+			card.ability.extra.levels = 0
+			if levels > 0 then
+				return {
+					level_up = levels,
+					level_up_hand = _hand,
+					card = card
+				}
+			end
+			return {}
+		end
+	end
+})
+--[[ G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "schrodinger",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=12},
 	rarity = 2,
 	cost = 6,
@@ -1453,10 +1614,10 @@ G.PRISM.Joker({
 		  	card.ability.extra = 0
 		end
 	end
-})
+}) ]]
 G.PRISM.Joker({
 	key = "promotion",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=9},
 	rarity = 2,
 	cost = 7,
@@ -1492,7 +1653,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "reverse_card",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=5},
 	rarity = 2,
 	cost = 6,
@@ -1517,7 +1678,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "vip_pass",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=6},
 	rarity = 3,
 	cost = 7,
@@ -1570,7 +1731,7 @@ end
 G.PRISM.Joker({
 	dependency = G.PRISM.config.myth_enabled,
 	key = "romantic",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=13},
 	rarity = 3,
 	cost = 8,
@@ -1613,7 +1774,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "pie",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=1},
 	rarity = 3,
 	cost = 7,
@@ -1652,7 +1813,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "plasma_lamp",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=1,y=9},
 	rarity = 3,
 	cost = 8,
@@ -1712,7 +1873,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "razor_blade",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=10},
 	rarity = 3,
 	cost = 6,
@@ -1758,7 +1919,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "shork",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=4},
 	rarity = 3,
 	cost = 7,
@@ -1787,7 +1948,7 @@ function Card.set_edition(self,edition, immediate, silent)
 end
 G.PRISM.Joker({
 	key = "swiss",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=14},
 	rarity = 3,
 	cost = 7,
@@ -1832,7 +1993,7 @@ G.PRISM.Joker({
 })
 G.PRISM.Joker({
 	key = "hypercube",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=2,y=10},
 	soul_pos = {x=2,y=11},
 	rarity = 3,
@@ -1861,7 +2022,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "prism",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = {x=0,y=14},
 	rarity = 3,
 	cost = 8,
@@ -1884,7 +2045,7 @@ end
 
 G.PRISM.Joker({
 	key = "harlequin",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = { x = 0, y = 4 },
 	soul_pos = { x = 0, y = 5 },
 	rarity = 4,
@@ -1932,7 +2093,7 @@ G.PRISM.Joker({
 
 G.PRISM.Joker({
 	key = "rigoletto",
-	atlas = "prismjokers",
+	atlas = "jokers",
 	pos = { x = 0, y = 7 },
 	soul_pos = { x = 0, y = 8 },
 	rarity = 4,
@@ -1969,3 +2130,20 @@ G.PRISM.Joker({
 		end
 	end,
 })
+
+--[[ SMODS.Joker {
+	dependency = G.PRISM.compat.finity,
+    key = "roseclub",
+    atlas = 'crossmodjokers',
+    unlocked = true,
+    discovered = false,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    rarity = "finity_showdown",
+    pos = { x = 1, y = 0 },
+    cost = 10,
+	soul_pos = { x = 1, y = 1 },
+	calculate = function(self, card, context)
+	end
+} ]]

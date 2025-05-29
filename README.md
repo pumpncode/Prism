@@ -2,18 +2,19 @@
 
 Prism is a content mod that aims to enrich the Balatro experience while maintaining the vanilla feel
 
-Discord Server: https://discord.gg/8nF9bfDS
+Discord Server: https://discord.gg/wy2HTYmn5y
 
 # Content
 
 The mod currently adds:
 - A brand new Consumable type: Myth Cards
-- 46 Jokers
-- 16 Consumables
+- 49 Jokers
+- 17 Consumables
 - 4 Enhancements and 2 Seals
 - 1 Edition
 - 3 Decks
-- 2 Card Sleeves (Requires [CardSlevees](https://github.com/larswijn/CardSleeves))
+- 3 Card Sleeves (Requires [CardSlevees](https://github.com/larswijn/CardSleeves))
+- 2 Partners (Requires [Partner API](https://github.com/Icecanno/Partner-API))
 - 4 Vouchers
 - 3 Boss Blinds
 - 1 Stake

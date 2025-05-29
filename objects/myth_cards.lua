@@ -71,44 +71,18 @@ SMODS.Consumable({
 
 })
 SMODS.Consumable({
-    key = 'myth_twin',
+    key = 'myth_yeti',
     set = 'Myth',
     atlas = 'prismmyth',
-    pos = {x=2, y=1},
+    pos = {x=8, y=1},
     discovered = false,
-    config = {mod_conv = "m_prism_double"},
+    config = {mod_conv = "m_prism_ice", max_highlighted = 2},
+    effect = 'Enhance',
     loc_vars = function(self, info_queue)
 		info_queue[#info_queue + 1] = G.P_CENTERS[self.config.mod_conv]
 
-		return { vars = {2} }
+		return { vars = { self.config.max_highlighted } }
 	end,
-    can_use = function(self, card)
-		return #G.hand.highlighted == 2
-	end,
-    use = function(self, card, area, copier)
-        local _card_1 = G.hand.highlighted[1]
-        local _card_2 = G.hand.highlighted[2]
-        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-            play_sound('tarot1')
-            card:juice_up(0.3, 0.5)
-            return true end }))
-        for i=1, #G.hand.highlighted do
-            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
-            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
-        end
-        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.8,func = function()
-            for i=1, #G.hand.highlighted do
-                G.hand.highlighted[i]:set_ability(G.P_CENTERS.m_prism_double)
-            end
-            _card_1.ability.extra.card = _card_2.config.card
-            _card_2.ability.extra.card = _card_1.config.card
-        return true end }))
-        for i=1, #G.hand.highlighted do
-            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
-            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
-        end
-        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end}))
-    end
 
 })
 SMODS.Consumable({
@@ -449,6 +423,71 @@ SMODS.Consumable({
             add_tag(Tag('tag_double'))
         return true end }))
     end
+})
+SMODS.Consumable({
+    key = 'myth_ghoul',
+    set = 'Myth',
+    atlas = 'prismmyth',
+    pos = {x=2, y=1},
+    discovered = false,
+    config = {max_highlighted = 1,chips_mult = 3},
+    loc_vars = function(self, info_queue)
+		return { vars = {self.config.max_highlighted,self.config.chips_mult} }
+	end,
+    can_use = function(self, card)
+		return #G.hand.highlighted <= card.ability.max_highlighted and #G.hand.highlighted >= 1
+	end,
+    use = function(self, card, area, copier)
+        G.E_MANAGER:add_event(Event {trigger = 'after',delay = 0.4,
+            func = function()
+                play_sound('tarot1')
+                card:juice_up(0.3, 0.5)
+                for i=1, #G.hand.highlighted do
+                    local target = G.hand.highlighted[i]
+                    local hand_i = nil
+                    for j=1, #G.hand.cards do
+                        if G.hand.cards[j] == target then hand_i = j end
+                    end
+                    local left_card = hand_i and G.hand.cards[hand_i-1]
+                    local right_card = hand_i and G.hand.cards[hand_i+1]
+                    local chips = SMODS.has_no_rank(target) and 0 or target.base.nominal * card.ability.chips_mult
+                    G.PRISM.destroy_cards({target})
+                    if left_card then
+                        left_card.ability.perma_bonus = (left_card.ability.perma_bonus or 0) + chips
+                        left_card:juice_up(0.3, 0.5)
+                    end
+                    if right_card then
+                        right_card.ability.perma_bonus = (right_card.ability.perma_bonus or 0) + chips
+                        right_card:juice_up(0.3, 0.5)
+                    end
+                end
+                return true
+            end
+        })
+        --[[ local _card_1 = G.hand.highlighted[1]
+        local _card_2 = G.hand.highlighted[2]
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            return true end }))
+        for i=1, #G.hand.highlighted do
+            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.8,func = function()
+            for i=1, #G.hand.highlighted do
+                G.hand.highlighted[i]:set_ability(G.P_CENTERS.m_prism_double)
+            end
+            _card_1.ability.extra.card = _card_2.config.card
+            _card_2.ability.extra.card = _card_1.config.card
+        return true end }))
+        for i=1, #G.hand.highlighted do
+            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('tarot2', percent, 0.6);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after',func = function() G.hand:unhighlight_all(); return true end})) ]]
+    end
+
 })
 SMODS.Consumable({
     key = 'spectral_djinn',

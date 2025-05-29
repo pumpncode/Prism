@@ -85,6 +85,101 @@ function G.PRISM.create_card(_type,area,legendary,_rarity,skip_materialize,soula
     end
 end
 
+G.PRISM.card_preview = function(cardArea, desc_nodes, config)
+    if not config then config = {} end
+    local height = config.h or 1.25
+    local width = config.w or 1
+    local card_limit = config.card_limit or #config.cards or 1
+    local override = config.override or false
+    local cards = config.cards or {}
+    local padding = config.padding or 0.07
+    local padding_plus = config.p_plus or 0
+    local margin_left = config.ml or 0.2
+    local margin_top = config.mt or 0
+    local alignment = config.alignment or "cm"
+    local scale = config.scale or 1
+    local type = config.type or "title"
+    local box_height = config.box_height or 0
+    local highlight_limit = config.highlight_limit or 0
+    if override or not cardArea then
+        cardArea = CardArea(
+            G.ROOM.T.x + margin_left * G.ROOM.T.w, G.ROOM.T.h + margin_top
+            , width * G.CARD_W*0.7, height * G.CARD_H,
+            {card_limit = card_limit, type = type, highlight_limit = highlight_limit, collection = true,temporary = true}
+        )
+        for i, card in ipairs(cards) do
+            card.T.w = card.T.w * scale
+            card.T.h = card.T.h * scale
+            card.VT.h = card.T.h
+            card.VT.h = card.T.h
+            local area = cardArea
+            if(card.config.center) then
+                card:set_sprites(card.config.center)
+            end
+            area:emplace(card)
+        end
+    end
+    local uiEX = {
+        n = G.UIT.R,
+        config = { align = alignment , padding = padding, no_fill = true, minh = box_height },
+        nodes = {
+            {n=G.UIT.R, config={padding = padding+padding_plus, r = 0.12, colour = lighten(G.C.JOKER_GREY, 0.5), emboss = 0.07}, nodes={
+                {n = G.UIT.O, config = { object = cardArea }}
+            }}
+        }
+    }
+    if cardArea then
+        if desc_nodes then
+            desc_nodes[#desc_nodes+1] = {
+                uiEX
+            }
+        end
+    end
+    return uiEX
+end
+
+function G.PRISM.destroy_cards(cards)
+    G.E_MANAGER:add_event(Event({
+        func = function()
+
+--[[         if #cards > 0 and type(effects) == 'table' then
+            effects.sound = 'tarot1'
+            effects.instant = true
+            SMODS.calculate_effect(effects, card)
+        end ]]
+
+        -- Destroy every card
+        for _, v in ipairs(cards) do
+            if SMODS.shatters(v) then
+            v:shatter()
+            else
+            v:start_dissolve()
+            end
+        end
+
+        G.E_MANAGER:add_event(Event {
+            func = function()
+            SMODS.calculate_context({
+                remove_playing_cards = true,
+                removed = cards
+            })
+            return true
+            end
+        })
+
+        return true
+        end
+    }))
+
+    for _, v in ipairs(cards) do
+        if SMODS.shatters(v) then
+            v.shattered = true
+        else
+            v.destroyed = true
+        end
+    end
+end
+
 function G.PRISM.is_numbered(card)
     return card.base and card.base.value and not SMODS.Ranks[card.base.value].face and card:get_id() ~= 14
 end
