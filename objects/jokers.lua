@@ -28,13 +28,12 @@ G.PRISM.Joker({
 	eternal_compat = true,
 	perishable_compat = true,
 	add_to_deck = function(self, card, from_debuff)
-		G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + 1
+		SMODS.change_play_limit(1)
+		SMODS.change_discard_limit(1)
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 1
-		if not G.GAME.before_play_buffer then
-			G.hand:unhighlight_all()
-		end
+		SMODS.change_play_limit(-1)
+		SMODS.change_discard_limit(-1)
 	end,
 })
 G.PRISM.Joker({
@@ -1886,36 +1885,34 @@ G.PRISM.Joker({
 	config = {extra = 1},
 	loc_vars = function(self, info_queue, center)
 		local x_mult = 1
-		if G.GAME.prism_start_deck_ranks then
-			for k, v in pairs(G.GAME.prism_start_deck_ranks) do
-				local is_present = false
-				for _k, _v in pairs(G.playing_cards or {}) do
-					if not is_present and _v:get_id() == v then is_present = true end
-				end
-				if not is_present then
-					x_mult = x_mult + center.ability.extra 
-				end
-			end
-		end
-		return {vars = {center.ability.extra, x_mult}}
-	end,
-	calculate = function(self, card, context)
-		local x_mult = 1
-		for k, v in pairs(G.GAME.prism_start_deck_ranks) do
+		for k, v in pairs(G.GAME.prism_start_deck_ranks or {}) do
 			local is_present = false
 			for _k, _v in pairs(G.playing_cards or {}) do
 				if not is_present and _v:get_id() == v then is_present = true end
 			end
 			if not is_present then
-				x_mult = x_mult + card.ability.extra 
+				x_mult = x_mult + center.ability.extra
 			end
 		end
+		return {vars = {center.ability.extra, x_mult}}
+	end,
+	calculate = function(self, card, context)
 		if context.joker_main then
+			local x_mult = 1
+			for k, v in pairs(G.GAME.prism_start_deck_ranks or {}) do
+				local is_present = false
+				for _k, _v in pairs(G.playing_cards or {}) do
+					if not is_present and _v:get_id() == v then is_present = true end
+				end
+				if not is_present then
+					x_mult = x_mult + card.ability.extra
+				end
+			end
 			return {
 				xmult = x_mult
 			}
 		end
-	end
+	end,
 })
 G.PRISM.Joker({
 	key = "shork",
