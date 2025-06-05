@@ -802,7 +802,7 @@ return {
             bl_prism_rose_club = {
                 name = "Rose Club",
                 text = {
-                    "Playng a #1#",
+                    "Playing a #1#",
                     "debuffs all played cards"
                 },
             },
