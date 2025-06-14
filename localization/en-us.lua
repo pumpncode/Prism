@@ -703,7 +703,20 @@ return {
                 text = {"Create a {C:dark_edition,T:tag_foil}Foil Tag",
                     "{C:dark_edition,T:tag_holo}Holographic Tag{} or",
                     "{C:dark_edition,T:tag_polychrome}Polychrome Tag{} after",
-                    "defeating {C:attention}#1#",
+                    "defeating {C:attention}Boss Blind",
+                },
+                unlock={
+                    "Used {C:attention}Shark Plush",
+                    "to win on {C:attention}Gold",
+                    "{C:attention}Stake{} difficulty",
+                },
+            },
+            pnr_prism_blahaj_1={
+                name = "Blåhaj",
+                text = {"Create a {C:dark_edition,T:tag_foil}Foil Tag",
+                    "{C:dark_edition,T:tag_holo}Holographic Tag{} or",
+                    "{C:dark_edition,T:tag_polychrome}Polychrome Tag{} after",
+                    "defeating {C:attention}Blind",
                 },
                 unlock={
                     "Used {C:attention}Shark Plush",
@@ -878,8 +891,6 @@ return {
             prism_feature_enable = "Select features:",
             prism_pizza_music = "Pizza Music",
             prism_requires_restart = "Requires restart!",
-            prism_blind = "Blind",
-            prism_boss = "Boss Blind",
             b_open_link = "Opens in browser",
         },
         v_dictionary = {
