@@ -159,7 +159,7 @@ if not G.PRISM.compat.talisman and not G.PRISM.compat.buffoonery then
 			return ret
 		end
 	
-		if (key == 'e_mult' or key == 'emult' or key == 'Emult_mod') and amount ~= 1 then   
+		if (key == 'e_mult' or key == 'emult' or key == 'Emult_mod') and amount ~= 1 then
 			if effect.card then juice_card(effect.card) end
 			mult = mod_chips(mult ^ amount)
 			update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})

@@ -13,31 +13,37 @@ Partner_API.Partner{
     individual_quips = true,
     loc_txt = {},
     atlas = "prismpartner",
-    config = {extra = {related_card = "j_prism_shork"}},
+    config = {extra = {}},
+    link_config = {j_prism_shork = 1},
     loc_vars = function(self, info_queue, card)
+        local link_level = self:get_link_level()
+        local key = self.key
         info_queue[#info_queue+1] = G.P_CENTERS.tag_foil
         info_queue[#info_queue+1] = G.P_CENTERS.tag_holo
         info_queue[#info_queue+1] = G.P_CENTERS.tag_polychrome
-        return {vars = {next(SMODS.find_card("j_prism_shork")) and localize("prism_blind")
-        or localize("prism_boss")}}
+        if link_level == 1 then key = key.."_"..link_level end
+        return { key = key}
     end,
     calculate = function(self, card, context)
-		if context.partner_end_of_round and (next(SMODS.find_card("j_prism_shork")) or G.GAME.blind and (G.GAME.blind:get_type() == 'Boss')) then
-            local tags = {"tag_holo","tag_foil","tag_polychrome"}
-			local tag = pseudorandom_element(tags, pseudoseed('shorky'))
-            G.E_MANAGER:add_event(Event({
-                trigger = 'before',
-                func = (function()
-                    add_tag(Tag(tag))
-                    play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-                    play_sound('polychrome1', 1.2 + math.random()*0.1, 0.4)
-                return true
-            end)}))
-            return {
-                message = localize("k_blahaj"),
-                colour = G.C.DARK_EDITION,
-                card = card,
-            }
+		if context.partner_end_of_round then
+            local link_level = self:get_link_level()
+            if (G.GAME.blind and (G.GAME.blind:get_type() == 'Boss')) or link_level == 1 then
+                local tags = {"tag_holo","tag_foil","tag_polychrome"}
+                local tag = pseudorandom_element(tags, pseudoseed('shorky'))
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'before',
+                    func = (function()
+                        add_tag(Tag(tag))
+                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                        play_sound('polychrome1', 1.2 + math.random()*0.1, 0.4)
+                    return true
+                end)}))
+                return {
+                    message = localize("k_blahaj"),
+                    colour = G.C.DARK_EDITION,
+                    card = card,
+                }
+            end
 		end
 	end,
     check_for_unlock = function(self, args)
@@ -59,17 +65,18 @@ Partner_API.Partner{
     individual_quips = true,
     loc_txt = {},
     atlas = "prismpartner",
-    config = {extra = {related_card = "j_prism_exotic_card",mult = 3}},
+    config = {extra = {mult = 3}},
+    link_config = {j_prism_exotic_card = 1},
     loc_vars = function(self, info_queue, card)
         local benefits = 1
-        if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
+        if self:get_link_level() == 1 then benefits = 2 end
         return { vars = {card.ability.extra.mult*benefits} }
     end,
     calculate = function(self, card, context)
 		if context.individual and context.other_card and context.scoring_hand and context.cardarea == G.play then
             if next(SMODS.get_enhancements(context.other_card)) then
                 local benefits = 1
-                if next(SMODS.find_card("j_prism_exotic_card")) then benefits = 2 end
+                if self:get_link_level() == 1 then benefits = 2 end
                 return {
                     mult = card.ability.extra.mult*benefits,
                     colour = G.C.RED,
