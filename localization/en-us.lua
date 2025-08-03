@@ -848,9 +848,10 @@ return {
                     "{C:dark_edition,E:2}SuperMao{} and {C:dark_edition,E:2}VisJoker{} - Chinese localization",
                     "{C:dark_edition,E:2}Franderman123{} - Spanish localization",
                     "{C:dark_edition,E:2}Shinosan{} - Vietnamese localization",
+                    "{C:dark_edition,E:2}Alexandria Thurnherr{}, {C:dark_edition,E:2}juno_r1{} and {C:dark_edition,E:2}others{} - French localization",
                     " ",
                     "{s:1.5,C:attention,E:2}My Other Mods",
-                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Resurgence{}" ,
+                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Resurgence{}",
                 }
             }
         },

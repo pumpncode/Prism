@@ -830,27 +830,6 @@ return {
                 },
             }
         },
-        --!!!DO NOT TRANSLATE THIS PART!!!--
-        Mod = {
-            Prism = {
-                name = "Prism",
-                text = {
-                    "Vanilla oriented content mod. Includes new",
-                    "Jokers, Consumables, Decks and more!",
-                    " ",
-                    "Consider joining the {C:dark_edition}Discord Server{}",
-                    " ",
-                    "{s:1.5,C:attention,E:2}Credits",
-                    "{C:dark_edition,E:2}Alexandria Thurnherr{}, with help from {C:dark_edition,E:2}juno_r1 and others{} - French localization",
-                    "{C:dark_edition,E:2}SuperMao{} and {C:dark_edition,E:2}VisJoker{} - Chinese localization",
-                    "{C:dark_edition,E:2}Franderman123{} - Spanish localization",
-                    "{C:dark_edition,E:2}Shinosan{} - Vietnamese localization",
-                    " ",
-                    "{s:1.5,C:attention,E:2}My Other Mods",
-                    "{C:dark_edition}Unjankify{}, {C:dark_edition}Prism Darkside{} and {C:dark_edition}Resurgence{}" ,
-                }
-            }
-        },
     },
     misc = {
         challenge_names={
