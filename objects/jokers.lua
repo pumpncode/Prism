@@ -1633,8 +1633,7 @@ G.PRISM.Joker({
 		if context.cardarea == G.jokers and context.before and not context.blueprint  then
 			if #context.full_hand == 1 and G.GAME.current_round.hands_played == 0 then
 				local _card = context.full_hand[1]
-				local suit = string.sub(_card.base.suit, 1, 1)..'_'
-                _card:set_base(G.P_CARDS[suit..'Q'])
+				SMODS.change_base(_card,nil,'Queen')
 				G.E_MANAGER:add_event(Event({
 					func = function()
 						_card:juice_up(0.3, 0.5)
