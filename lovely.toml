@@ -47,8 +47,8 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = '''G.GAME.pack_choices = self.ability.choose*'''
-position = 'after'
+pattern = '''if self.cost > 0 then*'''
+position = 'before'
 payload = '''
 if G.GAME.used_vouchers.v_prism_bonus_packs then G.GAME.pack_choices = G.GAME.pack_choices + 1 end
 '''
