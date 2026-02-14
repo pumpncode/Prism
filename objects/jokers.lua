@@ -16,6 +16,7 @@ function G.PRISM.Joker(table)
 		SMODS.Joker(table)
 	end
 end
+
 G.PRISM.Joker({
 	key = "polydactyly",
 	atlas = "jokers",
@@ -51,14 +52,15 @@ G.PRISM.Joker({
 		odds = 2,money = 4
     },
 	loc_vars = function(self, info_queue, center)
+		local n, d = SMODS.get_probability_vars(center,1,center.ability.odds,"rich")
 		return { vars = {
-			"" .. (G.GAME and G.GAME.probabilities.normal or 1), 
-			center.ability.odds,
+			n,
+			d,
 			center.ability.money }
 		}
 	end,
 	calculate = function(self, card, context)
-		if context.selling_card and context.card ~= card and pseudorandom('rich') < G.GAME.probabilities.normal / card.ability.odds then
+		if context.selling_card and context.card ~= card and SMODS.pseudorandom_probability(card,"rich",1,card.ability.odds) then
 			return {
 				dollars = card.ability.money,
 				card = card
@@ -99,7 +101,6 @@ G.PRISM.Joker({
 			}
 		end
 	end
-
 })
 G.PRISM.Joker({
 	key = "hit_record",
@@ -118,7 +119,65 @@ G.PRISM.Joker({
 		end
 	end
 })
-
+G.PRISM.Joker({
+	key = "scale",
+	atlas = "jokers",
+	pos = {x=3,y=13},
+	rarity = 1,
+	cost = 6,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = {chips = 20, mult = 4}},
+	loc_vars = function(self, info_queue, center)
+		local to_right = 0
+		local to_left = 0
+		if G.jokers and G.jokers.cards and center.area == G.jokers then
+			local pos = nil
+			for i = 1, #G.jokers.cards do
+				if G.jokers.cards[i] == center then
+					pos = i
+					break
+				end
+			end
+			if pos then
+				to_right = #G.jokers.cards - pos
+				to_left = pos - 1
+			end
+		end
+		return { vars = {
+			center.ability.extra.chips, 
+			center.ability.extra.mult,
+			center.ability.extra.chips * to_right,
+			center.ability.extra.mult * to_left
+		} }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			local to_right = 0
+			local to_left = 0
+			if G.jokers and G.jokers.cards and card.area == G.jokers then
+				local pos = nil
+				for i = 1, #G.jokers.cards do
+					if G.jokers.cards[i] == card then
+						pos = i
+						break
+					end
+				end
+				if pos then
+					to_right = #G.jokers.cards - pos
+					to_left = pos - 1
+				end
+			end
+			return{
+				chips = card.ability.extra.chips * to_right,
+				mult = card.ability.extra.mult * to_left
+			}
+		end
+	end
+})
 G.PRISM.Joker({
 	key = "motherboard",
 	atlas = "jokers",
@@ -287,13 +346,14 @@ G.PRISM.Joker({
 	},
 	config = {extra = {money = 2,odds = 2, uses = 15}},
 	loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.money,center.ability.extra.uses,"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
+		local n, d = SMODS.get_probability_vars(center,1,center.ability.extra.odds,"4cheese")
+		return { vars = { center.ability.extra.money,center.ability.extra.uses,n,d}}
 	end,
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
             if context.other_card:is_suit('Diamonds', nil, true) and card.ability.extra.uses > 0 then
 				if not context.blueprint then card.ability.extra.uses = card.ability.extra.uses - 1 end
-				if pseudorandom('4cheese') < G.GAME.probabilities.normal / card.ability.extra.odds then
+				if SMODS.pseudorandom_probability(card,"4cheese",1,card.ability.extra.odds) then
 					return {
 						dollars = card.ability.extra.money,
 						card = card
@@ -470,8 +530,9 @@ G.PRISM.Joker({
 	},
 	config = {extra = {x_mult = 2.5, uses = 15,again = 0,odds = 3}},
 	loc_vars = function(self, info_queue, center)
+		local n, d = SMODS.get_probability_vars(center,1,center.ability.extra.odds,"cone")
 		return { vars = { center.ability.extra.x_mult,center.ability.extra.uses,
-		"" .. (G.GAME and G.GAME.probabilities.normal or 1),center.ability.extra.odds}}
+		n,d}}
 	end,
 	calculate = function(self, card, context)
 		if context.cardarea == G.play and context.individual then
@@ -480,7 +541,7 @@ G.PRISM.Joker({
 				local trycount = context.other_card:is_3()
 				local repcount = 0
 				for try=1,trycount do
-					if pseudorandom('cone') < G.GAME.probabilities.normal/card.ability.extra.odds then 
+					if SMODS.pseudorandom_probability(card,"cone",1,card.ability.extra.odds) then 
 						repcount = repcount + 1
 					end
 				end
@@ -589,7 +650,7 @@ G.PRISM.Joker({
 	end
 })
 G.PRISM.Joker({
-	dependency = G.PRISM.config.myth_enabled,
+	dependency = G.PRISM.config.enhance_enabled,
 	key = "geo_hammer",
 	atlas = "jokers",
 	pos = {x=0,y=3},
@@ -1092,8 +1153,13 @@ G.PRISM.Joker({
 			end
 		end
     end
-	
 })
+--[[ local orig_pseudorandom_probability = SMODS.pseudorandom_probability
+function SMODS.pseudorandom_probability(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod)
+	if G.GAME.prism_fortune_cookie then return true end
+	return orig_pseudorandom_probability(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod)
+end ]]
+
 G.PRISM.Joker({
 	key = "economics",
 	atlas = "jokers",
@@ -1381,10 +1447,8 @@ G.PRISM.Joker({
 		info_queue[#info_queue + 1] = G.P_CENTERS.e_foil
 		info_queue[#info_queue + 1] = G.P_CENTERS.e_holo
 		info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
-		return { vars = {
-			"" .. (G.GAME and G.GAME.probabilities.normal or 1), 
-			center.ability.extra.odds
-		}}
+		local n, d = SMODS.get_probability_vars(center,1,center.ability.extra.odds,"murano")
+		return { vars = {n,d}}
 	end,
 	in_pool = function(self)
 		for k, v in pairs(G.playing_cards or {}) do
@@ -1397,7 +1461,7 @@ G.PRISM.Joker({
 			local trigger = false
             for k, v in ipairs(context.scoring_hand) do
 				if SMODS.has_enhancement(v,'m_glass') and not v.edition and not v.debuff then 
-					if pseudorandom('murano') < G.GAME.probabilities.normal/card.ability.extra.odds then
+					if SMODS.pseudorandom_probability(card,"murano",1,card.ability.extra.odds) then
 						trigger = true
 						local edition = poll_edition('bismuth', nil, nil, true, {
 							'e_foil',
@@ -1466,7 +1530,7 @@ G.PRISM.Joker({
 	
 })
 G.PRISM.Joker({
-	dependency = G.PRISM.config.myth_enabled,
+	dependency = G.PRISM.config.enhance_enabled,
 	key = "amethyst",
 	atlas = "jokers",
 	pos = {x=1,y=7},
@@ -1662,12 +1726,8 @@ G.PRISM.Joker({
 	perishable_compat = true,
 	calculate = function(self, card, context)
 		if context.joker_main and not context.before and not context.after and hand_chips and mult then
-			local old_chips = hand_chips
-			local old_mult = mult
-			hand_chips = mod_chips(old_mult)
-			mult = mod_mult(old_chips)
-			update_hand_text({ delay = 0 }, { mult = mult, chips = hand_chips })
 			return {
+				swap = true,
 				message = localize("k_uno_reverse"),
 				colour = G.C.RED
 			}
@@ -1781,7 +1841,7 @@ G.PRISM.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
-	config = {extra = {index = 1,x_mult = 3.14}},
+	config = {extra = {index = 1,x_mult = 3.14,queued=false}},
 	loc_vars = function(self, info_queue, center)
 		local rank = string.sub(G.PRISM.PI,center.ability.extra.index,center.ability.extra.index)
 		if rank == "1" then rank = "Ace" end
@@ -1792,13 +1852,17 @@ G.PRISM.Joker({
 	end,
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
+			if card.ability.extra.queued and not context.blueprint then
+				card.ability.extra.index = card.ability.extra.index + 1
+				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				card.ability.extra.queued = false
+			end
 			local rank = string.sub(G.PRISM.PI,card.ability.extra.index,card.ability.extra.index)
-			if rank == "1" then rank = "Ace" end
+			if rank == "1" then rank = "14" end
 			if rank == "0" then rank = "10" end
-			if context.other_card.config.card.value == rank then
+			if tostring(context.other_card:get_id()) == rank then
 				if not context.blueprint then
-					card.ability.extra.index = card.ability.extra.index + 1
-					if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+					card.ability.extra.queued = true
 				end
 				return {
 					xmult = card.ability.extra.x_mult,
@@ -1806,6 +1870,13 @@ G.PRISM.Joker({
 				}
 			end
         end
+		if context.after then
+			if card.ability.extra.queued and not context.blueprint then
+				card.ability.extra.index = card.ability.extra.index + 1
+				if card.ability.extra.index > G.PRISM.PI:len() then card.ability.extra.index = 1 end
+				card.ability.extra.queued = false
+			end
+		end
     end
 	
 })
@@ -1856,14 +1927,9 @@ G.PRISM.Joker({
 		end
 		if context.joker_main then
 			if context.scoring_name == card.ability.poker_hand_1 or context.scoring_name == card.ability.poker_hand_2 then
-				local tot = hand_chips + mult
-				hand_chips = math.floor(tot/2)
-				mult = math.floor(tot/2)
-				update_hand_text({delay = 0}, {mult = mult, chips = hand_chips})
 				card.ability.reset = true
 				return {
-					message = localize("k_balanced"),
-					colour = { 0.8, 0.45, 0.85, 1 },
+					balance = true,
 				}
 			end
 		end
@@ -1955,13 +2021,14 @@ G.PRISM.Joker({
 	perishable_compat = true,
 	config = {extra = {chips = 15, mult = 3, x_mult = 0.1,odds = 2}},
 	loc_vars = function(self, info_queue, center)
+		local n, d = SMODS.get_probability_vars(center,1,center.ability.extra.odds,"swiss")
 		return {
-		vars = {center.ability.extra.chips,center.ability.extra.mult,center.ability.extra.x_mult,G.GAME.probabilities.normal,center.ability.extra.odds}
+		vars = {center.ability.extra.chips,center.ability.extra.mult,center.ability.extra.x_mult,n,d}
 		}
 	end,
 	calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual then
-			if pseudorandom('swiss') < G.GAME.probabilities.normal / card.ability.extra.odds then
+			if SMODS.pseudorandom_probability(card,"swiss",1,card.ability.extra.odds) then
 				local poll = pseudorandom('swiss_poll')
 				local color = nil
 				if poll < 1/3 then
@@ -1987,6 +2054,42 @@ G.PRISM.Joker({
     end
 	
 })
+G.PRISM.Joker({
+	key = "monkey_paw",
+	atlas = "jokers",
+	pos = {x=3,y=12},
+	rarity = 3,
+	cost = 7,
+	unlocked = true,
+	discovered = false,
+	blueprint_compat = true,
+	eternal_compat = true,
+	perishable_compat = true,
+	config = {extra = 1},
+	loc_vars = function(self, info_queue, center)
+		return { vars = {center.ability.extra} }
+	end,
+	calculate = function(self, card, context)
+        if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss
+		and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+			G.E_MANAGER:add_event(Event({
+			func = function()
+				G.hand:change_size(-card.ability.extra)
+				G.GAME.prism_choosing_card = "paw"
+				G.FUNCS.overlay_menu({ 
+                    definition = SMODS.card_collection_UIBox(G.P_CENTER_POOLS.Spectral, {4,5}, {
+                        no_materialize = true,
+                        h_mod = 0.95,
+                        back_func = "exit_overlay_menu"
+                    })
+                })
+				return true
+			end,
+		}))
+		end
+	end
+}) 
+
 G.PRISM.Joker({
 	key = "hypercube",
 	atlas = "jokers",
